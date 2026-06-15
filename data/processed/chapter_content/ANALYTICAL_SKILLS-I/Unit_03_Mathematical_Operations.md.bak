@@ -1,0 +1,268 @@
+# Study Guide: Unit 03 - Mathematical Operations
+
+---
+
+## **Overview**
+
+---
+
+## **Key Concepts**
+
+### **1. What is BODMAS?**
+- **BODMAS** is an acronym that stands for:
+  - **B**: Brackets
+  - **O**: Orders (powers, roots)
+  - **D**: Division
+  - **M**: Multiplication
+  - **A**: Addition
+  - **S**: Subtraction
+- It provides the correct order to perform operations in mathematical expressions.
+
+### **2. Understanding the Rules**
+- Solve expressions **within brackets** first, starting with innermost brackets.
+- Then handle **orders** (powers, roots).
+- Perform **division and multiplication** from left to right.
+- Finally, carry out **addition and subtraction** from left to right.
+
+---
+
+## **Tables**
+
+### **Order of Operations (BODMAS)**
+
+| Acronym | Meaning       |
+|--------|---------------|
+| B      | Brackets      |
+| O      | Orders        |
+| D      | Division      |
+| M      | Multiplication |
+| A      | Addition      |
+| S      | Subtraction   |
+
+---
+
+### **Algebraic Identities (Formulae)**
+
+| Identity | Description                             |
+|---------|------------------------------------------|
+| 1.      | $(a + b)^2 = a^2 + 2ab + b^2$         |
+| 2.      | $(a - b)^2 = a^2 - 2ab + b^2$         |
+| 3.      | $(a + b)^2 + (a - b)^2 = 2(a^2 + b^2)$ |
+| 4.      | $(a + b)^2 - (a - b)^2 = 4ab$         |
+| 5.      | $a^2 - b^2 = (a + b)(a - b)$          |
+| 6.      | $(a + b)^3 = a^3 + b^3 + 3ab(a + b)$  |
+| 7.      | $(a - b)^3 = a^3 - b^3 - 3ab(a - b)$  |
+| 8.      | $a^3 + b^3 = (a + b)(a^2 - ab + b^2)$ |
+| 9.      | $a^3 - b^3 = (a - b)(a^2 + ab + b^2)$ |
+| 10.     | $\frac{a^3 + b^3 + c^3 - 3abc}{a^2 + b^2 + c^2 - ab - bc - ca} = a + b + c$ |
+
+---
+
+## **Examples & Illustrations**
+
+### **Illustration 1: Simplify Expression**
+$$
+\frac{17}{2} - \left(\frac{16}{5} \div \frac{9}{2}\right) + \frac{69}{8}
+$$
+- Step-by-step simplification leads to final result: $-\frac{31}{120}$
+
+### **Illustration 2: Simplify Expression**
+$$
+\frac{16}{3} - \frac{13}{3} - \frac{10}{3} - \frac{7}{3} - \frac{1}{3}
+$$
+- Final Result: $\frac{7}{3} = 2\frac{1}{3}$
+
+### **Illustration 3: Use of Algebraic Formulas**
+#### Example 1:
+$$
+(0.32)^2 + 2 \times 0.32 \times 0.68 + (0.68)^2 = (0.32 + 0.68)^2 = 1
+$$
+#### Example 2:
+$$
+(2.45)^2 - 2 \times 2.45 \times 0.45 + (0.45)^2 = (2.45 - 0.45)^2 = 4
+$$
+#### Example 3:
+$$
+\frac{(146)^2 + (92)^2}{(146)^2 + (92)^2} = 1
+$$
+
+---
+
+## **Common Errors to Avoid**
+
+| Error Type              | Explanation                                                                 |
+|------------------------|-----------------------------------------------------------------------------|
+| Confusion with Brackets | Solving brackets incorrectly can lead to wrong results                     |
+| Misunderstanding Order  | Assuming that all operations have different priorities                    |
+| Incorrect Precedence    | Performing division before multiplication when both appear together       |
+| Sign Errors             | Forgetting to change signs when removing brackets                         |
+
+---
+
+## **Summary**
+
+- **BODMAS** ensures clarity and correctness in performing arithmetic operations.
+- Proper application of **brackets**, **orders**, **division**, **multiplication**, **addition**, and **subtraction** is essential.
+- Algebraic identities help in simplifying expressions efficiently.
+- Common errors arise from misinterpreting the order of operations and incorrect bracket handling.
+
+---
+
+## **Keywords**
+
+- **BODMAS Rule**
+- **Precedence**
+- **Symbols into Signs**
+- **Algebraic Formulae**
+
+---
+
+## **Self-Assessment Answers**
+
+| Question No. | Answer |
+|-------------|--------|
+| 1           | A      |
+| 2           | D      |
+| 3           | B      |
+| 4           | A      |
+| 5           | A      |
+| 6           | A      |
+| 7           | C      |
+| 8           | D      |
+| 9           | B      |
+| 10          | D      |
+| 11          | B      |
+| 12          | D      |
+| 13          | C      |
+| 14          | C      |
+| 15          | A      |
+
+---
+
+## **Review Questions**
+
+1. $15 + (6 + 7) = ?$
+2. $25 - (3 + 2) = ?$
+3. $2 \times (3 \times 8) = ?$
+
+---
+
+## **Conclusion**
+
+This unit equips learners with the essential skills to interpret and solve complex mathematical expressions using the **BODMAS rule** and **algebraic identities**. Mastery of these concepts helps reduce computational errors and enhances analytical thinking.
+
+---
+
+# Study Guide: Critical Rules - Order of Operations and Symbol Substitution Problems
+
+## Table of Contents
+
+1. [Introduction](#introduction)
+2. [Order of Operations (BODMAS)](#order-of-operations-bodmas)
+3. [Symbol Substitution Problems](#symbol-substitution-problems)
+4. [Practice Exercises](#practice-exercises)
+5. [Further Readings](#further-readings)
+
+---
+
+## Introduction
+
+---
+
+## Order of Operations (BODMAS)
+
+The **BODMAS** rule is used to simplify expressions involving different operations. The acronym stands for:
+
+- **B**: Brackets
+- **O**: Orders (Exponents)
+- **D**: Division
+- **M**: Multiplication
+- **A**: Addition
+- **S**: Subtraction
+
+### Example Problem
+
+**Problem:** Solve $[10 - (2 + 3)] + 15 \div 12$
+
+#### Step-by-step Solution:
+1. Simplify inside the brackets first: $2 + 3 = 5$
+2. Substitute back into the expression: $10 - 5 = 5$
+3. Now add: $5 + 15 = 20$
+4. Finally divide: $20 \div 12 = \frac{5}{3}$
+
+---
+
+### Summary Table for BODMAS Rule
+
+| Operation | Meaning       | Priority |
+|----------|---------------|----------|
+| B        | Brackets      | Highest  |
+| O        | Orders        |          |
+| D        | Division      |          |
+| M        | Multiplication|          |
+| A        | Addition      |          |
+| S        | Subtraction   | Lowest   |
+
+---
+
+## Symbol Substitution Problems
+
+In these problems, standard mathematical symbols are replaced with other symbols. It's crucial to decode the meaning of each symbol before solving the expression.
+
+### Example Problem
+
+**Problem 1:** If ‘-’ means ‘divided by’, ‘+’ means ‘multiplied by’, ‘×’ means ‘minus’ and ‘÷’ means ‘plus’, what is the value of the expression: `16 ÷ 8 - 4 + 2 × 4`
+
+#### Step-by-step Solution:
+1. Replace symbols:
+   - `-` → `÷`
+   - `+` → `×`
+   - `×` → `-`
+   - `÷` → `+`
+2. New expression becomes: `16 + 8 ÷ 4 × 2 - 4`
+3. Apply BODMAS:
+   - `8 ÷ 4 = 2`
+   - `2 × 2 = 4`
+   - `16 + 4 = 20`
+   - `20 - 4 = 16`
+
+So, final answer is **16**
+
+---
+
+### Summary Table for Symbol Substitution Problems
+
+| Original Symbol | Replaced With | Meaning         |
+|------------------|----------------|------------------|
+| -                | ÷              | Divided by       |
+| +                | ×              | Multiplied by    |
+| ×                | -              | Minus            |
+| ÷                | +              | Plus             |
+
+---
+
+## Practice Exercises
+
+| Exercise Number | Expression | Instructions |
+|------------------|------------|--------------|
+| 1               | [10-(2+3)]+15÷12 | Solve using BODMAS |
+| 2               | 18+19‚19+15×12−17 | Use BODMAS |
+| 3               | 180÷15{(12–6)–(14–12)} | Solve using BODMAS |
+| 4               | 30+25×(25÷30) | Solve using BODMAS |
+| 5               | 16 ÷ 8 - 4 + 2 × 4 | Decode symbols |
+| 6               | 18 A 12 C 6 D 2 B 5 | Use given meanings |
+| 7               | 18 c 14 a 6 b 16 d 4 | Use given meanings |
+| 8               | (7 p 3) y 6 x 5 | Use given meanings |
+
+---
+
+## Further Readings
+
+| Title | Author | Publisher | Description |
+|-------|--------|-----------|-------------|
+| Quantitative Aptitude For Competitive Examinations | Dr. R S Aggarwal | S Chand Publishing | Comprehensive resource for quantitative aptitude problems including order of operations |
+| A Modern Approach To Verbal & Non-Verbal Reasoning | Dr. R S Aggarwal | S Chand Publishing | Covers logical reasoning and symbolic substitution problems |
+| Magical Book On Quicker Maths | M Tyra | Banking Service Chronicle | Quick math techniques for competitive exams |
+| Analytical Reasoning | M.K. Pandey | Banking Service Chronicle | Includes various types of reasoning problems such as symbol substitution |
+
+---

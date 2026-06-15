@@ -1,0 +1,287 @@
+# Study Guide: Unit 08 - Number, Ranking and Time Sequence
+
+---
+
+## **Overview**
+
+1. **Number Test**  
+2. **Ranking Test**  
+3. **Time Sequence Test**
+
+Each section provides detailed explanations, examples, and summaries to help you master the core concepts.
+
+---
+
+## **1. Number Test**
+
+### **Key Concepts**
+- Identify specific numbers in sequences based on given conditions.
+- Numbers may appear in patterns, and you need to identify their positions or occurrences.
+- Conditions often involve:
+  - Preceding or following another number.
+  - Being in a specific position within the sequence.
+  - Following a rule like "not immediately followed by X".
+
+### **Examples and Problem Types**
+- Counting numbers with specific properties.
+- Reversing digits within numbers and sorting them.
+- Identifying patterns between digits.
+
+### **Example**
+> **Question:** How many 5s are there in the following number sequence each of which is immediately preceded by 3 or 4 but not immediately followed by 8 or 9?
+
+> **Sequence:** `3 5 9 5 4 5 5 3 5 8 4 5 6 7 3 5 7 5 5 4 5 2 3 5 1 0`
+
+> **Answer:** 5
+
+### **Practice Tip**
+- Focus on identifying positional relationships.
+- Look for clues about preceding/following numbers.
+- Practice reversing and sorting numbers.
+
+---
+
+## **2. Ranking Test**
+
+### **Key Concepts**
+- Determine the **total number of people** in a group using **ranks from top/bottom**.
+- Understand formulas:
+  - $ \text{Total} = (\text{Top Rank} + \text{Bottom Rank}) - 1 $
+  - $ \text{Position from Opposite Side} = (\text{Total} - \text{Given Side Position}) + 1 $
+
+### **Examples and Problem Types**
+- Given rank from top and bottom, calculate total participants.
+- Interchange seating arrangements or positions.
+- Use logical reasoning to derive missing information.
+
+### **Example**
+> **Question:** Rohan ranks 7th from the top and 26th from the bottom in a class. How many students are in the class?
+
+> **Answer:** 32
+
+### **Practice Tip**
+- Always check if the problem involves overlapping positions or interchanges.
+- Be careful not to double count the individual being ranked.
+- Apply formulas directly once you understand the logic behind them.
+
+---
+
+## **3. Time Sequence Test**
+
+### **Key Concepts**
+- Determine **dates**, **days**, or **events** based on relative positioning.
+- Often used to resolve **conflicting statements** about events occurring on specific dates.
+- Requires understanding of **relative time intervals**.
+
+### **Examples and Problem Types**
+- Finding the **correct date** based on multiple constraints.
+- Calculating **days ahead or behind** a reference point.
+- Solving puzzles involving **time gaps** and **sequence overlaps**.
+
+### **Example**
+> **Question:** Satish remembers that his brother's birthday is after 15th but before 18th of February. His sister remembers it is after 16th but before 19th. What is the correct date?
+
+> **Answer:** 17th February
+
+### **Practice Tip**
+- List out possible values based on each constraint.
+- Find the intersection of all possible outcomes.
+- Visualize timelines or use calendars for clarity.
+
+---
+
+## **Summary Table**
+
+| Topic             | Description                                                                 | Formula / Concept                                  |
+|------------------|-----------------------------------------------------------------------------|----------------------------------------------------|
+| Number Test       | Identifying numbers in sequences based on conditions                        | Precedence, succession, reversal                   |
+| Ranking Test     | Determining total participants from ranks                                   | Total = Top Rank + Bottom Rank - 1                 |
+| Time Sequence    | Resolving conflicting or overlapping time references                       | Relative days, calendar alignment                  |
+
+---
+
+## **Keywords**
+
+| Term              | Definition                                               |
+|-------------------|----------------------------------------------------------|
+| Number Test       | Analyzing numerical sequences                            |
+| Ranking Test      | Determining positions from top and bottom               |
+| Time Sequence     | Solving date-based puzzles with relative timing          |
+| Precedence        | A number that appears before another                     |
+| Succession        | A number that appears after another                      |
+| Relative Timing   | Events or dates compared against each other              |
+
+---
+
+## **Self-Assessment Checklist**
+
+| Skill                                | Proficiency Level |
+|-------------------------------------|------------------|
+| Understanding Number Test Problems | ✅                |
+| Applying Ranking Formulas           | ✅                |
+| Solving Time Sequence Puzzles      | ✅                |
+
+---
+
+## **Review Questions**
+
+1. How many 7s are there in the sequence `7 3 7 5 6 7 4 7 2 3 7 9`, where the 7 is immediately followed by 3?
+2. If Ravi is 15th from the front and 10th from the back in a queue, how many people are there?
+3. If today is Monday, what day will it be 7 days from now?
+
+---
+
+## **Further Reading**
+
+- Logical Reasoning Textbooks
+- GRE Official Guide (Quantitative Section)
+- Online resources for Number Series and Ranking Problems
+
+---
+
+# Study Guide: Number, Ranking and Time Sequence Tests
+
+## Table of Contents
+- **Understanding Number Tests**
+- **Understanding Ranking Tests**
+- **Understanding Time Sequence Tests**
+- **Examples and Solutions**
+- **Self-Assessment Questions**
+- **Review Questions**
+- **Further Readings**
+
+---
+
+## Understanding Number Tests
+
+### Key Concepts
+- **Definition**: Number tests involve identifying patterns, sequences, and specific conditions within a set of numbers.
+- **Common Tasks**:
+  - Finding numbers that meet certain criteria (e.g., preceded by a specific digit).
+  - Identifying differences between consecutive numbers.
+- **Example**: Determine how many '6's are immediately preceded by 3 or 4 but not followed by 8 or 9.
+
+| Task | Description |
+|------|-------------|
+| Identify Precedence | Find numbers that are immediately preceded by a specified value. |
+| Difference Between Numbers | Calculate the difference between consecutive numbers in a sequence. |
+
+---
+
+## Understanding Ranking Tests
+
+### Key Concepts
+- **Definition**: Ranking tests require determining positions or rankings based on given data.
+- **Common Tasks**:
+  - Determining someone’s rank when multiple people are involved.
+  - Calculating total participants using relative positions.
+- **Example**: Determine the ranking of a student in a class if given their position from the top and bottom.
+
+| Task | Description |
+|------|-------------|
+| Position From Top/Bottom | Determine a person's position based on their placement from the top or bottom. |
+| Total Participants Calculation | Use relative positions to compute the total number of individuals in a group. |
+
+---
+
+## Understanding Time Sequence Tests
+
+### Key Concepts
+- **Definition**: These tests evaluate understanding of temporal relationships and date calculations.
+- **Common Tasks**:
+  - Determining the day of the week for a specific date.
+  - Using clues about dates to determine exact days.
+- **Example**: If the 7th day of the month is three days earlier than Friday, determine the day of the week for other dates.
+
+| Task | Description |
+|------|-------------|
+| Date Calculations | Use relative date information to determine the actual day of the week. |
+| Day-of-the-Week Problems | Solve problems involving shifts in days of the week based on given constraints. |
+
+---
+
+## Examples and Solutions
+
+### Example 9: Father's Birthday
+- **Vandana**: Birthday is between 13th and 16th June.
+- **Brother**: Birthday is between 14th and 18th June.
+- **Conclusion**: Common day is **15th June**.
+
+| Person | Range | Common Day |
+|--------|-------|------------|
+| Vandana | 13–16 | 15th |
+| Brother | 14–18 | 15th |
+
+### Example 10: Counting 6's
+- Given sequence: `3 6 9 6 4 6 6 3 6 8 4 6 5 7 3 6 7 6 6 4 6 2 3 6 1 0`
+- Valid 6's are those:
+  - Immediately preceded by 3 or 4.
+  - Not immediately followed by 8 or 9.
+
+| Index | Value | Valid? |
+|-------|-------|--------|
+| 1 | 6 | Yes |
+| 4 | 6 | Yes |
+| 5 | 6 | Yes |
+| 7 | 6 | Yes |
+| 14 | 6 | Yes |
+
+> **Answer**: 5 such 6's.
+
+### Example 11: Successive Numbers with Difference of 3
+- Series: `7 4 1 2 2 8 4 1 2 1 8 5 5 2 2 1 7 1 2 1 4 2 6 3`
+- Find pairs where the absolute difference is 3.
+
+| Pair | Values | Difference |
+|------|--------|------------|
+| 7–4 | 3 | Yes |
+| 4–1 | 3 | Yes |
+| 8–5 | 3 | Yes |
+| 5–2 | 3 | Yes |
+| 4–1 | 3 | Yes |
+| 6–3 | 3 | Yes |
+
+> **Answer**: 6 such pairs.
+
+---
+
+## Self-Assessment Questions
+
+| Question No. | Topic | Answer |
+|-------------|-------|--------|
+| 1 | Number Test | D |
+| 2 | Number Test | A |
+| 3 | Number Test | D |
+| 4 | Ranking Test | C |
+| 5 | Ranking Test | D |
+| 6 | Ranking Test | A |
+| 7 | Time Sequence | D |
+| 8 | Time Sequence | D |
+| 9 | Time Sequence | C |
+| 10 | Number Test | B |
+
+---
+
+## Review Questions
+
+1. **Family Relationship**: Radha says "His father is the only son of my grandfather". So, Radha is Ajay's **mother**.
+2. **Counting 4's**: Count how many 4's are preceded by 7 but not followed by 3.
+3. **Class Rank**: Rohan is 7th from top and 26th from bottom → Total students = 7 + 26 - 1 = **32**.
+4. **Position from Left**: Manik is 14th from right in a row of 40 → Position from left = 40 - 14 + 1 = **27th**.
+5. **Row of Boys**: A is 16th from left, C is 16th from right, B is 4th to the right of A and 5th to the left of C → Total boys = 16 + 16 - 1 = **31**.
+6. **Pattern Recognition**: Count how many times 1, 3, and 7 appear together with 7 in the middle. Answer: **4 times**.
+7. **Descending Order**: Numbers divisible by 5 from 5 to 85 → 11th from bottom = **70**.
+8. **Position Swap**: Anil moves from 7th to 21st → Total students = 21 + 18 - 1 = **38**.
+9. **Tallest/Shortest**: Shortest is **Rajat**.
+10. **Departure Time**: Leaves home at 6:40 am, arrives at 7:05 am, leaves for office at 7:20 am → Departure from Vineeta's house = **7:05 am**.
+
+---
+
+## Further Readings
+
+| Book Title | Author | Publisher |
+|-----------|--------|-----------|
+| Quantitative Aptitude For Competitive Examinations | Dr. R S Aggarwal | S Chand Publishing |
+| A Modern Approach To Verbal & Non-Verbal Reasoning | Dr. R S Aggarwal | S Chand Publishing |
+| Magical Book On Quicker Maths | M Tyra | Banking Service Chronicle |
+| Analytical Reasoning | M.K. Pandey | Banking Service Chronicle |

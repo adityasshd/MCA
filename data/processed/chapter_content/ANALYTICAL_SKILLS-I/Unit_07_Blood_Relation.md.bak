@@ -1,0 +1,538 @@
+# Unit 07: Blood Relation Study Guide
+
+## 📚 Overview
+
+This study guide provides a structured overview of **Blood Relations**, a core topic in **Logical Reasoning**. It covers all types of questions typically encountered in competitive exams and includes definitions, examples, and problem-solving strategies.
+
+---
+
+## 🔍 Objective
+
+After completing this unit, learners will be able to:
+
+- Understand how to determine **Family or Blood Relationships**.
+- Identify relationships involving the term **"-in-law"**.
+- Differentiate between **Father-in-law**, **Mother-in-law**, **Son-in-law**, and **Daughter-in-law**.
+- Recognize **Brother-in-law** and **Sister-in-law** relationships.
+- Distinguish between **Half Siblings** and **Step Relations**.
+
+---
+
+## 🧠 Introduction
+
+**Blood Relations** refer to connections between individuals by **birth** or **marriage**. These relationships are crucial in logical reasoning and frequently appear in competitive exams due to their complexity and diversity.
+
+---
+
+## 📘 7.1 Types of Questions on Blood Relation
+
+| Type                        | Description |
+|----------------------------|-------------|
+| **Dialogue-Based**         | Based on conversations where a person describes their relation to someone else. |
+| **Puzzle-Based**           | Requires forming a network of relationships based on given information. |
+| **Coding-Decoding**        | Uses symbols or codes to denote relationships. |
+
+### ✅ Tips for Solving:
+- Do **not assume** genders from names.
+- Use **diagrams** to visualize relationships.
+- Be careful with **complex puzzles**.
+- Use **pictorial methods** for coding-decoding problems.
+
+---
+
+## 🗣️ 7.2 Family or Blood Relations Test
+
+### Steps to Solve:
+1. **Identify the two persons** involved in the relationship.
+2. **Pinpoint the intermediate relationships** connecting them.
+3. **Conclude the direct relationship** between the two persons.
+
+### Symbols Used:
+- Male: `⊕`
+- Female: `□`
+
+---
+
+## 📌 Basic Terms in Blood Relations
+
+| Term       | Definition                                                                 |
+|------------|----------------------------------------------------------------------------|
+| Parents    | Mother and Father                                                         |
+| Children   | Son or Daughter                                                           |
+| Siblings   | Brother or Sister (of the same parents)                                  |
+| Spouse     | Husband or Wife                                                          |
+| Aunt       | Father’s sister, Mother’s sister, Father’s brother’s wife, or Mother’s brother’s wife |
+| Uncle      | Father’s brother, Mother’s brother, Father’s sister’s husband, or Mother’s sister’s husband |
+| Niece      | Daughter of brother or sister                                             |
+| Nephew     | Son of brother or sister                                                  |
+| Cousin     | Child of aunt or uncle                                                    |
+| In-Law     | Relationships formed by **marriage**, not birth                          |
+
+---
+
+## 🧩 Example Problems
+
+### Example 1:
+> *Introducing Neeta, Anil said, "She is the wife of my mother’s only son."*  
+> **How is Neeta related to Anil?**
+
+#### 💡 Solution:
+- Anil’s mother’s only son → Anil himself.
+- Therefore, **Neeta is Anil’s wife**.
+
+✅ Answer: **(2) Wife**
+
+---
+
+### Example 2:
+> *Ram is the father of Kusha, but Kusha is not his son. Mala is the daughter of Kusha. Shalaka is the spouse of Ram. Gopal is the brother of Kusha. Hari is the son of Gopal. Meena is the spouse of Gopal. Ganpat is the father of Meena. Who is the granddaughter of Ram?*
+
+#### 💡 Solution:
+- Kusha is **not** Ram's son → must be his **daughter**.
+- Mala is the daughter of **Kusha** → Mala is the **granddaughter of Ram**.
+
+✅ Answer: **(2) Mala**
+
+---
+
+## 🧾 7.3 Family/Blood Relations Described Generally
+
+### Common Terms:
+- **Parent**: Mother or Father
+- **Child**: Son or Daughter (includes adults)
+- **Sibling**: Brother or Sister (can be full or half siblings)
+- **Spouse**: Husband or Wife
+
+### Key Relationships:
+- **Aunt**: Father’s sister, Mother’s sister, or spouse of Father’s or Mother’s brother
+- **Uncle**: Father’s brother, Mother’s brother, or spouse of Father’s or Mother’s sister
+- **Niece/Nephew**: Daughter/Son of your brother or sister
+- **Cousin**: Child of your aunt or uncle
+
+---
+
+## 👨‍👩‍👧‍👦 7.4 Relationships Involving '-in-law'
+
+| Term             | Meaning                                      |
+|------------------|----------------------------------------------|
+| Father-in-law    | Father of your spouse                         |
+| Mother-in-law    | Mother of your spouse                         |
+| Son-in-law       | Husband of your daughter                      |
+| Daughter-in-law  | Wife of your son                              |
+
+> ❗ Note: These are **marriage-based** relationships, not blood-related.
+
+---
+
+## 👨‍👨‍👧‍👦 7.5 Father-in-law, Mother-in-law, Son-in-law & Daughter-in-law
+
+| Term              | Description                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| Father-in-law     | Father of your spouse                                                       |
+| Mother-in-law     | Mother of your spouse                                                       |
+| Son-in-law        | Husband of your daughter                                                    |
+| Daughter-in-law   | Wife of your son                                                            |
+
+> ⚠️ If a spouse has children from a previous marriage, they are called **stepchildren**, not **sons-in-law** or **daughters-in-law**.
+
+---
+
+## 👨‍🤝‍👨‍👧‍👦 7.6 Brother-in-law & Sister-in-law
+
+| Term               | Possible Meanings                                                                 |
+|--------------------|------------------------------------------------------------------------------------|
+| Brother-in-law     | 1. Brother of your spouse<br>2. Husband of your sister<br>3. Husband of your spouse's sister |
+| Sister-in-law      | 1. Sister of your spouse<br>2. Wife of your brother<br>3. Wife of your spouse's brother |
+
+---
+
+## 🕶️ 7.7 Half Sibling & Step Relations
+
+| Term         | Description                                                                                     |
+|--------------|-------------------------------------------------------------------------------------------------|
+| Half Sibling | Share one parent (either father or mother), not both                                         |
+| Stepchild    | Child from a previous marriage of one parent (e.g., stepson or stepdaughter)                   |
+| Stepparent   | New spouse of a parent after a divorce                                                        |
+
+---
+
+## 📌 Summary
+
+| Topic                                | Notes |
+|-------------------------------------|-------|
+| Blood Relations                     | By birth or marriage                    |
+| Types of Questions                  | Dialogue, Puzzle, Coding-Decoding       |
+| Symbols                             | ⊕ = Male, □ = Female                   |
+| In-Law Relations                    | Marriage-based relationships          |
+| Half vs Step Relations              | Shared parentage vs remarriage         |
+| Key Relationships                   | Aunt, Uncle, Niece, Nephew, Cousins     |
+
+---
+
+## 🧭 Keywords
+
+- Blood Relation
+- In-Law
+- Spouse
+- Sibling
+- Niece
+- Nephew
+- Cousin
+- Half Sibling
+- Stepchild
+- Stepparent
+- Brother-in-law
+- Sister-in-law
+
+---
+
+## 🧠 Self Assessment
+
+1. If Ramesh says, "She is the daughter of my mother's only son," who is she?
+2. What is the relationship between your brother's wife and your sister?
+3. If A is the brother of B, and C is the father of A, what is B's relation to C?
+
+---
+
+## ✅ Answers for Self Assessment
+
+1. She is Ramesh's **sister**.
+2. Your **brother's wife** is your **sister-in-law**.
+3. B is the **son** of C.
+
+---
+
+## 📚 Review Questions
+
+1. What does 'in-law' imply?
+2. Explain the difference between 'half sibling' and 'stepchild'.
+3. Can you identify the correct relationship in the following statement: *"He is the son of my father's only son"*?
+
+---
+
+## 📖 Further Readings
+
+- [3 Sutras to Prepare Reasoning Ability](https://www.lpu.edu/)
+- Practice Questions on Blood Relations from [Indian Exams](https://www.indianexams.in)
+
+--- 
+
+---
+
+# Study Guide: Blood Relations
+
+## Table of Contents
+1. **Understanding Generations**
+2. **Collateral Relationships**
+3. **Half Siblings and Step Relations**
+4. **Summary of Common Relationships**
+5. **Types of Questions on Blood Relations**
+6. **Mixed-Up Relationship Descriptions**
+7. **Tips and Techniques for Solving Blood Relation Problems**
+8. **Examples and Solutions**
+9. **Self-Assessment**
+
+---
+
+## 1. Understanding Generations
+
+### First Generation
+- **Direct Descendants**: Son, Daughter
+
+### Second Generation
+- **Children of Direct Descendants**: Grandson, Granddaughter
+
+### Third Generation
+- **Children of Grandchildren**: Great Grandson, Great Granddaughter
+
+### Fourth Generation
+- **Children of Great Grandchildren**: Great Great Grandson, Great Great Granddaughter
+
+---
+
+## 2. Collateral Relationships
+
+### Nephew/Niece
+- **Brother/Sister’s Son/DAughter** → Nephew/Niece
+
+### Grand Nephew/Grand Niece
+- **Brother/Sister of Nephew/Niece** → Grand Nephew/Grand Niece
+
+### Great Grand Nephew/Great Grand Niece
+- **Brother/Sister of Grand Nephew/Niece** → Great Grand Nephew/Great Grand Niece
+
+---
+
+## 3. Half Siblings and Step Relations
+
+### Half Sibling
+- **Shared One Biological Parent**
+
+### Step Relations
+- **New Spouse after Remarriage**
+    - **Stepfather/Stepmother**: New spouse
+    - **Stepson/Stepdaughter**: Children from previous marriages
+    - **Stepsister/Stepbrother**: Siblings from different families
+
+---
+
+## 4. Summary of Common Relationships
+
+| Relation                     | Commonly Used Terms               |
+|-----------------------------|-----------------------------------|
+| Grandfather's or Grandmother's only son | Father                           |
+| Grandfather's or Grandmother's only daughter-in-law | Mother                          |
+| Father's father or Mother's father     | Grandfather                      |
+| Father's mother or Mother's mother     | Grandmother                      |
+| Father's brother or Mother's brother   | Uncle                            |
+| Father's sister or Mother's sister     | Aunt                             |
+| Son's wife                    | Daughter-in-law                  |
+| Daughter's husband            | Son-in-law                       |
+| Husband's or wife's sister    | Sister-in-law                    |
+| Husband's or wife's brother   | Brother-in-law                   |
+| Brother's wife               | Sister-in-law                    |
+| Brother's or sister's son     | Nephew                           |
+| Brother's or sister's daughter | Niece                            |
+| Uncle's or aunt's son or daughter | Cousin                          |
+| Sister's husband             | Brother-in-law                   |
+| Brother's wife               | Sister-in-law                    |
+| Grandson's or granddaughter's daughter | Great Grand Daughter           |
+| Grandson's or granddaughter's son      | Great Grand Son                 |
+
+---
+
+## 5. Types of Questions on Blood Relations
+
+### Type I: Mixed-Up Relationship Descriptions
+- **Cluttered Descriptions**, need to break down into simple steps.
+
+### Type II: Relationships Riddles
+- **Indirect Clues**, require logical deduction.
+
+### Type III: Coded Relations
+- **Symbols or Codes** represent relationships.
+
+---
+
+## 6. Mixed-Up Relationship Descriptions
+
+### Concept
+- Break down the sentence into smaller parts and map relationships.
+
+### Example
+> "His only brother is the father of my daughter's father."
+
+**Analysis**:
+- "Only brother" → Father
+- "My daughter's father" → Me
+- Therefore, "His only brother" = My father
+- So, the gentleman is my **uncle**
+
+---
+
+## 7. Tips and Techniques for Solving Blood Relation Problems
+
+### Draw Family Trees
+- Use horizontal levels for same generations
+- Use vertical levels for different generations
+
+### Use Abbreviations
+| Symbol | Meaning         |
+|--------|------------------|
+| g      | Gentleman        |
+| s      | Sister           |
+| u      | Uncle            |
+| snl    | Son-in-law       |
+| l      | Lady              |
+| b      | Brother          |
+| a      | Aunt             |
+| dl     | Daughter-in-law  |
+| sp     | Spouse           |
+| sn     | Son              |
+| cb     | Cousin Brother   |
+| pu     | Paternal Uncle   |
+| ch     | Child            |
+| d      | Daughter         |
+| cs     | Cousin Sister    |
+| mu     | Maternal Uncle   |
+| h      | Husband          |
+| gf     | Grandfather      |
+| nf     | Nephew           |
+| w      | Wife             |
+| gm     | Grandmother      |
+| nc     | Niece            |
+| m      | Mother           |
+| gs     | Grandson         |
+| bl     | Brother-in-law   |
+| f      | Father           |
+| gd     | Granddaughter     |
+| sl     | Sister-in-law    |
+
+---
+
+## 8. Examples and Solutions
+
+### Example 1: Mixed-Up Description
+> "His only brother is the father of my daughter's father."
+
+**Answer**: Uncle
+
+---
+
+### Example 2: Coded Relationships
+> "A is the father of B, B is the son of C, and C is the mother of D."
+
+**Answer**: D is the daughter of A
+
+---
+
+### Example 3: Self-Assessment Question
+> Anil introduced a girl saying, "She is the wife of the 12th grandson of my mother."
+
+**Answer**: Father-in-law
+
+---
+
+## 9. Self-Assessment
+
+### Question 1
+> Anil introduces a girl in a party, saying, "She is the wife of the 12th grandson of my mother."
+
+**Options**:
+A. Father  
+B. Grandfather  
+C. Husband  
+D. Father-in-law  
+
+**Correct Answer**: D. Father-in-law
+
+---
+
+### Question 2
+> A man says to a woman, "Your mother's husband's sister is my aunt."
+
+**Options**:
+A. Granddaughter  
+B. Daughter  
+C. Sister  
+D. Aunt  
+
+**Correct Answer**: A. Granddaughter
+
+---
+
+### Question 3
+> Neha says, "His brother's father is the only son of my grandfather."
+
+**Options**:
+A. Sister  
+B. Daughter  
+C. Mother  
+D. Niece  
+
+**Correct Answer**: A. Sister
+
+---
+
+### Question 4
+> Vinod is the brother of Bhaskar. Manohar is the sister of Vinod. Biswal is the brother of Preetam and Preetam is the daughter of Bhaskar. Who is the uncle of Biswal?
+
+**Options**:
+A. Bhaskar  
+B. Manohar  
+C. Vinod  
+
+**Correct Answer**: B. Manohar
+
+---
+
+# Study Guide: Blood Relations - Critical Thinking Problems
+
+## Table of Contents
+1. Introduction
+2. Concept Overview
+3. Problem Analysis
+4. Solution Summary
+5. Review Questions
+6. Further Reading
+
+---
+
+## 1. Introduction
+
+The key challenge lies in interpreting complex sentences about family relations and deducing the correct relationships step by step.
+
+---
+
+## 2. Concept Overview
+
+### Key Terms:
+- **Maternal Grandmother**: Mother's mother
+- **Paternal Uncle**: Brother of one's father
+- **Nephew/Niece**: Child of one's sibling
+- **Sister-in-Law**: Wife of one's sibling or sister of one's spouse
+- **Uncle/Aunt**: Brother or sister of one's parent
+- **Brother/Sister**: Children of same parents
+- **Father/Mother**: Parent of individual
+
+---
+
+## 3. Problem Analysis
+
+Each problem involves understanding a sentence describing family relations and identifying the correct relationship between individuals mentioned.
+
+### General Strategy:
+1. Identify all people involved.
+2. Establish direct relationships.
+3. Use logic and elimination to infer indirect relationships.
+4. Check for ambiguity or missing information.
+
+---
+
+## 4. Solution Summary
+
+| Question No. | Topic               | Correct Answer | Explanation |
+|-------------|--------------------|----------------|------------|
+| 5           | Maternal Grandmother | D              | Woman is daughter of man’s mother |
+| 6           | Father's Son        | B              | Photograph is of man’s son |
+| 7           | Maternal Uncle      | B              | Speaker is wife of Pramod’s father |
+| 8           | Gender Determination | D              | Need gender of both B and C |
+| 9           | Portrait Identification | A             | Man is Harsh’s son |
+| 10          | Family Tree         | D              | C is A’s son |
+| 11          | Sibling Relationships | C             | Q is U’s sister-in-law |
+| 12          | Cousins             | D              | A is aunt of D |
+| 13          | Uncles              | C              | F is uncle of G |
+| 14          | Gender Ambiguity    | D              | S cannot be T’s son |
+| 15          | Party Composition   | D              | Total = 17 people |
+
+---
+
+## 5. Review Questions
+
+| Question No. | Description                                                                 |
+|-------------|-----------------------------------------------------------------------------|
+| 1           | Radha says: “His father is the only son of my grandfather”                  |
+| 2           | Lalita says: “You are the daughter-in-law of the grandmother of my father’s only son” |
+| 3           | Amar says: “I have no brother or sister but that man’s father is my father’s son” |
+| 4           | Ashok says: “His mother is the wife of my father’s son. Brothers and sisters I have none” |
+| 5           | Ahmad says: “Your only brother’s son is my wife’s brother”                 |
+| 6           | Abdul says: “His only brother is the father of my daughter’s father”       |
+| 7           | Malati says: “His brother’s father is the only son of my grandfather”     |
+| 8           | Hema says: “He is the son of my father’s only son”                         |
+| 9           | Shalini is the mother of Ashok; Babu is father of Dharmendra and Chandrika |
+| 10          | Lady says: “I am the only daughter of this lady and her son is your maternal uncle” |
+
+---
+
+## 6. Further Reading
+
+Here are some recommended books for further study:
+
+| Title                                               | Author                     | Publisher                   |
+|---------------------------------------------------|----------------------------|-----------------------------|
+| *Quantitative Aptitude For Competitive Examinations* | Dr. R S Aggarwal           | S Chand Publishing         |
+| *A Modern Approach To Verbal & Non-Verbal Reasoning* | Dr. R S Aggarwal           | S Chand Publishing         |
+| *Magical Book On Quicker Maths*                    | M Tyra                     | Banking Service Chronicle   |
+| *Analytical Reasoning*                             | M.K. Pandey                | Banking Service Chronicle   |
+
+---

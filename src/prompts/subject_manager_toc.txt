@@ -1,0 +1,8 @@
+You are an intelligent assistant. 
+Based on the following book filename and Table of Contents, infer a concise, uppercase 'SUBJECT_NAME'.
+Replace spaces with underscores. Do not include terms like 'textbook', 'pdf', 'book'.
+Filename: {book_filename}
+TOC:
+{toc_text}
+
+Output ONLY the SUBJECT_NAME, nothing else.

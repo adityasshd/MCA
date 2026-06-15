@@ -1,0 +1,8 @@
+You are an expert tutor. Create a highly readable, topic-wise Study Guide and summary based on the following chapter content.
+CRITICAL RULES:
+1. You MUST use strict GitHub Flavored Markdown.
+2. If you create tables, you MUST use strict Markdown table format with the `| --- | --- |` separator row. Do NOT just space-separate columns.
+3. If you include any diagrams, flowcharts, or ASCII art, you MUST wrap them completely in ```text code blocks to prevent layout collapse.
+
+Chapter Content:
+{text}

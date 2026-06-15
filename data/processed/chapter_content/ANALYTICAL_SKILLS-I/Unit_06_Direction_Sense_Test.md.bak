@@ -1,0 +1,408 @@
+# Study Guide: Unit 06 - Direction Sense Test
+
+---
+
+## 🧭 Overview
+
+- General Directions
+- Casting of Shadows
+- Distance Related Questions
+- Left and Right Movements
+
+These concepts are often tested in competitive exams like CAT and GMAT, where logical reasoning and visualization play a vital role.
+
+---
+
+## 🔍 Topic-Wise Breakdown
+
+### ✅ 6.1 General Directions
+
+#### 📍 Main Directions
+There are **four primary directions**:  
+| Direction | Description |
+|-----------|-------------|
+| North     | Upward      |
+| South     | Downward    |
+| East      | Right       |
+| West      | Left        |
+
+#### 🌟 Additional Directions
+Derived from the main directions, we have:
+| Direction         | Between Which Directions |
+|-------------------|--------------------------|
+| Northeast (NE)    | North & East             |
+| Northwest (NW)    | North & West             |
+| Southeast (SE)    | South & East             |
+| Southwest (SW)    | South & West             |
+
+---
+
+### 🌞 6.2 Casting of Shadows
+
+Understanding the **position of the sun** helps determine the **direction of a shadow**.
+
+| Time of Day      | Sun Position   | Shadow Direction |
+|------------------|----------------|------------------|
+| Sunrise          | East            | West              |
+| Midday           | Directly Above | No Shadow        |
+| Sunset           | West            | East              |
+
+#### 📌 Important Rules
+- Facing **Sunrise (East)** → Shadow is on **West**
+- Facing **North** → Shadow on **Right (Sunrise)**, **Left (Sunset)**
+- Facing **South** → Shadow on **Left (Sunrise)**, **Right (Sunset)**
+
+---
+
+### 📐 6.3 Distance Related Questions
+
+To solve these types of problems, **Pythagoras’ Theorem** is essential:
+
+$$
+\text{If } \triangle ABC \text{ is right-angled at } B,
+$$
+$$
+AB^2 + BC^2 = AC^2
+$$
+
+This theorem is used to find the **shortest path**, **minimum distance**, or **diagonal distances**.
+
+---
+
+### ⚙️ 6.4 Left Right Movement
+
+When a person changes direction, their orientation affects their new direction:
+
+| Facing | Left Turn | Right Turn |
+|--------|-----------|------------|
+| North  | West      | East       |
+| East   | North     | South      |
+| South  | East      | West       |
+| West   | South     | North      |
+
+---
+
+## 📊 Summary Table
+
+| Topic                    | Key Points                                                                 |
+|-------------------------|-----------------------------------------------------------------------------|
+| General Directions      | North, South, East, West, and their combinations                            |
+| Casting of Shadows      | Use sun’s position to determine shadow direction                           |
+| Distance Related       | Apply Pythagoras’ Theorem to compute shortest paths                        |
+| Left / Right Movement   | Understand change in direction based on current facing                     |
+
+---
+
+## 📘 Keywords
+
+- **Directions:** North, South, East, West, Northeast, Northwest, Southeast, Southwest
+- **Shadow Position:** Based on time of day and direction
+- **Pythagorean Theorem:** $ a^2 + b^2 = c^2 $
+- **Left / Right Turns:** Change in facing direction
+- **Coordinate Geometry:** Used to visualize positions and distances
+
+---
+
+## 💡 Examples & Solutions
+
+### Example 1: Airplane Directions
+After multiple turns, the final directions are:
+- **Planes A and D:** East
+- **Planes B and C:** West
+
+✅ **Correct Answer:** Option C: **East, West, East, West**
+
+---
+
+### Example 2: Person Walking
+Using coordinate geometry, the final displacement is calculated as:
+- Total distance: $ \sqrt{(4)^2 + (2)^2} = \sqrt{8} = 2\sqrt{2} $
+- Final direction: **South-West**
+
+---
+
+### Example 3: Clock Hands
+- At 6 P.M.: Hour hand → North
+- At 9:15 P.M.: Minute hand → **West**
+
+---
+
+### Example 4: Town Directions
+- Town A → West of B
+- Town P → South of A
+- Town Q → East of P
+- Final direction of Q w.r.t. A: **South-East**
+
+---
+
+## 🧠 Self-Assessment Checklist
+
+| Skill                  | Mastered? | Notes                             |
+|-----------------------|-----------|-----------------------------------|
+| Identify directions   | ✅ Yes     | Practice compass-based questions |
+| Calculate distances   | ✅ Yes     | Use Pythagoras' Theorem           |
+| Analyze shadow logic   | ✅ Yes     | Link time of day with shadow      |
+| Determine left/right  | ✅ Yes     | Visualize body rotation           |
+
+---
+
+## 📚 Further Reading
+
+- *Quantitative Aptitude for Competitive Examinations* – by R.S. Aggarwal
+- *How to Solve It* – by George Polya (for logical problem-solving)
+- Online resources for **Direction Sense Test** from CAT/GMAT prep websites
+
+---
+
+## 📝 Answers for Self-Assessment
+
+1. Correct answer: **Option C**
+2. Final displacement: **$2\sqrt{2}$ km, South-West**
+3. Final direction of minute hand: **West**
+4. Final direction of Q w.r.t. A: **South-East**
+5. Final displacement: **10 km, West**
+
+---
+
+## 🧩 Review Questions
+
+1. A person faces North, takes a left turn, and then another left turn. In which direction is he now facing?
+2. If the sun is in the East, in which direction will the shadow fall if someone is facing South?
+3. A man walks 3 km East, turns left and walks 4 km, then turns left again and walks 3 km. Where is he from the starting point?
+
+---
+
+## ✅ Final Note
+
+Mastering **Direction Sense Tests** requires **visualization**, **logical deduction**, and **spatial awareness**. Regular practice with varied scenarios and application of basic geometry will help improve speed and accuracy in solving such questions.
+
+---
+
+# Study Guide: Direction Sense Test
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Key Concepts](#key-concepts)
+- [Examples and Solutions](#examples-and-solutions)
+- [Summary](#summary)
+- [Self-Assessment Questions](#self-assessment-questions)
+- [Review Questions](#review-questions)
+
+---
+
+## Introduction
+
+---
+
+## Key Concepts
+
+### Understanding Directions
+- **North (N)** – Upward direction
+- **South (S)** – Downward direction
+- **East (E)** – Right direction
+- **West (W)** – Left direction
+
+### Movement Based on Directions
+- **Left Turn**: Change direction counterclockwise.
+- **Right Turn**: Change direction clockwise.
+- **Backward Turn**: Same as the initial direction.
+
+### Coordinate System
+- Use coordinates to represent positions (e.g., A(0,0), B(1,0), etc.)
+- Each step corresponds to a fixed distance (usually 1 km or 1 meter).
+
+### Logical Reasoning
+- Determine relative positions using clues like "southwest of", "north of", etc.
+- Use directional arrows or diagrams to visualize movements.
+
+---
+
+## Examples and Solutions
+
+### Example 1: Relative Positioning
+**Question:**  
+"A" is east of "B" and west of "C". "H" is southwest of "C" and southeast of "B". "B" is southeast of "X". Which junctions are the farthest south and the farthest east?
+
+**Answer:**  
+- **Farthest South**: H  
+- **Farthest East**: C  
+
+### Example 2: Equilateral Triangle Movement
+**Question:**  
+Ashini, Bindiya, and Sanika are at the corners of an equilateral triangle. They run clockwise for 1 1/2 sides. Who ends up where?
+
+**Answer:**  
+- **Ashini is to the south-west of Bindiya**
+
+### Example 3: Complex Walking Path
+**Question:**  
+Pradeep walks in specific directions and distances. If his house is facing south, in which direction did he start walking?
+
+**Answer:**  
+- **East**
+
+### Example 4: Symbolic Representation of Directions
+**Symbols Used:**
+- `α`: Right
+- `β`: North
+- `λ`: Left
+- `η`: South
+
+**Question:**  
+If `A η B λ L β K`, find the direction of K with respect to A.
+
+**Answer:**  
+- **East**
+
+---
+
+## Summary
+
+### Key Concepts Recap:
+- Understand relative directions (north, south, east, west).
+- Learn to interpret symbolic representations (`α`, `β`, `λ`, `η`) for directional changes.
+- Practice visualizing paths and using coordinate systems.
+- Apply logic to determine final positions based on multiple steps of movement.
+
+### Important Terms:
+- **Distance**: Measured in kilometers or meters.
+- **Direction**: Determined by cardinal points (N, S, E, W).
+- **Relative Positioning**: Use of phrases like "southwest of," "northeast of," etc.
+
+---
+
+## Self-Assessment Questions
+
+| Question Number | Description | Answer |
+|------------------|-------------|--------|
+| 1                | If North-east becomes West and South-east becomes North, then what will West become? | A. South-east |
+| 2                | Man walks in different directions. Find displacement. | A. 10 km, West |
+| 3                | River flows in a pattern, find its final direction. | B. East |
+| 4                | Person makes several turns and walks, find final direction. | D. North-West |
+| 5                | Pole shows incorrect directions, find actual direction. | A. South |
+| 6                | Nitin follows instructions, find final position. | B. 72 metre |
+| 7                | Pradeep walks in complex path, find starting direction. | D. East |
+| 8                | Person moves in sequence, find final position. | B. West |
+| 9                | Bhairav walks in specific directions, find final position. | D. 15 ft to the North |
+| 10               | Seema turns directions, find final direction. | A. South |
+| 11               | Rohit moves and turns, find final direction. | A. South |
+| 12               | Sumi runs in specific directions, find final direction. | D. North-West |
+| 13               | Man moves in specific directions, find minimal return distance. | B. 5 |
+
+---
+
+## Review Questions
+
+| Question Number | Description |
+|------------------|-------------|
+| 1 | Satish makes turns, find starting direction. |
+| 2 | Man turns in various directions, find final facing direction. |
+| 3 | Sumi runs in specific directions, find final direction. |
+| 4 | Child looks for father, find distance from starting point. |
+| 5 | Deepa moves in specific directions, find final direction. |
+| 6 | Rahul travels in specific directions, find final position. |
+| 7 | Rasik walks in specific directions, find final position. |
+| 8 | Suresh stands facing a pole, find direction based on shadow. |
+| 9 | Udai and Vishal talk, find Udai’s facing direction based on shadow. |
+| 10 | Ranuka walks in specific directions, find final position. |
+
+---
+
+Let me know if you need further assistance!
+
+---
+
+# Study Guide: Analytical Skills - I
+
+## Chapter Overview
+This chapter focuses on developing **analytical skills** through problem-solving techniques. It emphasizes logical reasoning, spatial awareness, and mathematical interpretation of real-world scenarios. The chapter includes various exercises that challenge students to think critically and apply analytical methods to solve problems involving distances, directions, and relationships between objects.
+
+---
+
+## Topic-Wise Breakdown
+
+### 1. Direction and Distance Problems
+These problems involve determining the distance or direction of a person or object relative to their starting point after moving in different directions.
+
+#### Key Concepts:
+- Cardinal Directions: North, South, East, West
+- Opposite Directions: North-South, East-West
+- Right Angle Movements (90°)
+- Angles Between Directions (e.g., 45°)
+
+#### Example Problem:
+> Renuka starts from her house and walks 6 km towards the North. She then turns left and walks 5 km. After that, she turns right and walks 3 km. Finally, she turns back towards her house. How far is Renuka from her house?
+
+**Solution Steps**:
+1. Start at origin (House).
+2. Move North for 6 km → Position A.
+3. Turn Left (West) and move 5 km → Position B.
+4. Turn Right (South) and move 3 km → Position C.
+5. Now, determine the straight-line distance from Position C to Origin.
+
+Using Pythagoras theorem:
+- Horizontal distance = 5 km (West) - 3 km (South) = 2 km West
+- Vertical distance = 6 km North
+- Final distance = √(6² + 2²) = √(40) ≈ 6.32 km
+
+---
+
+### 2. Logical Deduction
+Involves interpreting given information and drawing conclusions based on logical sequences or constraints.
+
+#### Common Techniques:
+- Elimination
+- Table-making
+- Venn Diagrams
+- Pattern Recognition
+
+---
+
+### 3. Spatial Visualization
+Understanding how objects relate to each other in space.
+
+#### Practice Tips:
+- Draw diagrams for every problem.
+- Use coordinate systems.
+- Apply mirror images or rotations where necessary.
+
+---
+
+### 4. Time and Work Problems
+Focuses on understanding rates of work and time taken by individuals or groups to complete tasks.
+
+#### Formula:
+$$ \text{Work} = \text{Rate} \times \text{Time} $$
+
+#### Example:
+If A can do a piece of work in 10 days and B can do it in 15 days, how long will they take if working together?
+
+**Solution**:
+- A's rate = 1/10 per day
+- B's rate = 1/15 per day
+- Combined rate = 1/10 + 1/15 = 5/30 = 1/6
+- Time taken = 1 / (1/6) = 6 days
+
+---
+
+## Summary Table
+
+| Topic                  | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| Direction & Distance  | Determining positions using cardinal directions and movement patterns       |
+| Logical Deduction     | Drawing conclusions from given statements and data                         |
+| Spatial Visualization | Interpreting spatial relationships and visualizing movements               |
+| Time & Work           | Solving problems related to work rates and time taken by individuals/groups |
+
+---
+
+## Further Reading
+For more practice and deeper understanding, refer to:
+
+| Book Title                                       | Author                        | Publisher                     |
+|--------------------------------------------------|-------------------------------|------------------------------|
+| Quantitative Aptitude For Competitive Examinations | Dr. R S Aggarwal              | S Chand Publishing           |
+| A Modern Approach To Verbal & Non-Verbal Reasoning | Dr. R S Aggarwal              | S Chand Publishing           |
+| Magical Book On Quicker Maths                    | M Tyra                        | Banking Service Chronicle    |
+| Analytical Reasoning                             | M.K. Pandey                   | Banking Service Chronicle    |

@@ -1,0 +1,16 @@
+You are an expert academic tutor for MCA students.
+Your task is to create a highly readable, topic-wise Study Guide based on the following chapter content.
+
+Instructions:
+1. Divide the chapter into logical main topics.
+2. Subdivide larger topics into smaller, easily understandable subtopics.
+3. Use clear, concise explanations with references to the original content.
+4. Use Markdown formatting heavily: headings (#, ##, ###), bold text, bullet points, and code blocks if applicable.
+5. Do NOT just copy-paste the text. Synthesize and explain it as a study guide.
+6. If the content block includes [AVAILABLE REFERENCE IMAGES FOR THIS CONTENT: ...], you MUST insert those exact image URLs into your Markdown output at the most relevant conceptual points. Example: `![Diagram](file:///absolute/path/...)`.
+7. To make the guide visually appealing, if there are NO reference images for a topic, include 1 or 2 generic illustration images using the URL format `![Alt text](https://image.pollinations.ai/prompt/{{creative_description}}?width=800&height=400&nologo=true)`. Replace {{creative_description}} with a scenic, abstract representation of the topic (e.g., 'abstract-glowing-network-nodes'). DO NOT ask for text/diagrams from Pollinations. Use hyphens instead of spaces.
+
+Chapter Content:
+{chapter_text}
+
+Generate the Markdown Study Guide:

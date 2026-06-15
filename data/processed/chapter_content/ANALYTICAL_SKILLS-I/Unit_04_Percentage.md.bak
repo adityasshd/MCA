@@ -1,0 +1,297 @@
+# Study Guide: Unit 04 - Percentage
+
+---
+
+## 📌 Overview
+
+---
+
+## ✅ Objective
+
+By the end of this unit, learners should be able to:
+
+- Convert fractions to percentages and vice versa.
+- Calculate percentage of a given number.
+- Apply shortcut methods for comparing percentages.
+- Understand and solve problems involving successive percentage changes.
+- Analyze real-world scenarios like commodity price changes, population growth, and revenue effects using percentage principles.
+
+---
+
+## 🔍 Topic-Wise Breakdown
+
+### 📌 4.1 Basic Formulae
+
+| Concept | Description |
+|--------|-------------|
+| Fraction to Percent | Multiply by 100 and add `%`. Example: $ \frac{3}{5} = 60\% $ |
+| Percent to Fraction | Divide by 100. Example: $ 16\frac{2}{3}\% = \frac{1}{6} $ |
+| Finding a Percentage of a Number | Use formula: $ \frac{x}{100} \times N $. Example: $ 75\% \text{ of } 400 = 300 $ |
+
+---
+
+### 📌 4.2 Short-Cut Methods
+
+| Method | Description |
+|-------|-------------|
+| A is x% more than B → B is less than A by | $ \frac{x}{100 + x} \times 100\% $ |
+| A is x% less than B → B is more than A by | $ \frac{x}{100 - x} \times 100\% $ |
+| A is x% of C and B is y% of C → A is | $ \frac{x}{y} \times 100\% $ of B |
+| Two Numbers More/Less Than Third | Use ratios: $ \frac{100 + x}{100 + y} \times 100\% $ |
+| Price Change & Consumption | $ \frac{P}{100 + P} \times 100\% $ (increase), $ \frac{P}{100 - P} \times 100\% $ (decrease) |
+| Successive Percentage Change | $ x + y + \frac{xy}{100} \% $ |
+| Population Growth / Decay | $ P \left(1 + \frac{r}{100}\right)^n $ |
+| Combined Changes in Product | $ x + y + \frac{xy}{100} \% $ |
+
+---
+
+## 📊 Summary Table: Key Formulas
+
+| Type | Formula | Description |
+|------|---------|-------------|
+| Fraction to Percent | $ \frac{a}{b} \rightarrow \frac{a}{b} \times 100\% $ | Convert any fraction to percent |
+| Percent to Fraction | $ x\% \rightarrow \frac{x}{100} $ | Convert percent to fraction |
+| x% of N | $ \frac{x}{100} \times N $ | Find percentage of a number |
+| A is x% more than B | $ \frac{x}{100 + x} \times 100\% $ | B is less than A by |
+| A is x% less than B | $ \frac{x}{100 - x} \times 100\% $ | B is more than A by |
+| Successive Percentage | $ x + y + \frac{xy}{100} \% $ | Overall change after multiple changes |
+| Population After n Years | $ P \left(1 + \frac{r}{100}\right)^n $ | For annual growth/decay |
+
+---
+
+## 📋 Examples and Applications
+
+### ✅ Example: Successive Percentage Change
+
+If the price of a product increases by 15% and then decreases by 12%, calculate the overall change.
+
+$$
+\text{Net change} = 15 - 12 - \frac{15 \times 12}{100} = 1.2\%
+$$
+
+### ✅ Example: Area of Square with Side Increased by 20%
+
+If the side of a square is increased by 20%, calculate the percentage increase in area.
+
+$$
+\text{New area} = (\text{side})^2 \Rightarrow \text{Change} = 20 + 20 + \frac{20 \times 20}{100} = 44\%
+$$
+
+### ✅ Example: Revenue Effect Due to Tax and Consumption Change
+
+If tax decreases by 15% and consumption increases by 10%, calculate the effect on revenue.
+
+$$
+\text{Net change} = -15 + 10 + \frac{-15 \times 10}{100} = -6.5\% \Rightarrow \text{Revenue decreases by 6.5\%}
+$$
+
+---
+
+## 📌 Keywords
+
+| Term | Definition |
+|------|------------|
+| Percent | Per hundred; represented as `%` |
+| Fraction | Part of a whole; expressed as $ \frac{a}{b} $ |
+| Successive Percentage | Multiple percentage changes applied one after another |
+| Weighted Average | Average where each value has a weight |
+| Expected Value | Long-term average outcome of random events |
+
+---
+
+## 📚 Self-Assessment Checklist
+
+| Skill | Check |
+|------|-------|
+| Converting Fractions to Percentages | ✅ |
+| Calculating Percentage of a Number | ✅ |
+| Applying Shortcut Rules | ✅ |
+| Solving Problems with Successive Changes | ✅ |
+| Understanding Population/Revenue Effects | ✅ |
+| Using Growth/Decay Formulas | ✅ |
+
+---
+
+## 📈 Review Questions (Selected)
+
+1. If the price of an item increases by 20%, what is the percentage decrease in consumption to keep expenditure constant?
+2. If the population of a city increases by 5% annually and is currently 100,000, what will it be in 3 years?
+3. A student scores 120 marks and fails by 60 marks when the passing percentage is 60%. What is the total number of marks?
+
+---
+
+## 📘 Further Readings
+
+- "Percentage" - Mathematics for Competitive Examinations
+- "Problem Solving Strategies for Percentage-Based Problems"
+- "Real-World Applications of Percentage in Economics"
+
+---
+
+## 🧠 Final Notes
+
+Understanding percentages is crucial for problem-solving in various fields such as finance, economics, and statistics. This unit provides the tools to interpret and apply percentage-based calculations efficiently.
+
+--- 
+
+Made with ❤️ for analytical skills development!
+
+---
+
+# Study Guide: Percentage Concepts
+
+## Table of Contents
+- **Understanding Percentage Failures**
+- **Successive Percentage Change**
+- **Weighted Averages and Expected Values**
+- **Self-Assessment Questions**
+- **Review Questions**
+
+---
+
+## Understanding Percentage Failures
+
+### Key Concept
+If $ x\% $ students failed in one subject, $ y\% $ in another, and $ z\% $ failed in both, the percentage of students who passed in both subjects is:
+
+$$
+100 - (x + y - z)\%
+$$
+
+### Explanation
+- Students who failed only in the first subject: $ (x - z)\% $
+- Students who failed only in the second subject: $ (y - z)\% $
+- Students who failed in both subjects: $ z\% $
+
+### Example
+Given:
+- $ x = 42\% $ failed in Math
+- $ y = 52\% $ failed in Science
+- $ z = 17\% $ failed in both
+
+**Calculation:**
+$$
+100 - (42 + 52 - 17) = 23\%
+$$
+
+---
+
+## Successive Percentage Change
+
+### Definition
+Successive percentage change refers to applying multiple percentage changes to a quantity sequentially. The final result is not simply the sum of individual percentages due to changing bases.
+
+### Formula
+For a number $ N $ undergoing successive changes of $ x\% $ and $ y\% $:
+
+$$
+\text{New Number} = N \times \left(1 + \frac{x}{100}\right) \times \left(1 + \frac{y}{100}\right)
+$$
+
+### Net Effective Change
+$$
+z = x + y + \frac{xy}{100}
+$$
+
+### Cases
+1. Both changes are positive:
+   $$
+   \text{Net Increase} = x + y + \frac{xy}{100}
+   $$
+
+2. One change is positive, the other negative:
+   $$
+   \text{Net Change} = x - y - \frac{xy}{100}
+   $$
+
+3. Both changes are negative:
+   $$
+   \text{Net Decrease} = -x - y + \frac{xy}{100}
+   $$
+
+4. Three successive changes:
+   $$
+   \text{Final Value} = P \times \left(1 \pm \frac{x}{100}\right) \times \left(1 \pm \frac{y}{100}\right) \times \left(1 \pm \frac{z}{100}\right)
+   $$
+
+### Example
+A's salary increases by 10%, then decreases by 10%.
+
+$$
+\text{Net Change} = 10 - 10 - \frac{10 \times 10}{100} = -1\%
+$$
+
+---
+
+## Weighted Averages and Expected Values
+
+### Definitions
+- **Weighted Average**: Calculated by multiplying each value by its weight, summing, and dividing by the total weights.
+- **Expected Value**: Represents the mean outcome of a random variable.
+
+### Example
+Ratings from 1 to 5 given by 10 visitors:
+
+| Rating | Frequency |
+|-------|-----------|
+| 1     | 1         |
+| 2     | 1         |
+| 3     | 2         |
+| 4     | 2         |
+| 5     | 4         |
+
+**Weighted Average Calculation:**
+$$
+\frac{(1 \times 1) + (2 \times 1) + (3 \times 2) + (4 \times 2) + (5 \times 4)}{10} = 3.7
+$$
+
+---
+
+## Self-Assessment Questions
+
+| Question No. | Question | Answer |
+|-------------|----------|--------|
+| 1           | Express 56% as a fraction | A      |
+| 2           | Express 4% as a fraction | D      |
+| 3           | Express 0.6% as a fraction | D      |
+| 4           | Express 0.008% as a fraction | C      |
+| 5           | Express 6% as a decimal | A      |
+| 6           | Express 28% as a decimal | B      |
+| 7           | Express 0.04% as a decimal | D      |
+| 8           | 2 is what percent of 50? | A      |
+| 9           | ?% of 25 = 20125 | C      |
+| 10          | Greatest among 16 (2/3)%, 2/5, 0.17 | D      |
+| 11          | Inspector rejects 0.08% of meters | B      |
+| 12          | 65% of a number is 21 less than 4/5 of it | B      |
+| 13          | Percentage error in approximating 810472 km | B      |
+| 14          | If 50% of (x−y)=30% of (x+y), find % of x is y | A      |
+| 15          | Salary reduction by 10%, need to raise to original | A      |
+
+---
+
+## Review Questions
+
+| Question No. | Question |
+|-------------|----------|
+| 1           | Price decreased by 10%, sales increased by 30% — what effect on revenue? |
+| 2           | Fraction becomes 15/16 if numerator increased by 15% and denominator decreased by 8% — find original fraction |
+| 3           | Population grows at 5% annually — find future and past populations |
+| 4           | Kerosene price rises by 25% — by what % must consumption fall? |
+| 5           | Machine depreciation at 10% annually — find future and past values |
+| 6           | Town population increases by 5% — find initial population |
+| 7           | A earns 99/3% more than B — find by what % B earns less than A |
+| 8           | Salt solution concentration needs to increase from 2% to 10% — how much salt needed? |
+| 9           | Pass rates in exams — find total number of students |
+| 10          | Salary reduced by 20% — by what % must it be raised to return to original? |
+| 11          | Ground capacity changes over 2 years — find final capacity |
+| 12          | Additional question about percentage changes |
+
+---
+
+## Further Readings
+1. **Quantitative Aptitude For Competitive Examinations** by Dr. R S Aggarwal, S Chand Publishing
+2. **A Modern Approach To Verbal & Non-Verbal Reasoning** by Dr. R S Aggarwal, S Chand Publishing
+3. **Magical Book On Quicker Maths** by M Tyra, Banking Service Chronicle
+4. **Analytical Reasoning** by M.K. Pandey, Banking Service Chronicle
+
+---

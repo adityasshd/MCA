@@ -1,0 +1,654 @@
+# Study Guide: Unit 01 - Number System
+
+## Table of Contents
+
+| Topic                  | Description                                                                                                                                               |
+| ------------------------| -----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Objective              | Understand different types of numbers, multiplication shortcuts, distributive laws, division laws, tests of divisibility, methods for finding LCM and HCF |
+| Introduction           | Importance of numbers in daily life and their role in mathematics                                                                                         |
+| Types of Numbers       | Classification of numbers like natural, whole, integers, even, odd, etc.                                                                                  |
+| Multiplication         | Shortcuts and properties of multiplication                                                                                                                |
+| Distributive Laws      | Properties of multiplication over addition/subtraction                                                                                                    |
+| Division               | Rules and properties of division                                                                                                                          |
+| Tests of Divisibility  | Criteria to determine if a number is divisible by another                                                                                                 |
+| Squares                | Understanding square numbers and their properties                                                                                                         |
+| Methods of Finding HCF | Techniques such as prime factorization and Euclidean algorithm                                                                                            |
+| Least Common Multiple  | Techniques to find LCM                                                                                                                                    |
+
+---
+
+## Summary
+
+This unit provides a foundational understanding of number systems, emphasizing the classification of numbers, arithmetic operations, and problem-solving techniques involving factors and multiples. Key topics include:
+
+- **Types of Numbers**: Natural, Whole, Integers, Even, Odd, Prime, Composite, etc.
+- **Arithmetic Operations**: Multiplication, Division, with focus on shortcuts and properties.
+- **Divisibility Rules**: Various tests to check divisibility of numbers.
+- **Square Numbers**: Understanding squares and their significance.
+- **HCF & LCM**: Different methods to compute Highest Common Factor and Least Common Multiple using prime factorization and other algorithms.
+
+---
+
+## Keywords
+
+- Natural Numbers
+- Whole Numbers
+- Integers
+- Even Numbers
+- Odd Numbers
+- Prime Numbers
+- Composite Numbers
+- Divisibility
+- HCF
+- LCM
+- Distributive Law
+
+---
+
+## Self-Assessment Checklist
+
+| Skill | Mastery Level | Notes |
+|------|---------------|-------|
+| Classify numbers into categories | ✅ | Understand differences between natural, whole, integers, etc. |
+| Apply multiplication shortcuts | ✅ | Use mental math strategies for quick computation |
+| Explain distributive law | ✅ | Demonstrate knowledge of how multiplication distributes over addition |
+| Perform division accurately | ✅ | Show proficiency in dividing large numbers using rules |
+| Test divisibility by common divisors | ✅ | Apply divisibility rules effectively |
+| Compute HCF and LCM using multiple methods | ✅ | Practice prime factorization and Euclidean algorithm |
+| Solve problems using number system concepts | ✅ | Apply learned principles to solve real-world scenarios |
+
+---
+
+## Review Questions
+
+1. What is the difference between natural numbers and whole numbers?
+2. Define prime and composite numbers with examples.
+3. Explain the distributive property of multiplication.
+4. List the divisibility rules for 2, 3, 5, and 10.
+5. How do you find the HCF of two
+
+---
+
+# Study Guide: Number System
+
+## Topic 1: Classification of Numbers
+
+### 1.1 Odd and Even Numbers
+| Type         | Definition                                                                 | Examples                     |
+|--------------|-----------------------------------------------------------------------------|------------------------------|
+| **Even**     | Numbers divisible by 2                                                      | 2, 6, 8, 10                  |
+| **Odd**      | Numbers not divisible by 2                                                  | 1, 3, 5, 7                   |
+
+> Note: All even numbers end in 0, 2, 4, 6, or 8.
+
+---
+
+### 1.2 Prime Numbers
+| Property             | Description                                                                 | Examples                         |
+|----------------------|-----------------------------------------------------------------------------|----------------------------------|
+| **Definition**       | A number > 1 with exactly two distinct factors: 1 and itself               | 2, 3, 5, 7, 11, 13, ...         |
+| **Up to 100**        | 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97 |
+| **Key Notes**        | 1 is neither prime nor composite                                           |                                  |
+|                      | 2 is the only even prime number                                             |                                  |
+|                      | There are 25 primes between 1 and 100                                      |                                  |
+
+---
+
+### 1.3 Composite Numbers
+| Property             | Description                                                                 | Examples                     |
+|----------------------|-----------------------------------------------------------------------------|------------------------------|
+| **Definition**       | Numbers > 1 that are not prime                                              | 4, 6, 8, 9, 10, 12           |
+| **Key Notes**        | All composite numbers have more than two factors                            |                              |
+
+---
+
+## Topic 2: Co-Primes and HCF
+| Term    | Definition                                                                 | Example                    |
+|---------|-----------------------------------------------------------------------------|----------------------------|
+| **Co-Primes** | Two numbers whose Highest Common Factor (HCF) is 1                        | (2, 3), (4, 5), (7, 9)     |
+
+> Note: Co-prime numbers do not have to be prime themselves.
+
+---
+
+## Topic 3: Rational Numbers
+| Term          | Definition                                                                 | Examples                         |
+|---------------|-----------------------------------------------------------------------------|----------------------------------|
+| **Rational Number** | A number that can be expressed as $ \frac{p}{q} $ where $ p, q \in \mathbb{Z}, q
+
+---
+
+# Study Guide: Multiplication and Division Techniques
+
+## 1. Multiplication Using Distributive Law
+
+### 1.1 Key Concepts
+
+The distributive law allows us to break down multiplication problems into simpler parts for easier computation:
+
+- **a x (b + c)** = **a x b + a x c**
+- **a x (b - c)** = **a x b - a x c**
+
+This method helps simplify complex multiplication operations by transforming them into sums or differences that are easier to compute.
+
+---
+
+### 1.2 Examples of Distributive Law
+
+| Problem | Solution |
+|--------|----------|
+| 567958 x 99999 | 567958 x (100000 - 1) = 56795800000 - 567958 = 56795232042 |
+| 978 x 184 + 978 x 816 | 978 x (184 + 816) = 978 x 1000 = 978000 |
+
+These examples demonstrate how breaking down large numbers using the distributive property simplifies the calculation process.
+
+---
+
+## 2. Multiplying by Powers of 5
+
+### 2.1 Rule
+
+To multiply a number by $5^n$:
+1. Add $n$ zeros to the end of the number.
+2. Divide the resulting number by $2^n$.
+
+**Example:**  
+$$ 975436 \times 625 = 975436 \times 5^4 = 9754360000 \div 16 = 609647600 $$
+
+---
+
+## 3. Multiplying by Numbers Containing Repeated Nines (e.g., 9, 99, 999)
+
+### 3.1 Rule
+
+To multiply a number by $10^n - 1$:
+1. Add $n$ zeros to the end of the number.
+2. Subtract the original number from the result obtained in step 1.
+
+**Examples:**
+
+| Problem | Solution |
+|--------|----------|
+| 3893 × 99 | 389300 - 3893 = 385407 |
+| 4327 × 999 | 4327000 - 4327 = 4322673 |
+| 5863 × 9999 | 58630000 - 5863 = 58624137 |
+
+This technique significantly reduces the complexity of
+
+---
+
+# Study Guide: Number System - Critical Rules and Divisibility Tests
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Critical Rules for Finding Numbers Based on Division](#critical-rules-for-finding-numbers-based-on-division)
+- [Divisibility Tests](#divisibility-tests)
+
+---
+
+## Introduction
+
+---
+
+## Critical Rules for Finding Numbers Based on Division
+
+### Rule: Number = (Divisor × Quotient) + Remainder
+
+This rule allows us to reconstruct the original number when given the divisor, quotient, and remainder.
+
+#### Example Problems:
+
+| Problem | Given Values | Solution |
+|--------|--------------|----------|
+| Example 10 | Least 5-digit number divisible by 632 | 10000 ÷ 632 → Remainder = 520; Required Number = 10000 + (632 - 520) = 10112 |
+| Example 11 | Greatest 5-digit number divisible by 463 | 99999 ÷ 463 → Remainder = 454; Required Number = 99999 - 454 = 99545 |
+| Example 12 | Nearest number to 13700 divisible by 235 | 13700 ÷ 235 → Remainder = 70; Required Number = 13700 - 70 = 13630 |
+
+---
+
+## Divisibility Tests
+
+Here's a concise list of rules to determine whether a number is divisible by another without performing actual division.
+
+| Divisor | Divisibility Rule | Example |
+|--------|-------------------|---------|
+| 2 | Last digit is 0 or even | 12, 102, 134 |
+| 3 | Sum of digits is divisible by 3 | 3792 (3+7+9+2=21) |
+| 4 | Last two digits form a number divisible by 4 | 2616 (last two digits = 16) |
+| 5 | Last digit is 0 or 5 | 13520, 7805 |
+| 6 | Even number and sum of digits is divisible by 3 | 4518 (even & sum = 18) |
+| 7 | Double the last digit and subtract from remaining
+
+---
+
+# Study Guide: Divisibility Rules & Squaring Techniques
+
+## Table of Contents
+- [Divisibility Rules](#divisibility-rules)
+- [Squaring Techniques](#squaring-techniques)
+- [Common Factor & HCF](#common-factor--hcf)
+
+---
+
+## Divisibility Rules
+
+### 1. Divisibility by 10
+- **Rule**: A number is divisible by 10 if its last digit is 0.
+- **Example**: 580 → Last digit is 0 ⇒ divisible by 10.
+
+| Rule | Description |
+|------|-------------|
+| Divisibility by 10 | Last digit is 0 |
+
+---
+
+### 2. Divisibility by 11
+- **Rule**: A number is divisible by 11 if the difference between the sum of the digits at odd positions and the sum of the digits at even positions is either 0 or divisible by 11.
+- **Example**: 38797 → (3 + 7 + 7) - (8 + 9) = 17 - 17 = 0 ⇒ divisible by 11.
+
+| Rule | Description |
+|------|-------------|
+| Divisibility by 11 | Difference of sums of digits at odd/even positions is 0 or divisible by 11 |
+
+---
+
+### 3. Divisibility by 12
+- **Rule**: A number is divisible by 12 if it is divisible by both 3 and 4.
+- **Check**:
+  - Divisibility by 3: Sum of digits must be divisible by 3.
+  - Divisibility by 4: Last two digits form a number divisible by 4.
+
+| Rule | Description |
+|------|-------------|
+| Divisibility by 12 | Divisible by both 3 and 4 |
+
+---
+
+### 4. Divisibility by 18
+- **Rule**: A number is divisible by 18 if it is even and divisible by 9.
+- **Check**:
+  - Even number.
+  - Sum of digits must be divisible by 9.
+
+| Rule | Description |
+|------|-------------|
+| Divisibility by 18 | Even number and divisible by 9 |
+
+---
+
+### 5. Divisibility by 25
+- **Rule**: A number is divisible by 25 if the number formed by its last two digits is divisible by 25 or ends in 00.
+- **Example**: 13675 → Last two digits = 75 ⇒ divisible by 25.
+
+| Rule | Description |
+|------|-------------|
+| Divisibility by 25 | Last two digits divisible by 25 or end in 00 |
+
+---
+
+### 6. Divisibility by
+
+---
+
+# Study Guide: Highest Common Factor (H.C.F.) and Least Common Multiple (L.C.M.)
+
+## Table of Contents
+- [Understanding Prime Numbers](#understanding-prime-numbers)
+- [Finding H.C.F. Using Prime Factorization](#finding-hcf-using-prime-factorization)
+- [Finding H.C.F. Using Division Method](#finding-hcf-using-division-method)
+- [Finding L.C.M. Using Prime Factorization](#finding-lcm-using-prime-factorization)
+
+---
+
+## Understanding Prime Numbers
+
+### Definition
+A **prime number** is a number greater than 1 that has no divisors other than 1 and itself. Examples include:
+- 2, 3, 5, 7, 11, etc.
+
+### Key Points
+- Every number can be expressed as a product of prime numbers.
+- Prime factorization helps break down numbers into their prime components.
+
+| Prime Number | Description |
+|-------------|-------------|
+| 2           | Smallest and only even prime number |
+| 3           | First odd prime number |
+| 5           | Ends with 5 or 0; divisible by 5 |
+| 7           | Known as "The Queen of Primes" |
+
+---
+
+## Finding H.C.F. Using Prime Factorization
+
+### Steps
+1. Express each number as a product of prime factors.
+2. Identify the **common prime factors** among the numbers.
+3. Multiply the common prime factors to get the **Highest Common Factor (H.C.F.)**.
+
+### Example: H.C.F. of 70 and 90
+
+| Number | Prime Factorization |
+|--------|---------------------|
+| 70     | 2 × 5 × 7          |
+| 90     | 2 × 5 × 9          |
+
+**Common Factors:** 2, 5  
+**H.C.F.:** 2 × 5 = **10**
+
+---
+
+## Finding H.C.F. Using Division Method
+
+### For Two Numbers
+1. Divide the larger number by the smaller one.
+2. Use the remainder from step 1 as the new dividend and repeat the process.
+3. Continue this until the remainder becomes zero. The **last non-zero divisor** is the H.C.F.
+
+### For More Than Two Numbers
+1. Find the H.C.F. of any two numbers.
+2. Then, find the H.C.F. of the result with the third number.
+3. Repeat this process for all remaining numbers.
+
+### Example: H.C.F. of 13915, 9499, and 2553
+
+| Step        | Action                     | Result   |
+|------------|----------------------------|----------|
+| Step 1     | H.C.F. of 13915 & 9499    | 23       |
+| Step
+
+---
+
+# Study Guide: LCM and HCF - Concepts, Methods, and Applications
+
+## I. Understanding LCM and HCF
+
+### Definition and Concept
+- **LCM (Least Common Multiple)**: The smallest positive integer that is divisible by each of the given numbers.
+- **HCF (Highest Common Factor)**: The largest positive integer that divides each of the given numbers without leaving a remainder.
+
+---
+
+## II. Methods for Finding LCM and HCF
+
+### A. Prime Factorization Method
+
+#### Steps:
+1. Express each number as a product of its prime factors.
+2. For LCM: Take the highest power of each prime factor appearing in the factorizations.
+3. For HCF: Take the lowest power of each prime factor common to all numbers.
+
+#### Example:
+Find the LCM of 32, 48, 60, and 320.
+
+**Prime Factorization:**
+- $ 32 = 2^5 $
+- $ 48 = 2^4 \times 3 $
+- $ 60 = 2^2 \times 3 \times 5 $
+- $ 320 = 2^6 $
+
+**LCM Calculation:**
+$$
+\text{LCM} = 2^6 \times 3 \times 5 = 64 \times 3 \times 5 = 960
+$$
+
+---
+
+### B. Division Method
+
+#### Steps:
+1. Write the given numbers in a line.
+2. Divide by a common prime factor that divides at least two of the numbers.
+3. Repeat the process with the new set of numbers until no common factors remain.
+4. Multiply all the divisors and the remaining numbers to get the LCM.
+
+#### Example:
+Find the LCM of 12, 15, 20, and 54.
+
+**Division Process:**
+
+Numbers:       12   15   20   54
+Divide by 2 →    6   15   10   27
+Divide by 3 →    2    5    5    9
+No more common factors
+**LCM Calculation:**
+$$
+\text{LCM} = 2 \times 3 \times 2 \times 5 \times 5 \times 9 = 540
+$$
+
+---
+
+## III. Special Cases and Notes
+
+### A. LCM and HCF of Decimals
+
+#### Steps:
+1. Equalize the number of decimal places by adding zeros where necessary.
+2. Compute LCM/HCF of the resulting whole numbers.
+3. Adjust the decimal point in the result to match the original numbers' precision.
+
+#### Example:
+Find the LCM of 1.2, 0.24, and 6
+
+---
+
+# Study Guide: Number Theory - HCF & LCM Rules
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Key Concepts](#key-concepts)
+- [Rules and Examples](#rules-and-examples)
+- [Summary](#summary)
+
+---
+
+## Introduction
+
+---
+
+## Key Concepts
+
+### Highest Common Factor (HCF)
+The largest number that divides two or more numbers without leaving a remainder.
+
+### Least Common Multiple (LCM)
+The smallest positive integer that is a multiple of two or more numbers.
+
+---
+
+## Rules and Examples
+
+### Rule 01: Finding the Other Number Given One Number and HCF & LCM
+**Rule**: If one of the two numbers is known, and both the HCF and LCM are given, then:
+$$ \text{Required number} = \frac{\text{L.C.M} \times \text{H.C.F}}{\text{Given number}} $$
+
+**Example**:
+If one of the two numbers is 315, and their HCF and LCM are 63 and 1260 respectively, then:
+$$ \text{Other number} = \frac{1260 \times 63}{315} = 252 $$
+
+---
+
+### Rule 02: Greatest Number That Exactly Divides Three Numbers
+**Rule**: The required number is the **HCF** of the three numbers.
+
+**Example**:
+Find the greatest number that divides 200 and 320.
+$$ \text{Greatest number} = \text{HCF}(200, 320) = 40 $$
+
+---
+
+### Rule 03: Greatest Number That Leaves Specific Remainders
+**Rule**: The required number is the **HCF** of $(x - a)$, $(y - b)$, and $(z - c)$, where $a$, $b$, and $c$ are the respective remainders.
+
+**Example**:
+Find the greatest number that divides 148, 246, and 623, leaving remainders 4, 6, and 11 respectively.
+$$ \text{Greatest number} = \text{HCF}(144, 240, 612) = 12 $$
+
+---
+
+### Rule 04: Least Number Exactly Divisible by Three Numbers
+**Rule**: The required number is the **LCM** of the three numbers.
+
+**Example**:
+Find the smallest number divisible by 36, 45, 63, and 80.
+$$ \
+
+---
+
+# Study Guide: Number System - LCM and Cyclicity of Unit Digit
+
+## Table of Contents
+1. **LCM and Remainder Problems**
+2. **Finding Greatest and Smallest Numbers Based on LCM**
+3. **Cyclicity of Unit Digit**
+
+---
+
+## 1. LCM and Remainder Problems
+
+### Step-by-step Approach:
+
+#### Step 1: Find LCM of Given Numbers
+To solve problems involving remainders, first compute the Least Common Multiple (LCM) of the divisors.
+
+#### Step 2: Use the Concept of Greatest/Smallest Number
+Depending on whether we're finding the **greatest** or **smallest** number:
+- **Greatest**: Start from the largest n-digit number (e.g., 9999 for 4-digit).
+- **Smallest**: Start from the smallest n-digit number (e.g., 1000 for 4-digit).
+
+#### Step 3: Apply the Formula
+- **Leaves remainder R in each case**:  
+  `Required number = (n-digit greatest/smallest number – R)`
+- **Leaves remainder K in each case**:  
+  `Required number = (n-digit greatest/smallest number – R) + K`
+
+---
+
+### Example: Finding Greatest Number Leaving a Specific Remainder
+
+**Problem:** Find the greatest 4-digit number which, when divided by 12, 18, 21, and 28, leaves 3 as a remainder in each case.
+
+**Solution:**
+1. Compute LCM of 12, 18, 21, and 28 → LCM = 252
+2. Largest 4-digit number = 9999
+3. Compute remainder when 9999 ÷ 252 → Remainder = 171
+4. Subtract remainder from largest number and add the specific remainder → `9999 – 171 + 3 = 9931`
+
+---
+
+### Example: Finding Smallest Number Divisible by Given Numbers
+
+**Problem:** Find the least 4-digit number divisible by 4, 6, 8, and 10.
+
+**Solution:**
+1. Compute LCM of 4, 6, 8, and 10 → LCM = 120
+2. Smallest 4-digit number = 1000
+3. Compute remainder when 1000 ÷ 120 → Remainder = 40
+4. Add (LCM – remainder) to the smallest number → `1000 + (120 – 40) = 1080`
+
+---
+
+## 2. Finding Greatest and Smallest Numbers Based on LCM
+
+| Type of Problem       | Steps                                                                 |
+|----------------------|----------------------------------------------------------------------|
+|
+
+---
+
+# Study Guide: Finding Unit Place Digits Using Modular Arithmetic
+
+## Topic Overview
+This study guide focuses on understanding how to find the **unit place digit** of large powers using modular arithmetic. We will explore patterns in the units digits of powers for specific digits and apply these patterns to simplify complex calculations.
+
+---
+
+## Key Concepts
+
+### Understanding Units Digits
+The **units digit** of a number is the digit in the one's place. For example, the units digit of 4657233 is 3.
+
+When raising a number to a power, the **units digit repeats in cycles**. This property allows us to simplify finding the units digit of very large exponents.
+
+---
+
+## Patterns in Units Digits for Powers
+
+| Digit | Pattern | Cycle Length |
+|-------|---------|--------------|
+| 2     | 2, 4, 8, 6 | 4            |
+| 3     | 3, 9, 7, 1 | 4            |
+| 4     | 4, 6        | 2            |
+| 5     | 5           | 1            |
+| 6     | 6           | 1            |
+| 7     | 7, 9, 3, 1 | 4            |
+| 8     | 8, 4, 2, 6 | 4            |
+| 9     | 9, 1        | 2            |
+
+These patterns help us determine the units digit without calculating the entire power.
+
+---
+
+## Steps to Determine the Units Digit
+
+1. **Identify the base digit**: Take the last digit of the number being raised to a power.
+2. **Find the pattern length** for that digit (cycle length).
+3. **Divide the exponent by the cycle length**:
+   - Use the **remainder** of this division.
+4. **Use the remainder to index into the pattern**:
+   - If the remainder is 0, use the last element of the pattern.
+   - Otherwise, use the element at the position equal to the remainder.
+
+---
+
+## Example Problems and Solutions
+
+| Problem Number | Input | Solution | Answer |
+|----------------|-------|----------|--------|
+| Example 39     | 4657233^33 | Units digit = 2; Power = 33 <br> Step 1: 33 ÷ 4 → Remainder = 1 <br> Step 2: 2^1 = 2 | 2 |
+| Example 40     | 4657333^33 | Units digit = 3; Power = 33 <br> Step 1: 33 ÷ 4 → Remainder = 1 <br> Step 2: 3^1 = 3 | 3 |
+|
+
+---
+
+# Study Guide: Number Systems and Problem Solving
+
+## Table of Contents
+1. **Introduction**
+2. **Important Concepts**
+3. **HCF and LCM Problems**
+4. **Decimal Numbers and Their HCF/LCM**
+5. **Ratio-Based HCF Problems**
+6. **Square Calculations**
+7. **Digit Analysis**
+8. **Practice Questions and Solutions**
+
+---
+
+## Introduction
+
+---
+
+## Important Concepts
+
+### HCF and LCM
+- **HCF** (Highest Common Factor): The greatest number that divides given numbers without leaving a remainder.
+- **LCM** (Least Common Multiple): The smallest positive integer that is a multiple of all the given numbers.
+
+#### Rules for HCF and LCM
+1. **HCF of Fractions**: HCF = HCF of numerators / LCM of denominators
+2. **LCM of Fractions**: LCM = LCM of numerators / HCF of denominators
+3. **For Whole Numbers**: Convert decimals into whole numbers before finding HCF or LCM.
+
+---
+
+## HCF and LCM Problems
+
+| Question No. | Question                                                                 | Answer |
+|-------------|--------------------------------------------------------------------------|--------|
+| 8           | The H.C.F. of 513, 1134 and 1215 is?                                   | B. 27 |
+| 9           | The L.C.M. of 72, 108 and 2100 is?                                     | C. 37800 |
+| 10          | The L.C.M. of 16, 24, 36 and 54 is?                                    | A. 432 |
+| 11          | The H.C.F. and L.C.M. of 0.63, 1.05 and 2.1 is?                        | D. H.C.F. of 0.63, 1.05 and 2.1 is 0.21, L.C.M. of 0.63, 1.05 and 2.1 is 9.30 |
+| 12          | Two numbers are in the ratio of 15:11. If their H.C.F. is 13, then the numbers are? | D. 195 and 143 |
+| 13          | The H.C.F. of two numbers is 11 and their L.C.M. is 693. If one of the numbers is 77, then the other is

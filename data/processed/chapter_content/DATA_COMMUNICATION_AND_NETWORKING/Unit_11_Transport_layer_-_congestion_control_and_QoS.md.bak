@@ -1,0 +1,616 @@
+```markdown
+# Study Guide: Unit 11 - Transport Layer - Congestion Control and QoS
+
+## Overview
+This unit focuses on **Transport Layer** concepts related to **Congestion Control** and **Quality of Service (QoS)**. It explores how networks handle varying types of data traffic, the challenges posed by congestion, and the techniques used to optimize network performance and ensure consistent service delivery.
+
+---
+
+## Table of Contents
+
+- [Objectives](#objectives)
+- [Introduction](#introduction)
+- [Data Traffic](#data-traffic)
+  - [Traffic Descriptors](#traffic-descriptors)
+  - [Traffic Profiles](#traffic-profiles)
+- [Congestion Control](#congestion-control)
+  - [Open Loop vs Closed Loop](#open-loop-vs-closed-loop)
+  - [Strategies](#strategies)
+- [Quality of Service (QoS)](#quality-of-service-qos)
+- [Traffic Shaping Techniques](#traffic-shaping-techniques)
+- [Summary](#summary)
+- [Keywords](#keywords)
+- [Review Questions](#review-questions)
+- [Self-Assessment](#self-assessment)
+- [Further Readings](#further-readings)
+
+---
+
+## Objectives
+
+| Objective | Description |
+|----------|-------------|
+| Understand Traffic Descriptors & Profiles | Identify and explain the parameters used to describe and classify data traffic. |
+| Understand Congestion Control Categories | Differentiate between open-loop and closed-loop congestion control approaches. |
+| Learn Flow Characteristics | Explain the behavior of different types of data flows in a network. |
+| Explore Techniques to Improve QoS | Discuss various methods to enhance the quality of service in a network. |
+| Understand Traffic Shaping Techniques | Analyze the role of traffic shaping in managing network resources efficiently. |
+
+---
+
+## Introduction
+
+- **Congestion Management & QoS**: These two aspects are closely intertwined; improving one enhances the other.
+- **Key Focus**: Ensuring efficient handling of data traffic through congestion control and optimizing network performance via QoS.
+- **Main Target**: Managing data traffic effectively to prevent network overload and ensure smooth data transmission.
+
+---
+
+## Data Traffic
+
+### Traffic Descriptors
+
+| Metric | Description |
+|--------|-------------|
+| Average Data Rate | Calculated as total data transferred divided by time, representing the average bandwidth usage. |
+| Peak Data Rate | Maximum instantaneous data transfer rate, useful for identifying bursts of traffic. |
+| Burst Duration | Time during which peak data rate is maintained, important for understanding network capacity demands. |
+
+> **Note**: While peak data rate is essential for network planning, burst size is typically overlooked unless the peak lasts for extended periods.
+
+### Traffic Profiles
+
+| Profile Type | Description |
+|-------------|-------------|
+| Steady Bitrate | Constant data rate; average = peak, no variation. |
+| Volatile Bitrate | Data rate fluctuates gradually over time. |
+| Bursty Bitrate | Sudden spikes in data rate followed by lulls; common in real-time applications like video streaming. |
+
+> **Example**: Traffic on a highway during rush hour follows a **bursty profile**, causing temporary congestion.
+
+---
+
+## Congestion Control
+
+### Open Loop vs Closed Loop
+
+| Category | Definition | Example |
+|---------|-----------|---------|
+| **Open Loop (Prevention)** | Strategies to avoid congestion before it occurs. | Admission policies, traffic shaping. |
+| **Closed Loop (Removal)** | Strategies to mitigate congestion once it has occurred. | Retransmission, packet dropping, flow control. |
+
+---
+
+### Strategies Used
+
+| Strategy | Purpose | Key Points |
+|---------|---------|------------|
+| **Retransmission Policy** | Resending lost packets. | Can cause congestion if mismanaged. |
+| **Window Policy** | Controls the number of outstanding packets. | Selective repeat is preferred over Go Back N for congestion mitigation. |
+| **Discarding Policy** | Dropping excess packets to relieve congestion. | Prioritizes critical data (e.g., voice over IP). |
+| **Acknowledgment Policy** | Reduces unnecessary retransmissions. | Batch acknowledgments help minimize overhead. |
+| **Admission Policy** | Determines if new connections can be established. | Prevents over-subscription of network resources. |
+
+---
+
+## Quality of Service (QoS)
+
+- **Definition**: Mechanisms used to prioritize and manage data flows to ensure specific levels of performance.
+- **Key Metrics**:
+  - **Throughput**
+  - **Delay**
+  - **Packet Loss**
+  - **Jitter**
+
+> **Goal**: Maintain consistent performance for time-sensitive applications like VoIP, video conferencing, and online gaming.
+
+---
+
+## Traffic Shaping Techniques
+
+| Technique | Description | Use Case |
+|----------|-------------|----------|
+| **Rate Limiting** | Restricts data rate to prevent congestion. | Preventing DDoS attacks, ensuring fair resource allocation. |
+| **Token Bucket Algorithm** | Allocates tokens to allow up to a specified data rate. | Regulating bursty traffic. |
+| **Leaky Bucket Algorithm** | Limits data rate by averaging over time. | Smoothing traffic for stable network conditions. |
+
+> **Importance**: Traffic shaping ensures fairness and stability in shared network environments.
+
+---
+
+## Summary
+
+| Concept | Summary |
+|--------|---------|
+| **Traffic Descriptors** | Define key metrics like average, peak, and burst rates. |
+| **Traffic Profiles** | Classify traffic patterns into steady, volatile, and bursty. |
+| **Congestion Control** | Includes prevention (open loop) and removal (closed loop) strategies. |
+| **QoS** | Enhances user experience through prioritization and resource allocation. |
+| **Traffic Shaping** | Manages data flow to prevent congestion and ensure fairness. |
+
+---
+
+## Keywords
+
+| Term | Explanation |
+|------|-------------|
+| **Congestion Control** | Methods to manage network overload. |
+| **QoS** | Quality of Service: Ensures performance standards for different data flows. |
+| **Traffic Descriptor** | Metrics used to characterize data flow. |
+| **Traffic Profile** | Classification of data flow patterns. |
+| **Traffic Shaping** | Techniques to regulate data rate and prevent congestion. |
+
+---
+
+## Review Questions
+
+1. What are the key differences between open-loop and closed-loop congestion control?
+2. How does a bursty traffic profile differ from a steady-bitrate profile?
+3. Why is the peak data rate an important parameter in network design?
+4. What is the purpose of traffic shaping, and how does it help in congestion management?
+5. List and briefly explain three QoS metrics.
+
+---
+
+## Self-Assessment
+
+1. **True/False**: Congestion management and QoS are independent concepts.  
+   ✅ False – They are closely related and mutually reinforcing.
+
+2. **Multiple Choice**: Which of the following is a method of traffic shaping?  
+   A) Token bucket algorithm  
+   B) IP fragmentation  
+   C) Error correction  
+   D) All of the above  
+
+   ✅ A) Token bucket algorithm
+
+3. **Short Answer**: Explain how a selective repeat window helps in reducing congestion compared to Go Back N.
+
+   > **Answer**: Selective repeat sends only the missing packets instead of resending all packets after a loss, thereby reducing redundant transmissions and minimizing congestion.
+
+---
+
+## Further Readings
+
+- "Computer Networks" by Andrew S. Tanenbaum
+- "TCP/IP Illustrated, Volume 1" by Richard Stevens
+- IEEE Standards for QoS (IEEE 802.11e, IEEE 802.15.1)
+- RFC 5681: Best Current Practice for Congestion Control
+
+--- 
+
+```
+
+---
+
+# **Study Guide: Congestion Control and Quality of Service (QoS)**
+
+---
+
+## **Table of Contents**
+
+| Topic | Description |
+|------|-------------|
+| Introduction to Congestion Control | Overview of congestion control concepts and their importance in networks |
+| Closed Loop Strategy | Explanation of how congestion is managed after it occurs |
+| Back Pressure | Detailed explanation of the back pressure technique |
+| Choke Packets | Understanding choke packets and their role in congestion control |
+| Implicit Signaling | How implicit signaling works without direct communication |
+| Explicit Signaling | Concept of explicit signaling and its uses |
+| Quality of Service (QoS) | Definition and significance of QoS in modern networks |
+| Flow Characteristics | Key attributes of network flows: reliability, delay, jitter, and bandwidth |
+| Techniques to Improve QoS | Various methods to enhance QoS: scheduling, traffic shaping, etc. |
+| Scheduling Techniques | Types of scheduling algorithms like FIFO, priority, and weighted fair queuing |
+| Traffic Shaping | Methods to manage data transmission rates: leaky bucket and token bucket |
+
+---
+
+## **1. Introduction to Congestion Control**
+
+### **Key Concepts**
+- **Congestion** occurs when the demand on a network exceeds its available resources.
+- Congestion control mechanisms ensure that network performance remains optimal and stable.
+- Two main types of congestion control:
+  - **Open-loop**: Prevents congestion before it happens.
+  - **Closed-loop**: Alleviates congestion after it has occurred.
+
+### **Summary**
+- Congestion is a major concern in network design and operation.
+- Open-loop techniques focus on prevention, while closed-loop focuses on recovery.
+- Both types aim to maintain network efficiency and reduce packet loss.
+
+---
+
+## **2. Closed Loop Strategy**
+
+### **Overview**
+- Closed-loop strategies deal with congestion after it has occurred.
+- These strategies involve **feedback mechanisms** from downstream nodes to upstream nodes.
+
+### **Mechanisms Involved**
+- **Back Pressure**
+- **Choke Packets**
+- **Implicit/Explicit Signaling**
+
+---
+
+## **3. Back Pressure**
+
+### **Definition**
+- A congestion control mechanism where a **congested node** signals upstream nodes to slow down.
+- Signals propagate **opposite to the data flow**, from the point of congestion back to the source.
+
+### **How It Works**
+1. Node detects congestion.
+2. It drops some packets and notifies the upstream node.
+3. Upstream node slows down and forwards the congestion notification.
+4. The process continues until the source is notified.
+
+### **Requirements**
+- Only applicable in **virtual circuits** where each node knows the upstream node.
+
+### **Diagram Representation**
+```text
+          +----------------+       +----------------+
+          |   Node One     |       |   Node Two     |
+          +--------+-------+       +--------+-------+
+                  |                   |
+                  v                   |
+    [Input Buffer]                    |
+                  +------------------+
+                  |                  |
+                  |                  |
+              +----v----+         +----v----+
+              | Node Three |       | Node Four |
+              +-----------+       +-----------+
+```
+
+---
+
+## **4. Choke Packets**
+
+### **Definition**
+- A **choke packet** is sent directly from a congested node to the **source** to indicate congestion.
+- Unlike back pressure, it alerts the source directly rather than going through intermediaries.
+
+### **Key Points**
+- Choke packets are part of the **ICMP protocol**.
+- Used when a node discards packets due to congestion.
+- Example: **Source Quench ICMP messages**.
+
+### **Example**
+- A router sends a **source quench message** directly to the source when it cannot accommodate new traffic.
+
+---
+
+## **5. Implicit Signaling**
+
+### **Definition**
+- No direct communication between the **crowded node** and the **source**.
+- The **source assumes** congestion if it receives no acknowledgments or responses for a long time.
+
+### **Use Case**
+- Applications like **telephony** or **video streaming** may assume congestion if ACKs are lost.
+
+---
+
+## **6. Explicit Signaling**
+
+### **Definition**
+- A **congested node** sends a **signal** directly to the **source** or **destination**.
+- Can be either **forward** or **backward** signaling.
+
+### **Types of Signaling**
+| Type        | Direction             | Purpose                                  |
+|-------------|------------------------|------------------------------------------|
+| Forward     | From congestion point  | Alerts destination                       |
+| Backward    | From destination       | Alerts source to slow down               |
+
+---
+
+## **7. Quality of Service (QoS)**
+
+### **Definition**
+- **QoS** ensures specific levels of service for different types of network traffic.
+- It guarantees certain **performance metrics** for specific data flows.
+
+### **Importance**
+- Ensures **reliable delivery**, **low delay**, and **consistent throughput**.
+- Critical for real-time applications like **voice over IP**, **video conferencing**, and **online gaming**.
+
+---
+
+## **8. Flow Characteristics**
+
+### **Four Key Characteristics**
+| Characteristic | Description |
+|---------------|-------------|
+| **Reliability** | Ensures data integrity and error-free delivery |
+| **Delay**      | Time taken for data to travel from source to destination |
+| **Jitter**     | Variation in delay between packets |
+| **Bandwidth**  | Maximum data transfer rate available |
+
+### **Application Examples**
+- **Email & File Transfer**: Tolerate higher delay and jitter.
+- **VoIP / Video Conferencing**: Require low delay and minimal jitter.
+
+---
+
+## **9. Techniques to Improve QoS**
+
+### **Common Techniques**
+| Technique           | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Scheduling**      | Manages data flow using FIFO, priority, or weighted fair queuing            |
+| **Traffic Shaping** | Controls data rate using leaky bucket or token bucket algorithms            |
+| **Admission Control** | Decides whether to accept new traffic based on current load                |
+| **Resource Reservation** | Reserves resources for specific flows before data begins to be transferred|
+
+---
+
+## **10. Scheduling Techniques**
+
+### **Types of Scheduling Algorithms**
+| Algorithm          | Description                                                                 |
+|--------------------|-----------------------------------------------------------------------------|
+| **FIFO Queuing**   | First-In-First-Out; simplest but lacks prioritization                     |
+| **Priority Queuing** | Prioritize data based on class; handles critical traffic first              |
+| **Weighted Fair Queuing (WFQ)** | Distributes bandwidth fairly among different flows based on priority       |
+
+### **Example**
+- **WFQ** gives more bandwidth to high-priority flows compared to low-priority ones.
+
+---
+
+## **11. Traffic Shaping**
+
+### **Purpose**
+- Regulates data transmission rate to prevent network overload.
+- Ensures **smooth data flow** and avoids sudden bursts.
+
+### **Methods**
+| Method             | Description                                                  |
+|--------------------|--------------------------------------------------------------|
+| **Leaky Bucket**   | Limits outgoing rate to a constant value regardless of input   |
+| **Token Bucket**   | Allows bursts of traffic within defined limits                 |
+
+### **Example – Leaky Bucket Algorithm**
+- Input rate varies, but output rate is constant.
+- Used to prevent **network congestion** caused by traffic spikes.
+
+---
+
+## **12. Summary Table**
+
+| Concept             | Description                                                                 |
+|---------------------|-----------------------------------------------------------------------------|
+| **Congestion Control** | Techniques to manage network congestion before or after it occurs          |
+| **Back Pressure**    | Propagates congestion warnings from downstream to upstream nodes           |
+| **Choke Packets**    | Direct congestion notifications sent to the source                         |
+| **QoS (Quality of Service)** | Ensures reliable, predictable, and consistent network performance         |
+| **Flow Characteristics** | Reliability, Delay, Jitter, Bandwidth                                      |
+| **Scheduling**       | Techniques to manage data flow using priority, fairness, and queueing       |
+| **Traffic Shaping**  | Controls data rate to prevent network overload                             |
+
+---
+
+## **References**
+- Diagrams included: Back Pressure, Choke Packets, FIFO Queuing, Priority Queuing, Weighted Fair Queuing, Leaky Bucket
+- Based on material from "Data Communication and Networking" by Lovely Professional University
+
+Let me know if you'd like further elaboration on any section!
+
+---
+
+# Study Guide: Congestion Control and QoS in Data Communication and Networking
+
+---
+
+## **Table of Contents**
+
+| Topic | Description |
+|------|-------------|
+| Introduction | Overview of congestion and QoS |
+| Traffic Management Techniques | Leaky Bucket and Token Bucket Algorithms |
+| Resource Reservation | Importance of resource allocation |
+| Admission Control | Process of flow acceptance |
+| Review Questions | Practice questions for understanding concepts |
+| Self-Assessment | Multiple choice questions for self-evaluation |
+
+---
+
+## **1. Introduction to Congestion and QoS**
+
+### **Congestion**
+- **Definition**: A network becomes congested when packets experience delays significantly larger than the propagation delay.
+- **Effects**:
+  - Performance degradation
+  - Increased latency
+  - Potential packet loss
+- **Extreme Congestion**: When packets fail to reach their destination, it results in infinite delay.
+
+### **QoS (Quality of Service)**
+- **Purpose**: Ensures consistent performance for different types of traffic.
+- **Key Components**:
+  - Bandwidth allocation
+  - Latency control
+  - Error handling
+- **Model Used**: Integrated Services (focuses on resource reservation)
+
+---
+
+## **2. Traffic Management Techniques**
+
+### **Leaky Bucket Algorithm**
+- **Function**: Limits the data rate by enforcing a constant output rate.
+- **Operation**:
+  - Packets are stored in a FIFO queue.
+  - A fixed number of packets are removed per clock tick.
+- **Use Case**:
+  - Prevents bursty traffic from overwhelming the network.
+  - Helps in congestion avoidance.
+
+### **Token Bucket Algorithm**
+- **Function**: Allows bursts of data transmission up to a certain limit.
+- **Operation**:
+  - Tokens are added to the bucket at a fixed rate.
+  - Each data unit removes one token.
+  - Bucket can accumulate tokens during periods of inactivity.
+- **Advantages**:
+  - Supports bursty traffic without dropping packets.
+  - Provides more flexibility compared to the leaky bucket.
+
+### **Comparison Table**
+
+| Feature                | Leaky Bucket            | Token Bucket              |
+|-----------------------|-------------------------|---------------------------|
+| Burst Handling        | Not allowed             | Allowed                   |
+| Idle Time Credit      | No                      | Yes                       |
+| Output Rate           | Fixed                   | Variable                  |
+| Use Case              | Traffic Shaping         | Rate Limiting             |
+
+---
+
+## **3. Resource Reservation**
+
+- **Purpose**: Allocates resources like bandwidth, buffer, and CPU time before data transmission.
+- **Benefits**:
+  - Improves QoS
+  - Ensures predictable performance
+- **Implementation**: Integrated Services model focuses heavily on resource reservation.
+
+---
+
+## **4. Admission Control**
+
+- **Process**:
+  - Routers/switches evaluate flow requirements.
+  - Check if available resources (bandwidth, buffer, CPU) can accommodate new flows.
+  - Accept or reject the flow accordingly.
+- **Significance**:
+  - Prevents over-subscription of network resources.
+  - Maintains stability and fairness.
+
+---
+
+## **5. Review Questions**
+
+1. Explain the general principles of congestion.
+2. What do you understand by QoS? Describe the basic QoS structure.
+3. Discuss the following two algorithms:
+   a. Leaky Bucket  
+   b. Token Bucket
+4. What are two types of congestion control? Where is congestion control implemented in each case?
+5. Explain all traffic shaping techniques.
+6. Write down techniques to improve quality of service.
+7. Difference between token bucket and leaky bucket algorithm.
+
+---
+
+## **6. Self-Assessment**
+
+### **Multiple Choice Questions**
+
+1. The technique in which a congested node stops receiving data from the immediate upstream node or nodes is called as:
+   a. Explicit signalling  
+   b. Back pressure  
+   c. Implicit signalling  
+   d. Redundant signals  
+   ✅ **Answer: b**
+
+2. A leaky bucket algorithm shapes bursty traffic into fixed-rate traffic by averaging the:
+   a. Data rate  
+   b. Average rate  
+   c. Traffic rate  
+   d. Traffic shaping  
+   ✅ **Answer: b**
+
+3. Two classes of services have been defined for:
+   a. Integrated services  
+   b. Quality data services  
+   c. Technical services  
+   d. Protocol services  
+   ✅ **Answer: a**
+
+4. In open-loop congestion control, policies are applied to:
+   a. Prevent congestion  
+   b. Discard congestion  
+   c. Maximize congestion  
+   d. Eliminate congestion  
+   ✅ **Answer: a**
+
+5. A mechanism to control the amount and the rate of the traffic sent to the network is called:
+   a. Traffic congestion  
+   b. Traffic flow  
+   c. Traffic control  
+   d. Traffic shaping  
+   ✅ **Answer: d**
+
+6. Scheduling is done by:
+   a. Weighted fair queuing  
+   b. FIFO  
+   c. Random  
+   d. LIFO  
+   ✅ **Answer: d**
+
+7. Which of the following is a congested control algorithm:
+   a. The leaky bucket  
+   b. Token bucket  
+   c. Resource reservation  
+   d. All of above  
+   ✅ **Answer: d**
+
+8. In Congestion Control, the packet is put at the end of the input queue while waiting to be:
+   a. checked  
+   b. entered  
+   c. read  
+   d. interpret  
+   ✅ **Answer: a**
+
+9. Integrated Services is based on flow-based Quality of Service model designed for:
+   a. CPU  
+   b. Data Node  
+   c. IP  
+   d. Traffic Shaping  
+   ✅ **Answer: c**
+
+10. The token bucket can easily be implemented with a counter, initialized by:
+    a. 0  
+    b. 1  
+    c. -1  
+    d. -2  
+    ✅ **Answer: a**
+
+11. In Congestion, to define the maximum data rate of the traffic we use:
+    a. Average Data Packet  
+    b. Peak Data Rate  
+    c. Packet Data Rate  
+    d. Average Data Rate  
+    ✅ **Answer: b**
+
+12. In Congestion, the maximum burst size normally refers to the maximum length of time the traffic is generated at the:
+    a. Average Rate  
+    b. Packet Rate  
+    c. Protocol Rate  
+    d. Peak Rate  
+    ✅ **Answer: d**
+
+---
+
+## **7. Further Readings**
+
+- Achyut S Godbole and Atul Kahate, *Web Technologies*, Tata McGraw Hill.
+- Andrew S. Tanenbaum, *Computer Networks*, Prentice Hall.
+- Behrouz A. Forouzan, Sophia Chung Fegan, *Data Communications and Networking*, McGraw-Hill Companies.
+- Douglas Comer, *Computer Networks and Internets with Internet Applications*, 4th Edition, Prentice Hall.
+- Ferguson P., Huston G., *Quality of Service: Delivering QoS on the Internet and in Corporate Networks*, John Wiley & Sons, Inc., 1998.
+- J. D. Spragins, *Telecommunications Protocols and Design*, Addison Wesley.
+- McDysan, David E. and Darren L. Spohn, *ATM Theory and Applications*, McGraw-Hill Osborne Media, 1998.
+- Nassar, Daniel J., *Ethernet and Token Ring Optimization*, iUniverse.com, 2000.
+- Spurgeon, Charles E., *Ethernet, The Definitive Guide*, O’Reilly & Associates, 2000.
+- William A Shay, *Understanding Communication and Networks*, 3rd Edition, Thomson Press.
+
+--- 
+
+Let me know if you need further clarification or additional study materials!

@@ -1,0 +1,38 @@
+You are an expert university examiner for MCA students.
+Generate an exam for the subject: {subject}
+Focus specifically on: {scope}
+
+You must generate exactly {count} questions of the following types:
+{types_distribution}
+
+Use the provided context to ensure the questions are accurate and relevant to the course material.
+IMPORTANT: Do NOT prefix the prompt with question numbers (e.g., do not write "1. What is..." or "Q1: "). Just write the question text itself.
+
+Context:
+{context}
+
+OUTPUT FORMAT:
+You must output ONLY valid JSON in the following format:
+[
+  {{
+    "type": "mcq",
+    "prompt": "What is...",
+    "options": ["Option 1 Text", "Option 2 Text", "Option 3 Text", "Option 4 Text"],
+    "expected_answer": "Option 2 Text"
+  }},
+  {{
+    "type": "true_false",
+    "prompt": "The sky is blue.",
+    "expected_answer": "True"
+  }},
+  {{
+    "type": "fill_in_blank",
+    "prompt": "The capital of France is ______.",
+    "expected_answer": "Paris"
+  }},
+  {{
+    "type": "short_answer",
+    "prompt": "Define...",
+    "expected_answer": "It is defined as..."
+  }}
+]

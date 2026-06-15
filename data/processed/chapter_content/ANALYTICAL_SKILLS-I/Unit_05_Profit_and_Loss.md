@@ -1,0 +1,184 @@
+# Unit 05 Profit and Loss
+
+## Core Concepts & Topics
+
+## Unit 05 Profit and Loss
+
+## Core Concepts & Topics
+
+## 📚 Unit 05: Profit and Loss - Study Guide and Summary
+
+## 🔍 **Learning Objectives**
+
+By the end of this unit, learners will be able to:
+
+- Calculate **Cost Price**, **Selling Price**, **Profit**, and **Loss** accurately.
+- Apply **successive discounts** and understand **marked prices**.
+- Use shortcut formulas to solve problems quickly.
+- Analyze situations where **false weights** affect profit and loss.
+- Understand the concept of **percentage profit and loss** using appropriate formulas.
+- Solve complex scenarios involving multiple steps like **multiple sellers/buyers**, **combined profit/loss percentages**, and **same selling price with different profit/loss rates**.
+
+## 📌 Key Concepts & Definitions
+
+| Term              | Definition                                                                 |
+|-------------------|-----------------------------------------------------------------------------|
+| **Cost Price (C.P.)** | The price at which an article is purchased.                               |
+| **Selling Price (S.P.)** | The price at which an article is sold.                                   |
+| **Profit**         | When S.P. > C.P.                                                         |
+| **Loss**           | When S.P. < C.P.                                                         |
+| **Discount**       | Reduction in the marked price.                                           |
+| **Marked Price (M.P.)** | The original price before applying any discount.                         |
+
+## 📈 Formulas & Calculations
+
+## ✅ Basic Profit/Loss Formulas
+
+$$ \text{Profit} = \text{S.P.} - \text{C.P.} $$
+$$ \text{Loss} = \text{C.P.} - \text{S.P.} $$
+
+$$ \text{Profit \%} = \left(\frac{\text{Profit}}{\text{C.P.}}\right) \times 100 $$
+$$ \text{Loss \%} = \left(\frac{\text{Loss}}{\text{C.P.}}\right) \times 100 $$
+
+## ✅ Successive Discounts
+
+$$ \text{Effective Discount} = 1 - \left(1 - \frac{d_1}{100}\right)\left(1 - \frac{d_2}{100}\right) $$
+
+## ✅ Marked Price and Discount
+
+$$ \text{Discount} = \text{M.P.} - \text{S.P.} $$
+$$ \text{Discount \%} = \left(\frac{\text{Discount}}{\text{M.P.}}\right) \times 100 $$
+
+## ✅ Shortcut Formulas
+
+## 1. **Profit or Loss Percent Using Given Values**
+$$ \text{Profit \%} = \left(\frac{S.P.}{C.P.} - 1\right) \times 100 $$
+$$ \text{Loss \%} = \left(1 - \frac{S.P.}{C.P.}\right) \times 100 $$
+
+## 2. **Finding C.P. or S.P. From Profit/Loss %**
+
+$$ \text{C.P.} = \frac{100}{100 + \text{Profit \%}} \times S.P. $$
+$$ \text{S.P.} = \frac{100 + \text{Profit \%}}{100} \times C.P. $$
+
+$$ \text{C.P.} = \frac{100}{100 - \text{Loss \%}} \times S.P. $$
+$$ \text{S.P.} = \frac{100 - \text{Loss \%}}{100} \times C.P. $$
+
+## 💡 Short Cut Methods
+
+| Method | Description |
+|--------|-------------|
+| **Method 1**: If `x` items are bought for `y`, and `z` items are sold for `w`, then |
+|          | $$ \text{Profit \%} = \left(\frac{xw}{zy} - 1\right) \times 100 $$ |
+| **Method 2**: If C.P. of `m` articles = S.P. of `n` articles, then |
+|          | $$ \text{Profit \%} = \left(\frac{m - n}{n}\right) \times 100 $$ |
+| **Method 3**: If an article is sold twice at different profit/loss rates, then |
+|          | $$ \text{Resultant \%} = x + y + \frac{xy}{100} $$ |
+| **Method 4**: If two items are sold at the same price with different profit/loss %, then |
+|          | $$ \text{Overall \%} = \frac{100(x + y) + 2xy}{(100 + x) + (100 + y)} $$ |
+
+## 📊 Tables for Quick Reference
+
+## Table 1: Basic Terms and Formulas
+
+| Term            | Formula                                               |
+|------------------|------------------------------------------------------|
+| Profit           | S.P. - C.P.                                         |
+| Loss             | C.P. - S.P.                                         |
+| Profit %         | $\left(\frac{\text{Profit}}{\text{C.P.}}\right) \times 100$ |
+| Loss %           | $\left(\frac{\text{Loss}}{\text{C.P.}}\right) \times 100$ |
+| M.P.             | S.P. + Discount                                     |
+| Discount %       | $\left(\frac{\text{Discount}}{\text{M.P.}}\right) \times 100$ |
+
+## Table 2: Shortcut Formulas
+
+| Scenario                              | Formula                                              |
+|---------------------------------------|-----------------------------------------------------|
+| Multiple Articles Bought/Sold        | $$ \text{Profit \%} = \left(\frac{xw}{zy} - 1\right) \times 100 $$ |
+| C.P. of `m` = S.P. of `n`            | $$ \text{Profit \%} = \left(\frac{m - n}{n}\right) \times 100 $$ |
+| Resultant Profit/Loss with Two Steps | $$ \text{Resultant \%} = x + y + \frac{xy}{100} $$ |
+| Same Selling Price with Different %  | $$ \text{Overall \%} = \frac{100(x + y) + 2xy}{(100 + x) + (100 + y)} $$ |
+
+## 📝 Summary
+
+In this unit, we explored the core concepts of **Profit and Loss**, including their definitions, calculations, and practical applications. Learners were introduced to various **short-cut formulas** that help compute profit/loss percentages quickly. Additionally, the unit covered advanced topics like **successive discounts**, **false weights**, and **multiple-step transactions** involving multiple buyers/sellers. These tools enable efficient problem-solving in real-life business and commerce contexts.
+
+## 📌 Keywords
+
+- **Cost Price (C.P.)**
+- **Selling Price (S.P.)**
+- **Profit**
+- **Loss**
+- **Discount**
+- **Marked Price (M.P.)**
+- **Successive Discounts**
+- **False Weight**
+- **Profit Percentage**
+- **Loss Percentage**
+- **Short Cut Methods**
+- **Multiple Transactions**
+
+## 📚 Review Questions
+
+1. What is the difference between profit and loss?
+2. How do you calculate profit percentage and loss percentage?
+3. Explain the concept of false weight and give an example.
+4. Define successive discount and explain how to calculate effective discount.
+5. How does one calculate the resultant profit or loss when two transactions are involved?
+
+## 📚 Further Readings
+
+- "Quantitative Aptitude for Competitive Examinations" by R.S. Aggarwal
+- "Mathematics for Business" by Robert G. Brown
+- "Profit and Loss Problems with Solutions" on educational websites like BYJU'S and Vedantu
+
+## ✅ Answers for Self Assessment
+
+1. **Profit = S.P. - C.P.**
+2. **Loss = C.P. - S.P.**
+3. **False weight leads to increased profit due to incorrect measurement.**
+4. **Use the formula for effective discount.**
+5. **Apply the formula: $ \text{Resultant \%} = x + y + \frac{xy}{100} $.**
+
+## 📌 Notes on Diagrams / Flowcharts
+
+      Start
+        │
+        ▼
+    [Input: C.P. and S.P.]
+        │
+        ▼
+     [Is S.P. > C.P.?]
+        │
+        ▼
+      Yes → [Calculate Profit]
+        │
+        ▼
+     [Compute Profit %]
+        │
+        ▼
+         Output: Profit %
+        │
+        ▼
+     No → [Calculate Loss]
+        │
+        ▼
+     [Compute Loss %]
+        │
+        ▼
+         Output: Loss %
+
+## 📌 Final Thoughts
+
+Understanding profit and loss is fundamental to analyzing financial outcomes in trade and commerce. Mastery of these principles allows individuals to make informed decisions regarding pricing, discounts, and overall business strategy. With consistent practice and application of the formulas discussed, learners can confidently tackle even the most complex problems in this domain.
+
+## Review & Practice Questions
+
+| Question | Topic |
+|---------|-------|
+| At what % above CP must an article be marked so as to gain 33% after allowing a discount of 5%? | Marked Price and Discount |
+| An uneducated retailer marks goods at 50% above CP and gives 25% discount. What is the actual profit? | Marked Price and Discount |
+| A man bought a horse and carriage for Rs 3000, sold at 20% gain and 10% loss, resulting in 2% overall gain. Find the cost of the horse. | Profit and Loss |
+| Alfred buys a scooter for Rs.4700, spends Rs.800 on repairs, sells it for Rs.5800. Find his gain %. | Profit and Loss |
+| The cost price of 20 articles is equal to the SP of x articles. If profit is 25%, find x. | Profit and Loss |
+
+---

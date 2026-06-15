@@ -1,0 +1,343 @@
+```markdown
+# Study Guide: Unit 14 - Network Security
+
+## Table of Contents
+- **Objectives**
+- **Introduction**
+- **14.1 Basics of Network Security Terms**
+- **14.2 Network Security Issues**
+- **14.3 Security Goals**
+- **14.4 Security Services**
+- **14.5 Approaches to Network Security**
+
+---
+
+## Objectives
+- Understand the basics of network security.
+- Learn about network security issues.
+- Know the security goals.
+- Understand security services.
+- Explore approaches to network security.
+
+---
+
+## Introduction
+Network security involves protecting information and communication systems by using techniques such as encryption, decryption, and cryptographic methods. It focuses on securing both the data transmitted over networks and the systems involved in transmitting that data. Fundamental concepts include:
+
+- **Plaintext**: Original readable text.
+- **Ciphertext**: Encoded unreadable text.
+- **Encryption**: Process of converting plaintext to ciphertext.
+- **Decryption**: Reverse of encryption.
+- **Cryptography**: Science of keeping information secret.
+- **Cryptanalyst**: Person who attempts to break ciphers.
+
+These concepts form the foundation of modern network security practices.
+
+---
+
+## 14.1 Basics of Network Security Terms
+
+### Monoalphabetic Substitution Cipher
+- Uses a keyword to determine the mapping between plaintext and ciphertext.
+- Example: Keyword `KRYPTOS`
+  - Plaintext: A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+  - Ciphertext: K R Y P T O S A B C D E F G H I J L M N Q U V W X Z
+
+**Key Points:**
+- All messages are in uppercase.
+- Special characters and whitespace in the keyword are ignored.
+- These are unaffected by the encryption process.
+
+### Cryptography
+- Involves transforming information into an unreadable format to protect it.
+- Techniques include:
+  - Symmetric Key Cryptography
+  - Hash Functions
+  - Asymmetric Key Cryptography
+
+---
+
+## 14.2 Network Security Issues
+- **Transmission Vulnerabilities**: Data is at risk during transfer.
+- **Attacks**: Can involve interception, modification, or insertion of false messages.
+- **Channel Attacks**: Targeting the communication path itself.
+- **Data Theft**: Unauthorized access to sensitive information.
+
+---
+
+## 14.3 Security Goals
+Network security aims to achieve the following:
+
+| Goal         | Description |
+|--------------|-------------|
+| Confidentiality | Ensuring data is only accessible to authorized users. |
+| Integrity     | Maintaining data accuracy and preventing unauthorized changes. |
+| Availability   | Guaranteeing data and resources are accessible when needed. |
+
+These goals are often referred to as the **CIA Triangle**, representing the three pillars of network security.
+
+---
+
+## 14.4 Security Services
+
+| Service              | Description                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| Data Confidentiality | Protecting data from unauthorized access.                                 |
+| Data Integrity       | Ensuring data remains unchanged during transmission.                     |
+| Authentication       | Verifying the identity of users or systems.                               |
+| Non-repudiation      | Preventing denial of actions or transactions.                             |
+| Access Control       | Restricting access to only authorized users.                              |
+
+---
+
+## 14.5 Approaches to Network Security
+
+### Defensive Strategies
+1. **Prevention**: Eliminating threats before they occur.
+2. **Protection**: Minimizing damage if a threat occurs.
+3. **Resilience**: Ability to recover quickly from disruptions.
+
+### Real-World Analogy
+- **Castillo de San Felipe de Barajas**: A historical example of layered defense.
+- **Layers of Defense**:
+  - Physical barriers (walls).
+  - Surveillance and distraction tactics.
+  - Escape routes (tunnels).
+
+These layers represent different aspects of modern network security, including prevention, protection, and recovery.
+
+---
+
+## Summary
+
+Network security encompasses various techniques to protect data and communication systems. It involves understanding cryptographic methods, identifying potential threats, and implementing strategies to maintain confidentiality, integrity, and availability. Key components include:
+
+- **Encryption & Decryption**
+- **Cryptography Types**: Symmetric, Asymmetric, and Hash Functions
+- **Security Goals**: Confidentiality, Integrity, Availability
+- **Security Services**: Data Protection, Identity Verification, Non-repudiation
+- **Defensive Strategies**: Prevention, Protection, Resilience
+
+Understanding these fundamentals helps in designing robust network security frameworks that safeguard digital assets effectively.
+
+---
+
+## Keywords
+- Cryptography
+- Encryption
+- Decryption
+- Plaintext
+- Ciphertext
+- Symmetric Key
+- Asymmetric Key
+- Hash Function
+- Non-repudiation
+- CIA Triangle
+- Access Control
+
+---
+
+## Self Assessment
+1. What is the primary difference between symmetric and asymmetric key cryptography?
+2. Explain the concept of non-repudiation in network security.
+3. How does a hash function contribute to data integrity?
+
+---
+
+## Answers for Self Assessment
+1. **Symmetric Key Cryptography**: Uses a single shared key for both encryption and decryption.
+   **Asymmetric Key Cryptography**: Uses a public key for encryption and a private key for decryption.
+
+2. **Non-repudiation** ensures that a sender cannot deny having sent a message or transaction. It provides proof of origin and authenticity.
+
+3. **Hash Functions** convert plaintext into a fixed-length hash value. Any change in the original data will produce a different hash, allowing verification of data integrity.
+
+---
+
+## Review Questions
+1. Define the term 'plaintext'.
+2. Describe the role of a cryptanalyst.
+3. What is the significance of the CIA Triangle in network security?
+4. List and describe three types of cryptographic systems.
+5. How does access control help in network security?
+
+---
+
+## Further Readings
+- "Applied Cryptography" by Bruce Schneier
+- "Network Security Essentials" by William Stallings
+- "Cryptography and Network Security Principles and Practices" by William Stallings
+- Online courses on Coursera and edX covering cybersecurity and network security
+```
+
+---
+
+# **Study Guide: Network Security**
+
+## **Overview**
+Network security involves protecting data and systems from unauthorized access, misuse, modification, or denial of service. It encompasses various strategies, technologies, and processes designed to maintain the confidentiality, integrity, and availability of information within a network.
+
+---
+
+## **1. Network Security Approaches**
+
+### **Three Main Approaches to Network Security**
+
+| Approach | Definition | Focus/Target | Ontology | Threat Type | Example |
+|---------|------------|--------------|----------|-------------|---------|
+| **Security as Prevention** | Prevents dangers by addressing root issues | Threats and underlying causes | Mechanistic cosmos with predictable causality | Economic disparity, political exclusion | Drug Trade |
+| **Security as Control** | Manages, defends against, or removes clear threats | Dangers they pose | Newtonian-mechanical cosmos | Military threats, specific events | Counter-terrorism |
+| **Security as Resilience** | Enhances recovery and adaptation post-shock | Endangered referent's capacity to recover | Complicated cosmos with non-linear causality | Complex adaptive systems | Cyberattacks |
+
+---
+
+## **2. Key Concepts in Network Security**
+
+### **Core Principles**
+- **Confidentiality**: Ensures only authorized users can access information.
+- **Integrity**: Guarantees data remains unaltered during transmission.
+- **Availability**: Maintains uninterrupted access to data and services.
+
+### **Encryption Techniques**
+- **Symmetric Encryption (Secret Key)**: Uses a single shared key for both encryption and decryption.
+- **Asymmetric Encryption (Public Key)**: Utilizes a pair of keys — a public key for encryption and a private key for decryption.
+
+---
+
+## **3. Types of Security Attacks**
+
+| Attack Type | Description |
+|------------|-------------|
+| **Eavesdropping** | Unauthorized interception of data transmissions. |
+| **Denial of Service (DoS)** | Disables a system's ability to provide normal service. |
+| **Phishing** | Fraudulent attempt to acquire sensitive information through fake communications. |
+| **Malware** | Software designed to harm or exploit any programmable device or network. |
+| **Man-in-the-Middle (MITM)** | An attacker intercepts and potentially alters the communication between two parties. |
+
+---
+
+## **4. Tools and Techniques for Network Security**
+
+| Tool/Technique | Description |
+|---------------|-------------|
+| **Firewalls** | Monitor and filter incoming/outgoing network traffic. |
+| **Intrusion Detection Systems (IDS)** | Identify suspicious activity and potential threats. |
+| **Antivirus & Anti-malware** | Detect and eliminate malicious software. |
+| **Virtual Private Networks (VPNs)** | Secure communication over a public network. |
+| **Multi-Factor Authentication (MFA)** | Requires multiple forms of verification for user access. |
+
+---
+
+## **5. Public Key vs Secret Key Encryption**
+
+| Feature | Public Key Encryption | Secret Key Encryption |
+|--------|-----------------------|------------------------|
+| **Key Usage** | Public key for encryption, private key for decryption | Same key for both encryption and decryption |
+| **Performance** | Slower due to complex computations | Faster due to simpler operations |
+| **Key Management** | Keys are public and private | Only one key is needed |
+| **Use Cases** | Securing communications, digital signatures | Fast data transfer, secure file storage |
+| **Security** | More secure due to key separation | Vulnerable if key is compromised |
+
+---
+
+## **6. Common Network Security Threats and Solutions**
+
+| Threat | Solution |
+|-------|----------|
+| **IP Spoofing** | Use of firewalls and packet filtering to detect spoofed IP addresses. |
+| **Packet Sniffers** | Implement strong encryption and secure protocols (e.g., HTTPS). |
+| **Password Attacks** | Enforce strong password policies and multi-factor authentication. |
+| **Phishing** | Educate users and implement email filtering systems. |
+| **Malware** | Regular updates, anti-virus scans, and user training. |
+
+---
+
+## **7. Summary of Key Terms**
+
+| Term | Definition |
+|------|------------|
+| **Cipher Text** | Encrypted form of a message. |
+| **Plain Text** | Original, unencrypted message. |
+| **Hash Function** | Converts data into a fixed-size string of characters. |
+| **Digital Signature** | Verifies authenticity and integrity of a message. |
+| **PKI (Public Key Infrastructure)** | System for creating, managing, distributing, and revoking digital certificates. |
+| **SSL/TLS** | Protocols used to secure communication over the internet. |
+
+---
+
+## **8. Self-Assessment Answers**
+
+| Question Number | Answer |
+|----------------|--------|
+| 1 | A |
+| 2 | B |
+| 3 | A |
+| 4 | B |
+| 5 | A |
+| 6 | A |
+| 7 | C |
+| 8 | A |
+| 9 | C |
+| 10 | C |
+| 11 | B |
+| 12 | A |
+
+---
+
+## **9. Review Questions**
+
+1. **Different criteria for keeping information private over a public network**:
+   - Use of encryption.
+   - Implementation of access controls.
+   - Utilizing secure communication protocols (e.g., HTTPS).
+   
+2. **Effect of encryption on network performance**:
+   - Encryption increases processing overhead and can slow down data transfer.
+   - However, modern algorithms minimize this impact.
+   
+3. **Preventing unwanted access to restricted information**:
+   - Use of role-based access control (RBAC).
+   - Implementation of authentication mechanisms.
+   - Regular monitoring and logging.
+   
+4. **Keeping computers safe from hackers**:
+   - Install and update antivirus software.
+   - Enable firewalls.
+   - Practice safe browsing habits.
+   - Use strong, unique passwords.
+
+5. **Explanation of cipher usage for large messages**:
+   - Ciphers break large messages into smaller segments.
+   - Each segment is encrypted individually.
+   - Ensures secure and efficient transmission of large volumes of data.
+   
+6. **Two types of security attacks**:
+   - **Phishing**: Fraudulent emails to steal credentials.
+   - **DDoS**: Overwhelming a server with traffic to disable it.
+   
+7. **Difference between secret key and public key encryption**:
+   - Secret key uses a single key for encryption and decryption.
+   - Public key uses a pair of keys (public for encryption, private for decryption).
+
+8. **Definition and benefits of cryptography**:
+   - Cryptography transforms readable data into unreadable data.
+   - Benefits include enhanced privacy, data integrity, and authentication.
+
+9. **Substitution and Transposition Ciphers**:
+   - **Substitution**: Replaces characters with others.
+   - **Transposition**: Rearranges the order of characters.
+   - Substitution changes character values; transposition changes positions.
+
+---
+
+## **10. Further Reading**
+- Andrew S. Tanenbaum, *Computer Networks*, Prentice Hall
+- Behrouz A. Forouzan and Sophia Chung Fegan, *Data Communications and Networking*, McGraw-Hill Companies
+- Burton, Bill, *Remote Access for Cisco Networks*, McGraw-Hill, Osborne Media
+- Dale Tesch/Greg Abelar, *Security Threat Mitigation and Response: Understanding CS-MARS*, Cisco Press
+- Gary Halleen/Greg Kellogg, *Security Monitoring with Cisco Security MARS*, Cisco Press
+
+---
+
+## **Conclusion**
+Understanding the core concepts of network security is crucial in today's interconnected world. By implementing robust security measures, maintaining up-to-date knowledge of emerging threats, and adopting best practices, organizations can significantly enhance their defense against cyberattacks. Stay informed and proactive in your approach to network security.

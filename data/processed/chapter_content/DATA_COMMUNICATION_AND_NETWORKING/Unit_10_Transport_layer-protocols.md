@@ -1,0 +1,330 @@
+# Unit 10 Transport layer-protocols
+
+## Summary
+
+- The **Transport Layer** ensures reliable data transfer between applications.
+- **TCP** offers reliable, connection-oriented communication.
+- **UDP** provides fast, connectionless communication suitable for real-time apps.
+- Both **TCP** and **UDP** operate over **IP**, but differ in reliability and overhead.
+
+---
+
+## Core Concepts & Topics
+
+## Unit 10 Transport layer-protocols
+
+## Core Concepts & Topics
+
+## **Study Guide: Transport Layer Protocols**
+
+## **Overview**
+This study guide covers the key concepts related to **Transport Layer Protocols**, including:
+
+- **Services provided by the Transport Layer**
+- **Connection-Oriented vs. Connectionless Services**
+- **Reliable vs. Unreliable Delivery**
+- **TCP and UDP Protocols**
+- **TCP 3-Way Handshake Process**
+
+## **1. Services Provided by the Transport Layer**
+
+| Service | Description |
+|--------|-------------|
+| **End-to-End Delivery** | Ensures complete message delivery from source to destination. |
+| **Addressing** | Identifies the correct destination for data. |
+| **Reliable Delivery** | Guarantees that data is delivered correctly and in order. |
+| **Flow Control** | Manages data transmission rates to avoid overwhelming the receiver. |
+| **Multiplexing/Demultiplexing** | Allows multiple applications to share the same network connection. |
+
+## **2. Connection-Oriented vs. Connectionless Service**
+
+## **Connection-Oriented Service**
+- Establishes a **virtual connection** between sender and receiver before data transfer.
+- Uses **handshaking** procedures (e.g., 3-way handshake).
+- Ensures **order, reliability, and error checking**.
+- Example: **TCP (Transmission Control Protocol)**
+
+## **Connectionless Service**
+- No pre-established connection is required.
+- Transmits data packets independently.
+- Does **not guarantee** delivery, order, or error correction.
+- Example: **UDP (User Datagram Protocol)**
+
+## **Comparison Table**
+
+| Feature | Connection-Oriented | Connectionless |
+|--------|---------------------|----------------|
+| **Connection Setup** | Yes | No |
+| **Order Guarantee** | Yes | No |
+| **Error Checking** | Yes | No |
+| **Flow Control** | Yes | No |
+| **Bandwidth Requirement** | High | Low |
+| **Use Case** | File transfers, web browsing | Streaming media, DNS queries |
+
+## **3. Reliable vs. Unreliable Delivery**
+
+| Feature | Reliable Delivery | Unreliable Delivery |
+|--------|-------------------|----------------------|
+| **Error Handling** | Detects and recovers from errors | No error handling |
+| **Retransmission** | Retransmits lost or corrupted data | No retransmission |
+| **Order Preservation** | Maintains packet order | No order preservation |
+| **Guaranteed Delivery** | Yes | No |
+| **Used By** | TCP | UDP |
+
+## **4. TCP and UDP Protocols**
+
+## **TCP (Transmission Control Protocol)**
+- **Connection-Oriented**: Requires setup and teardown.
+- **Reliable**: Ensures data integrity and order.
+- **Flow & Congestion Control**: Manages data rate.
+- **Uses**: Web browsing, email, file transfer.
+
+## **UDP (User Datagram Protocol)**
+- **Connectionless**: No setup or teardown.
+- **Unreliable**: No guarantees about delivery or order.
+- **Fast**: Lower overhead, faster transmission.
+- **Uses**: Streaming video, online gaming, DNS.
+
+## **5. TCP 3-Way Handshake Process**
+
+> 📌 This process establishes a connection between client and server before data transfer begins.
+
+## **Steps Involved**
+1. **SYN (Synchronize):** Client sends a `SYN` packet to initiate the connection.
+2. **SYN-ACK (Synchronize-Acknowledge):** Server responds with a `SYN-ACK` packet.
+3. **ACK (Acknowledge):** Client acknowledges the server’s `SYN-ACK`, completing the handshake.
+
+```
+Client --> [SYN] --> Server
+        <-----------[SYN-ACK]-----------
+Client <-- [ACK] <---
+```
+
+## **6. Key Concepts Summary**
+
+| Concept | Explanation |
+|--------|-------------|
+| **Transport Layer** | Provides end-to-end communication between applications across networks. |
+| **Multiplexing/Demultiplexing** | Enables multiple applications to share the same network resource. |
+| **Flow Control** | Prevents overwhelming the receiver with too much data. |
+| **Error Control** | Detects and handles errors during data transmission. |
+| **Connection Oriented** | Establishes a virtual connection (e.g., TCP). |
+| **Connection Less** | No virtual connection; independent data transmission (e.g., UDP). |
+
+## **7. Diagram: Transport Layer Functionality**
+
+```text
++-----------------------+
+|   Application Layer   |
++----------+-----------+
+           |           |
+           v           |
++----------+-----------+
+| Transport Layer      |
++----------+-----------+
+           |           |
+           +-----------+
+           |  TCP / UDP |
+           +-----------+
+           |           |
+           v           |
++----------+-----------+
+| Internet Layer       |
++----------+-----------+
+           |           |
+           v           |
++----------+-----------+
+| Physical Layer       |
++-----------------------+
+```
+
+## **8. Review Questions**
+
+1. What are the main functions of the transport layer?
+2. How do connection-oriented and connectionless services differ?
+3. Explain the purpose of the TCP 3-way handshake.
+4. Why might UDP be preferred over TCP in certain situations?
+5. What is the role of multiplexing and demultiplexing in networking?
+
+## **9. Keywords**
+
+- **Transport Layer**
+- **Multiplexing/Demultiplexing**
+- **Connection-Oriented**
+- **Connectionless**
+- **TCP**
+- **UDP**
+- **3-Way Handshake**
+- **Flow Control**
+- **Error Control**
+- **Reliable vs. Unreliable Delivery**
+
+## **10. Further Reading**
+- "Computer Networks" by Andrew S. Tanenbaum
+- RFC documents on TCP and UDP
+- Online tutorials on TCP/IP stack and network protocols
+
+Let me know if you need additional materials like quizzes, flashcards, or interactive exercises!
+
+```markdown
+
+## **Study Guide: Transport Layer Protocols - UDP and TCP**
+
+## **1. Introduction to Transport Layer Protocols**
+The transport layer plays a crucial role in data communication by providing end-to-end connectivity between applications running on different hosts. It ensures that data is transmitted reliably and efficiently across networks.
+
+## **Key Concepts**
+- **Transport Layer**: Ensures data delivery from one process to another.
+- **Two Main Protocols**:
+  - **UDP (User Datagram Protocol)**: Connectionless and lightweight.
+  - **TCP (Transmission Control Protocol)**: Reliable and connection-oriented.
+
+## **2. Why Use UDP Despite Its Unreliability?**
+
+| Question | Explanation |
+|---------|-------------|
+| **Why UDP is used when it provides unreliable service?** | UDP's low overhead and speed make it ideal for real-time applications where reliability is less critical than timely delivery. Examples include streaming media, online gaming, and DNS queries. |
+
+## **3. Purpose of Flow Control**
+
+| Question | Explanation |
+|---------|-------------|
+| **What is the purpose of flow control?** | Flow control ensures that the sender does not overwhelm the receiver with data. It regulates the rate at which data is sent so that the receiver can handle the incoming data without being overwhelmed. |
+
+## **4. Description of TCP and Its Advantages Over UDP**
+
+| Feature | TCP | UDP |
+|--------|-----|-----|
+| **Connection-Oriented** | Yes | No |
+| **Reliable Delivery** | Yes | No |
+| **Error Checking** | Yes | No |
+| **Flow Control** | Yes | No |
+| **Congestion Control** | Yes | No |
+| **Header Size** | Larger (20–60 bytes) | Smaller (8 bytes) |
+| **Use Cases** | File transfers, web browsing | Streaming, DNS, VoIP |
+
+## **Major Advantages of TCP Over UDP**
+- **Reliability**: Ensures data arrives intact and in order.
+- **Flow Control**: Prevents overwhelming the receiver.
+- **Congestion Control**: Manages network traffic efficiently.
+- **Error Correction**: Detects and retransmits lost or corrupted packets.
+
+## **5. Self-Assessment Questions and Answers**
+
+| Question Number | Question | Answer | Explanation |
+|------------------|----------|--------|-------------|
+| **1** | UDP known as | **a. User Datagram Protocol** | Correct answer; UDP stands for User Datagram Protocol. |
+| **2** | TCP is a | **c. Transmission Control Protocol** | Correct answer; TCP is the Transmission Control Protocol. |
+| **3** | FTP uses port | **d. 21** | FTP typically uses port 21 for control connections. |
+| **4** | Which is false about UDP? | **a. Connection-oriented** | UDP is connectionless, not connection-oriented. |
+| **5** | Main advantage of UDP | **c. Low overhead** | UDP's simplicity leads to lower overhead. |
+| **6** | Field for detecting errors | **b. checksum** | The checksum field in the UDP header detects errors. |
+| **7** | Length of UDP datagram | **a. UDP length = IP length – IP header’s length** | This formula correctly calculates the length of the UDP datagram. |
+| **8** | Port used by NTP | **b. 123** | NTP typically uses port 123. |
+| **9** | Header size of UDP | **a. 8 bytes** | The standard UDP header size is 8 bytes. |
+| **10** | Services provided beyond IP | **d. Demultiplexing and error checking** | UDP handles demultiplexing and basic error checking. |
+| **11** | Additional services of UDP | **d. Demultiplexing and error checking** | Same as question 10. |
+| **12** | Layer of IP Security | **a. Network** | IPsec operates at the network layer. |
+
+## **6. Summary Table: Key Differences Between TCP and UDP**
+
+| Feature | TCP | UDP |
+|--------|-----|-----|
+| **Connection Type** | Connection-Oriented | Connectionless |
+| **Reliability** | Reliable | Unreliable |
+| **Header Size** | 20–60 bytes | 8 bytes |
+| **Error Detection** | Yes | Yes |
+| **Flow Control** | Yes | No |
+| **Congestion Control** | Yes | No |
+| **Use Case** | File transfer, web browsing | Streaming, DNS, VoIP |
+
+## **7. Further Readings**
+
+```text
+Achyut S Godbole and Atul Kahate, *Web Technologies*, Tata McGraw Hill  
+Andrew S. Tanenbaum, *Computer Networks*, Prentice Hall  
+Behrouz A. Forouzan, *Data Communications and Networking*, McGraw-Hill  
+Douglas Comer, *Computer Networks and Internets*, Prentice Hall  
+Ferguson P., Huston G., *Quality of Service*, John Wiley & Sons  
+J. D. Spragins, *Telecommunications Protocols and Design*, Addison-Wesley  
+McDysan, David E. and Darren L. Spohn, *ATM Theory and Applications*  
+Nassar, Daniel J., *Ethernet and Token Ring Optimization*  
+Spurgeon, Charles E., *Ethernet, The Definitive Guide*  
+William A Shay, *Understanding Communication and Networks*
+```
+
+--- 
+
+Let me know if you need this in a downloadable PDF format or further elaboration!
+
+## Review & Practice Questions
+
+1. How is the transport layer different from the data link layer when both provide similar facilities?
+2. Why is the transport layer necessary even though both network and transport layers offer connectionless and connection-oriented services?
+3. What are the different quality of service parameters at the transport layer?
+
+```text
+[Diagram: TCP 3-Way Handshake]
+```
+
+```text
++--------+     +--------+
+| Client |---->| Server |
++--------+     +--------+
+   |              |
+   | SYN          |
+   |---------------> 
+   |                |
+   | SYN+ACK        |
+   |<---------------|
+   |                |
+   | ACK            |
+   |<---------------|
+```
+
+```text
+[Table: Common UDP and TCP Ports]
+```
+
+| Service       | Port(s) | Protocol |
+|---------------|---------|----------|
+| HTTP          | 80      | TCP      |
+| HTTPS         | 443     | TCP      |
+| FTP          | 20,21   | TCP/UDP  |
+| SSH           | 22      | TCP      |
+| Telnet       | 23      | TCP      |
+| SMTP         | 25      | TCP      |
+| DNS          | 53      | UDP/TCP  |
+| NTP          | 123     | UDP      |
+| DHCP         | 67,68   | UDP      |
+| TFTP         | 69      | UDP      |
+
+```text
+[Diagram: UDP Header Structure]
+```
+
+```text
++------------+------------+------------+------------+
+| Source Port | Destination | Length     | Checksum   |
++------------+------------+------------+------------+
+| 2 Bytes     | 2 Bytes     | 2 Bytes     | 2 Bytes     |
++------------+------------+------------+------------+
+```
+
+```text
+[Diagram: TCP Header Structure]
+```
+
+```text
++-----------+-----------+-----------+-----------+-----------+
+| Source Port | Destination | Sequence # | Acknowledgment |
++-----------+-----------+-----------+-----------+-----------+
+| 2 Bytes    | 2 Bytes    | 4 Bytes    | 4 Bytes     |
++-----------+-----------+-----------+-----------+-----------+
+| Flags      | Window     | Checksum   | Urgent Ptr  |
++-----------+-----------+-----------+-----------+-----------+
+| Options    | Padding    |           |           |
++-----------+-----------+-----------+-----------+-----------+
+```
+
+---

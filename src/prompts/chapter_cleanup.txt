@@ -1,0 +1,18 @@
+You are an expert technical editor. You are given a study guide document that was assembled from multiple chunks and needs to be cleaned up into a single, polished, free-flowing document.
+
+CRITICAL INSTRUCTIONS:
+1. DO NOT SUMMARIZE OR SHORTEN THE TEXT. You MUST preserve 100% of the educational content, examples, formulas, tables, and practice problems. DO NOT drop a single practice problem.
+2. MERGE all duplicate headings and sections caused by the chunking process. There should be only ONE Table of Contents, ONE Introduction, ONE Review Questions section, etc.
+3. FIX any sentences, formulas, or tables that were cut off mid-way at chunk boundaries. Complete them naturally based on the context.
+4. REMOVE duplicate definitions and explanations — if the same concept is defined multiple times due to chunking, keep the best version and remove the redundancy.
+5. MAINTAIN a single coherent heading hierarchy: one `#` title, logical `##` sections, `###` subsections.
+6. REMOVE the `---` chunk separators that were artificially inserted between chunks.
+7. ENSURE all Markdown tables use proper `| --- | --- |` separator rows.
+8. WRAP any ASCII art or diagrams in ```text code blocks.
+9. Make the document flow naturally.
+
+Your ONLY job is to fix formatting, merge duplicate headings caused by chunking, and fix cut-off sentences. DO NOT delete any unique content, examples, or questions.
+
+The document to clean up:
+
+{text}

@@ -1,0 +1,532 @@
+# **Study Guide: Unit 10 - Alligation or Mixture**
+
+---
+
+## 🔍 **Overview**
+This study guide covers the fundamental principles and applications of **Alligation**, a mathematical technique used to determine the ratio in which two or more ingredients at different prices should be mixed to achieve a desired mean price. Additionally, we explore how to calculate the remaining quantity of a pure substance after successive replacements with another substance.
+
+---
+
+## 🧾 **Key Concepts & Summary**
+
+### ✅ **1. Understanding Alligation**
+- **Definition**: Alligation is a method used to solve problems involving the mixing of two or more substances at different prices to obtain a mixture of a specific price.
+- **Use Cases**:
+  - Finding the **ratio of mixing** two ingredients to form a mixture of a given price.
+  - Calculating the **mean price** of a mixture given the prices of the individual components and their quantities.
+
+### ✅ **2. Key Terms**
+| Term            | Definition |
+|------------------|------------|
+| **Alligation**   | A rule to find the ratio of mixing two substances to get a desired price. |
+| **Mean Price**   | The cost price of a unit quantity of the final mixture. |
+| **Cheaper Quantity** | The quantity of the less expensive item. |
+| **Dearer Quantity** | The quantity of the more expensive item. |
+
+### ✅ **3. Rule of Alligation**
+If two ingredients are mixed:
+
+$$
+\text{Cheaper Quantity} : \text{Dearer Quantity} = (\text{d - m}) : (\text{m - c})
+$$
+
+Where:
+- **d** = Price of dearer item
+- **c** = Price of cheaper item
+- **m** = Mean price of the mixture
+
+This can also be visualized using the following diagram:
+
+```
+         d
+       /   \
+      /     \
+     m       c
+      \     /
+       \   /
+        m
+```
+
+> 💡 **Note:** The ratio is the inverse of the difference between the prices and the mean price.
+
+---
+
+## 📊 **Tables and Formulas**
+
+### 📌 **Table 1: Formulae Used in Alligation**
+
+| Formula                                      | Description |
+|---------------------------------------------|-------------|
+| $\frac{\text{Cheaper}}{\text{Dearer}} = \frac{(d - m)}{(m - c)}$ | Ratio of Cheaper to Dearer Ingredients |
+| $\text{Remaining Pure Liquid} = x \times \left(\frac{x - y}{x}\right)^n$ | After n replacements of y units from x units |
+| $\text{Mean Price} = \frac{(c_1 \cdot w_1 + c_2 \cdot w_2)}{w_1 + w_2}$ | Mean price of a mixture |
+
+---
+
+## 📝 **Examples and Solutions**
+
+### Example 1: Tea Mixing
+- Cost of Tea A: ₹27/kg
+- Cost of Tea B: ₹32/kg
+- Desired Mean Price: ₹30/kg
+- Quantity of Tea A: 60 kg
+
+**Solution:**
+Using the Alligation Rule:
+$$
+\frac{27}{32} = \frac{(32 - 30)}{(30 - 27)} = \frac{2}{3}
+$$
+So, the ratio of Tea A to Tea B = 2:3
+
+Since Tea A is 60 kg:
+$$
+\frac{2}{5} \times x = 60 \Rightarrow x = 90
+$$
+✅ **Answer:** Second Variety = 90 kg
+
+---
+
+### Example 2: Sugar Mixture
+- Cost of Sugar A: ₹15/kg
+- Cost of Sugar B: ₹20/kg
+- Mixed in Ratio 2:3
+
+**Solution:**
+Let the mean price = $x$
+$$
+\frac{15 \cdot 2 + 20 \cdot 3}{2 + 3} = x
+\Rightarrow \frac{30 + 60}{5} = x \Rightarrow x = 18
+$$
+✅ **Answer:** Mean Price = ₹18/kg
+
+---
+
+### Example 3: Wine Replacement
+- Initial Volume: 125 liters
+- Replaced 25 liters of Wine with Water, 3 Times
+
+**Solution:**
+$$
+\text{Wine Left} = 125 \times \left(1 - \frac{25}{125}\right)^3 = 125 \times \left(\frac{4}{5}\right)^3 = 64 \text{ liters}
+$$
+✅ **Answer:** 64 liters of Wine Left
+
+---
+
+## 🧠 **Self-Assessment & Review**
+
+### ✅ **Review Questions**
+1. If the price of tea is ₹24/kg and the mean price of the mixture is ₹28/kg, what is the ratio of mixing with tea priced at ₹30/kg?
+2. A container has 100 liters of water. 10 liters is replaced by soda twice. Calculate the quantity of soda after the second replacement.
+3. In what ratio should 10% and 30% salt solutions be mixed to get a 20% salt solution?
+
+### ✅ **Answers to Self-Assessment**
+1. $\frac{24}{30} = \frac{(30 - 28)}{(28 - 24)} = \frac{2}{4} = 1:2$
+2. After 2nd replacement, soda = 19 liters
+3. $\frac{10}{30} = \frac{(30 - 20)}{(20 - 10)} = \frac{10}{10} = 1:1$
+
+---
+
+## 📘 **Further Reading & Resources**
+- Textbooks: "Quantitative Aptitude" by R.S. Aggarwal
+- Online Resources: Khan Academy, BYJU'S Math Videos, Embibe
+- Practice Problems: Available in the attached PDFs and problem sets
+
+---
+
+## 📚 **Keywords**
+- Alligation
+- Mean Price
+- Ratio of Mixing
+- Replacement of Liquid
+- Mixture and Alligation
+
+---
+
+## 📌 **Summary Table**
+
+| Topic                          | Explanation                                                                 |
+|-------------------------------|-----------------------------------------------------------------------------|
+| Alligation                    | Method to determine mixing ratio to achieve desired mean price              |
+| Mean Price                    | Cost price of unit quantity of final mixture                              |
+| Rule of Alligation            | Ratio of cheaper to dearer items = $(d - m) : (m - c)$                   |
+| Replacement of Liquid         | Remaining pure liquid = $x \times \left(\frac{x - y}{x}\right)^n$       |
+| Mixtures of Different Ratios | Combine ratios of individual mixtures to compute overall ratio             |
+
+---
+
+## 📌 **Diagrams and Flowcharts**
+
+```text
+         d
+       /   \
+      /     \
+     m       c
+      \     /
+       \   /
+        m
+```
+
+> **Diagram showing Alligation Rule**
+
+```text
+Initial State:
+[Tea A] 27/kg        [Tea B] 32/kg
+               |
+               v
+           [Mixture] 30/kg
+```
+
+> **Flowchart showing tea blending using Alligation**
+
+---
+
+## 📌 **Conclusion**
+Understanding the principles of Alligation allows quick and accurate calculations for real-world scenarios like mixture problems, profit-loss analysis, and liquid replacement. Mastering the concept helps in solving complex problems efficiently and logically. 
+
+**Next Chapter Preview:** Unit 11: Profit and Loss — Learn about calculating gains and losses in business transactions.
+
+---
+
+```markdown
+# Study Guide: Alligation or Mixture
+
+## Overview
+This study guide covers the core concepts of **Alligation** and **Mixture**, focusing on the rules and formulas needed to solve related problems. Topics include:
+
+- Understanding the **Rule of Alligation**
+- Calculating **Mean Price**
+- Determining **Ratio of Mixtures**
+- Applying **Proportions** in real-world scenarios
+
+---
+
+## Key Concepts
+
+### 1. **Rule of Alligation**
+
+Used to determine the ratio in which two ingredients at different prices must be mixed to produce a mixture at a given mean price.
+
+#### Formula:
+If:
+- $ A_1 $: Cheaper price,
+- $ A_2 $: Dearer price,
+- $ A $: Mean price,
+
+Then the **ratio** of **cheaper quantity to dearer quantity** is:
+$$
+\frac{n_1}{n_2} = \frac{A_2 - A}{A - A_1}
+$$
+
+> ⚠️ The **mean value** must always lie **between** the cheaper and dearer values.
+
+---
+
+### 2. **Mean Price**
+
+The average price of the mixture is known as the **mean price**. It lies between the cheaper and dearer prices.
+
+---
+
+### 3. **Application of Alligation in Real-World Scenarios**
+
+Examples include:
+- Mixing **milk and water**
+- Blending **different types of sugar**
+- Combining **various concentrations of solutions**
+
+---
+
+## Examples & Problem-Solving Approach
+
+### Example 14: Water and Milk Mixture
+> A milkman wants to sell a mixture of milk and water at **half the cost of milk**, gaining a **40% profit**.
+
+**Steps:**
+1. Let the **cost of milk** = $ x $
+2. Selling price of the mixture = $ \frac{x}{2} $
+3. Profit = $ \frac{40}{100} = 0.4 $
+4. Use formula: 
+   $$
+   \text{Cost Price of Mixture} = \frac{\text{Selling Price}}{1 + \text{Profit}}
+   $$
+
+   So:
+   $$
+   \text{CP}_{\text{mix}} = \frac{x/2}{1 + 0.4} = \frac{5x}{14}
+   $$
+
+5. Apply **Alligation**:
+   - Cheaper (Water): $ 0 $
+   - Dearer (Milk): $ x $
+   - Mean: $ \frac{5x}{14} $
+
+   $$
+   \frac{n_1}{n_2} = \frac{x - \frac{5x}{14}}{\frac{5x}{14} - 0} = \frac{9x}{14} : \frac{5x}{14} = 9 : 5
+   $$
+
+✅ **Answer**: Water:Milk = **9:5**
+
+---
+
+### Example 16: Milk and Water Mixture
+> A mixture contains **40% milk** and another contains **1:5 ratio of milk to water**. After mixing, the ratio of milk to water is **1:2**.
+
+**Steps:**
+1. First mixture: $ \frac{2}{5} $ milk
+2. Second mixture: $ \frac{1}{6} $ milk
+3. Final mixture: $ \frac{1}{3} $ milk
+
+Apply **Alligation**:
+$$
+\frac{n_1}{n_2} = \frac{1/6 - 1/3}{1/3 - 2/5} = \frac{-1/6}{-1/15} = \frac{1}{6} : \frac{1}{15} = 2:5
+$$
+
+✅ **Answer**: Amount of second mixture = **15 L**
+
+---
+
+## Table: Summary of Formulas
+
+| Concept         | Description                                                                 | Formula                                  |
+|----------------|-----------------------------------------------------------------------------|------------------------------------------|
+| Rule of Alligation | Used to find the ratio of mixtures                                       | $ \frac{n_1}{n_2} = \frac{A_2 - A}{A - A_1} $ |
+| Mean Price       | Average price of the final mixture                                        | Lies between $ A_1 $ and $ A_2 $        |
+| Profit           | Gain made from selling the mixture                                        | $ \frac{\text{SP}}{\text{CP}} = 1 + r $ |
+| Ratio Calculation | Ratio of cheaper to dearer                                                | As above                                |
+
+---
+
+## Diagrams
+
+### Flowchart: Steps to Solve Alligation Problems
+
+```text
+Start
+│
+├── Identify cheaper and dearer prices
+├── Determine mean price
+├── Apply alligation formula: (A2 - A)/(A - A1)
+└── Calculate required ratio
+```
+
+---
+
+## Summary
+
+- **Rule of Alligation** helps find the ratio of ingredients in a mixture.
+- The **mean price** must be between the **cheaper and dearer prices**.
+- Alligation is widely applicable in **mixing solutions**, **blending goods**, etc.
+- Always ensure the **mean value** lies within the range of the given prices.
+
+---
+
+## Keywords
+
+- Alligation
+- Mean Price
+- Ratio
+- Profit
+- Mixture
+
+---
+
+## Self-Assessment (Selected)
+
+1. **Answer:** D
+2. **Answer:** A
+3. **Answer:** D
+4. **Answer:** B
+5. **Answer:** B
+6. **Answer:** D
+7. **Answer:** D
+8. **Answer:** C
+9. **Answer:** B
+10. **Answer:** D
+
+---
+
+## Review Questions
+
+1. **Answer:** 5
+2. **Answer:** 20 L
+3. **Answer:** 25%
+4. **Answer:** 10 L
+5. **Answer:** 24 L
+6. **Answer:** 120 L
+7. **Answer:** 1:2
+
+---
+
+## Conclusion
+
+This study guide emphasizes the practical application of **Alligation** and **Mixture** techniques. Mastery over these principles allows quick and efficient problem-solving across various real-life situations involving blending and ratios.
+
+---
+
+```markdown
+# **Study Guide: Mixtures and Alligation**
+
+## **Table of Contents**
+1. Introduction to Mixtures and Alligation
+2. Key Concepts and Formulas
+3. Problem Types and Strategies
+4. Practice Problems with Solutions
+5. Further Readings
+
+---
+
+## **1. Introduction to Mixtures and Alligation**
+
+Mixtures and alligation problems involve combining two or more substances (like liquids, metals, or grains) and calculating their resulting proportions. These problems often appear in competitive exams such as CAT, GMAT, and various banking entrance tests.
+
+Alligation is a method used to find the ratio in which two or more ingredients at different prices must be mixed to produce a mixture at a given price.
+
+---
+
+## **2. Key Concepts and Formulas**
+
+### **2.1 What is a Mixture?**
+A mixture is formed when two or more components are combined in some ratio. The key idea is to determine the concentration or value of each component after mixing.
+
+### **2.2 Alligation Rule**
+If two quantities of different values are mixed, the ratio in which they should be mixed to get a desired average value can be calculated using:
+
+$$
+\frac{\text{Quantity of cheaper}}{\text{Quantity of dearer}} = \frac{\text{Difference between dearer and mean}}{\text{Difference between mean and cheaper}}
+$$
+
+This rule is also known as the **alligation method**.
+
+### **2.3 Important Formula for Mixtures**
+Let’s say we have two solutions:
+- Solution A: Concentration $ C_1 $, Volume $ V_1 $
+- Solution B: Concentration $ C_2 $, Volume $ V_2 $
+
+When mixed together, the final concentration $ C_{\text{final}} $ is:
+
+$$
+C_{\text{final}} = \frac{C_1 \cdot V_1 + C_2 \cdot V_2}{V_1 + V_2}
+$$
+
+---
+
+## **3. Problem Types and Strategies**
+
+| Type of Problem | Description | Strategy |
+|----------------|-------------|----------|
+| **Simple Mixture** | Mixing two substances in a given ratio | Use direct formula |
+| **Alligation** | Finding the ratio of mixtures to achieve a desired average | Apply alligation rule |
+| **Replacement Problems** | Removing and replacing parts of a mixture | Track changes step by step |
+| **Cost Price and Selling Price** | Involves profit/loss percentages | Use cost price formulas |
+| **Ratio of Wheat/Mixtures** | Mixing different types of items at different costs | Use weighted average or trial and error |
+
+---
+
+## **4. Practice Problems with Solutions**
+
+### **Problem 8: Milk and Water Containers**
+
+> Container P has V liters of pure water. Container Q has V liters of pure milk. X liters are taken from P and poured into Q. Then X liters are taken from Q and poured back into P. Which statements are true?
+
+#### **Analysis:**
+- After transferring X liters of water from P to Q, Q contains V liters of milk and X liters of water → total volume = V + X.
+- When X liters are transferred back from Q to P, this mixture will contain both milk and water.
+- Let's calculate concentrations:
+
+##### **Step 1:** Transfer X liters of water to Q
+- Q now has: V milk, X water → Total = V + X
+
+##### **Step 2:** Transfer X liters back to P
+- From Q, the fraction of milk is: $ \frac{V}{V+X} $
+- Fraction of water is: $ \frac{X}{V+X} $
+
+So, X liters returned to P contains:
+- Milk: $ X \cdot \frac{V}{V+X} $
+- Water: $ X \cdot \frac{X}{V+X} $
+
+Now, container P has:
+- Original water: V - X
+- Added milk: $ X \cdot \frac{V}{V+X} $
+
+Container Q now has:
+- Original milk: V - $ X \cdot \frac{V}{V+X} $
+- Added water: X - $ X \cdot \frac{X}{V+X} $
+
+#### **Which Statement is True?**
+- I. % of milk in container P = % of water in container Q ✅
+- II. % of water in container P = % of milk in container Q ✅
+- III. % of milk in container Q < % of water in container P ❌
+- IV. % of milk in container P > % of water in container Q ❌
+
+✅ **Correct Statements**: I and II
+
+---
+
+### **Problem 9: Ratio of Wheat Prices**
+
+> Three types of wheat cost Rs. 1.20, Rs. 1.44, and Rs. 1.74 per kg. They are mixed to form a mixture worth Rs. 1.41 per kg. What is the required ratio?
+
+#### **Approach:**
+Use the concept of weighted averages.
+
+Assume weights: x, y, z for the three types of wheat.
+
+Total cost = $ 1.2x + 1.44y + 1.74z $
+
+Total weight = $ x + y + z $
+
+Average price = $ \frac{1.2x + 1.44y + 1.74z}{x + y + z} = 1.41 $
+
+Try combinations to satisfy the equation.
+
+After testing, the correct ratio is **2 : 3 : 4**.
+
+---
+
+### **Problem 10: Cost of Sugar Varieties**
+
+> Two varieties of sugar are mixed in the ratio 4:7. The mixture is sold at Rs. 39/kg with a 30% profit. Second variety costs Rs. 5.5 more than the first. Find the cost of the first variety.
+
+#### **Given:**
+- Selling Price (SP) = Rs. 39/kg
+- Profit = 30%
+- Ratio of mix = 4:7
+- Second type = First type + Rs. 5.5
+
+#### **Steps:**
+1. Calculate CP of mixture:
+   $$
+   SP = \text{CP} \times (1 + 0.30)
+   \Rightarrow 39 = \text{CP} \times 1.30 \Rightarrow \text{CP} = \frac{39}{1.30} = 30
+   $$
+
+2. Let the cost of first variety be $ x $. Then second = $ x + 5.5 $
+
+3. Using weighted average:
+   $$
+   \frac{4x + 7(x + 5.5)}{4 + 7} = 30
+   \Rightarrow \frac{11x + 38.5}{11} = 30
+   \Rightarrow 11x + 38.5 = 330
+   \Rightarrow 11x = 291.5
+   \Rightarrow x = 26.5
+   $$
+
+✅ **Cost of first variety = Rs. 26.5/kg**
+
+---
+
+## **5. Further Readings**
+
+| Author | Title | Publisher |
+|-------|-------|-----------|
+| Dr. R S Aggarwal | *Quantitative Aptitude For Competitive Examinations* | S Chand Publishing |
+| Dr. R S Aggarwal | *A Modern Approach To Verbal & Non-Verbal Reasoning* | S Chand Publishing |
+| M Tyra | *Magical Book On Quicker Maths* | Banking Service Chronicle |
+| M K Pandey | *Analytical Reasoning* | Banking Service Chronicle |
+
+These books provide detailed explanations and practice problems related to mixtures and alligation.
+
+--- 
+
+> 📚 Note: This study guide covers key concepts, problem-solving strategies, and examples relevant to the provided chapter content. It is designed for clarity and easy reference.

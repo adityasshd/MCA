@@ -1,9 +1,31 @@
 [project]
-name = "mca"
+name = "mca-study-suite"
 version = "0.1.0"
-description = "Add your description here"
+description = "MCA AI Study Suite — AI-powered desktop learning app with RAG, exams, and analytics"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
+    # PDF processing
     "pymupdf>=1.27.2.3",
+    # Domain models & validation
+    "pydantic>=2.9",
+    "pydantic-settings>=2.5",
+    # UI
+    "PyQt6>=6.7",
+    "PyQt6-WebEngine>=6.7",
+    "pyqtdarktheme>=2.1",
+    "markdown>=3.6",
+    # Database (MongoDB Atlas — data + vectors)
+    "pymongo[srv]>=4.9",
+    # LLM Providers
+    "groq>=0.11",
+    "google-genai>=1.0",
+    "openai>=1.50",
+    "ollama>=0.4",
+    # Embeddings
+    "sentence-transformers>=3.0",
+    # Analytics & charts
+    "plotly>=5.22",
+    # Utilities
+    "python-dotenv>=1.0",
 ]
