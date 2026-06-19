@@ -91,7 +91,7 @@ def main(argv: list[str] | None = None) -> None:
     )
 
     logger.info("Initializing Model Manager...")
-    model_manager = ModelManager.from_config(config)
+    model_manager = ModelManager.from_db(db, config)
 
     # Initial subject scan
     from src.rag.indexer import scan_and_register_subjects

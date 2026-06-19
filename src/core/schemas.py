@@ -145,6 +145,21 @@ class Exam(BaseModel):
     created_at: datetime = Field(default_factory=_utcnow)
 
 
+class ExamSession(BaseModel):
+    """Centralized state object for an active exam."""
+
+    exam_id: str | None = None
+    subject: str
+    scope: str
+    questions: list[ExamQuestion] = []
+    answers: dict[int, str] = {}  # Map of question index to user answer
+    current_question_index: int = 0
+    flagged_questions: list[int] = []
+    started_at: datetime = Field(default_factory=_utcnow)
+    mode: str = "standard"  # "standard" or "focus"
+    score: float | None = None
+
+
 # ── Analytics Events ──────────────────────────────────────────────────────
 
 
@@ -157,3 +172,102 @@ class AnalyticsEvent(BaseModel):
     unit: str = ""
     data: dict[str, Any] = {}
     timestamp: datetime = Field(default_factory=_utcnow)
+
+
+# ── Adaptive Learning & Persistence ────────────────────────────────────────
+
+class UserStats(BaseModel):
+    """Overall user statistics and global progress metrics."""
+
+    id: str | None = None
+    current_streak: int = 0
+    total_study_hours: float = 0.0
+    weekly_goal_hours: float = 5.0
+    last_active: datetime = Field(default_factory=_utcnow)
+    topic_stats: dict[str, dict[str, float | int]] = {}  # "topic": {"attempts": int, "incorrect": int, "correct": int, "mastery_score": float}
+
+
+class StudyProgress(BaseModel):
+    """Tracks progression and revision schedules for subjects/units."""
+
+    id: str | None = None
+    subject: str
+    unit: str
+    last_practiced: datetime | None = None
+    revision_due_date: datetime | None = None
+    confidence_score: float = 0.0
+
+
+class WeakTopic(BaseModel):
+    """Tracks mastery score and failure rates for specific topics."""
+
+    id: str | None = None
+    subject: str
+    unit: str
+    topic: str
+    attempts: int = 0
+    correct: int = 0
+    incorrect: int = 0
+    mastery_score: float = 0.0
+
+
+class PracticeSession(BaseModel):
+    """Tracks an infinite practice flow sequence and outcomes."""
+
+    id: str | None = None
+    subject: str
+    unit: str | None = None
+    questions_answered: int = 0
+    correct_answers: int = 0
+    started_at: datetime = Field(default_factory=_utcnow)
+    ended_at: datetime | None = None
+
+
+class ExamHistory(BaseModel):
+    """Detailed logs of past exams for prediction modeling and history."""
+
+    id: str | None = None
+    exam_id: str
+    subject: str
+    score: float
+    topic_breakdown: dict[str, float] = {}  # e.g. {"Binary Conversion": 0.8}
+    taken_at: datetime = Field(default_factory=_utcnow)
+
+
+class ExamTemplate(BaseModel):
+    """Cached structural constraints parsed from DOCX templates."""
+
+    id: str | None = None
+    subject: str
+    filename: str
+    structure: dict[str, Any] = {}  # Details about Section A/B/C, marks, etc.
+    parsed_at: datetime = Field(default_factory=_utcnow)
+
+
+class ModelAssignment(BaseModel):
+    """Stores the provider and model name assigned to a specific AI task."""
+    
+    provider: str
+    model: str
+
+
+class AppSettings(BaseModel):
+    """Global user settings, API keys, and model configurations, stored in DB."""
+
+    id: str | None = "global"
+    api_keys: dict[str, str] = {
+        "groq": "",
+        "openai": "",
+        "gemini": "",
+        "openrouter": "",
+        "kaggle": "",
+        "mongodb": ""
+    }
+    task_models: dict[str, ModelAssignment] = {
+        "tutor": ModelAssignment(provider="ollama", model="llama3.2:1b"),
+        "practice": ModelAssignment(provider="ollama", model="llama3.2:1b"),
+        "exam": ModelAssignment(provider="ollama", model="qwen2.5:1.5b"),
+        "study_guide": ModelAssignment(provider="ollama", model="qwen2.5:1.5b"),
+        "analytics": ModelAssignment(provider="ollama", model="qwen2.5:1.5b")
+    }
+

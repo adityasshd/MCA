@@ -121,7 +121,7 @@ class ChatWorker(QObject):
 
 
 class ExamGenWorker(QObject):
-    finished = pyqtSignal(Exam)
+    finished = pyqtSignal(object)  # Exam
     error = pyqtSignal(str)
 
     def __init__(
@@ -131,6 +131,7 @@ class ExamGenWorker(QObject):
         scope: str,
         types: list[QuestionType],
         count: int,
+        mode: str = "custom",
     ):
         super().__init__()
         self.agent = agent
@@ -138,11 +139,12 @@ class ExamGenWorker(QObject):
         self.scope = scope
         self.types = types
         self.count = count
+        self.mode = mode
 
     def run(self):
         try:
             exam = self.agent.generate_exam(
-                self.subject, self.scope, self.types, self.count
+                self.subject, self.scope, self.types, self.count, self.mode
             )
             self.finished.emit(exam)
         except Exception as e:
@@ -182,9 +184,35 @@ class ReportWorker(QObject):
         try:
             figs = {
                 "trends": self.builder.plot_score_trends(self.subject),
-                "heatmap": self.builder.plot_topic_heatmap(self.subject),
+                "radar": self.builder.plot_topic_radar(self.subject),
                 "types": self.builder.plot_question_types(self.subject),
             }
             self.finished.emit(figs)
+        except Exception as e:
+            self.error.emit(str(e))
+
+class AIInsightsWorker(QObject):
+    finished = pyqtSignal(str)
+    error = pyqtSignal(str)
+
+    def __init__(self, db: DatabaseManager, model_manager: ModelManager, subject: str | None = None):
+        super().__init__()
+        self.db = db
+        self.model_manager = model_manager
+        self.subject = subject
+
+    def run(self):
+        try:
+            topics = self.db.weak_topics.get_weakest(limit=5)
+            if not topics:
+                self.finished.emit("Not enough data to generate insights yet. Keep practicing!")
+                return
+                
+            topic_names = ", ".join([f"{t.topic} (Mastery: {int(t.mastery_score*100)}%)" for t in topics])
+            prompt = f"As an AI tutor, write a brief, encouraging 2-sentence performance summary for the student. Focus on what they should prioritize based on their weakest topics: {topic_names}."
+            
+            # Using active model for faster response
+            insight = self.model_manager.active.generate(prompt=prompt, system="You are a supportive, concise tutor.")
+            self.finished.emit(insight)
         except Exception as e:
             self.error.emit(str(e))

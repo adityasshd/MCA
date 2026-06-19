@@ -57,6 +57,7 @@ class AppConfig(BaseSettings):
     GROQ_API_KEY: str = ""
     OPENAI_API_KEY: str = ""
     GEMINI_API_KEY: str = ""
+    OPENROUTER_API_KEY: str = ""
 
     # ── Kaggle remote API ─────────────────────────────────────────────
     KAGGLE_API_URL: str = ""  # Cloudflare tunnel URL from Kaggle notebook
@@ -113,3 +114,32 @@ def reload_config() -> AppConfig:
     """Force a reload of the configuration (clears cache)."""
     get_config.cache_clear()
     return get_config()
+
+
+def save_config_to_env(updates: dict[str, str]) -> None:
+    """Saves configuration updates to the .env file."""
+    env_path = PROJECT_ROOT / ".env"
+    
+    lines = []
+    if env_path.exists():
+        with open(env_path, "r", encoding="utf-8") as f:
+            lines = f.readlines()
+            
+    # Update existing keys
+    for i, line in enumerate(lines):
+        if "=" in line and not line.strip().startswith("#"):
+            key = line.split("=", 1)[0].strip()
+            if key in updates:
+                lines[i] = f"{key}={updates[key]}\n"
+                del updates[key]
+                
+    # Append remaining new keys
+    if lines and not lines[-1].endswith("\n"):
+        lines[-1] += "\n"
+    for key, val in updates.items():
+        lines.append(f"{key}={val}\n")
+        
+    with open(env_path, "w", encoding="utf-8") as f:
+        f.writelines(lines)
+        
+    reload_config()

@@ -31,6 +31,13 @@ from src.core.schemas import (
     StudyGuide,
     Subject,
     TextChunk,
+    UserStats,
+    StudyProgress,
+    WeakTopic,
+    PracticeSession,
+    ExamHistory,
+    ExamTemplate,
+    AppSettings,
 )
 
 logger = logging.getLogger(__name__)
@@ -115,6 +122,45 @@ class AnalyticsRepository(Protocol):
         since: datetime | None = None,
         limit: int = 100,
     ) -> list[AnalyticsEvent]: ...
+
+
+class UserRepository(Protocol):
+    def save(self, stats: UserStats) -> str: ...
+    def get_stats(self) -> UserStats | None: ...
+
+
+class SettingsRepository(Protocol):
+    def save(self, settings: AppSettings) -> str: ...
+    def get(self) -> AppSettings: ...
+
+
+
+class StudyProgressRepository(Protocol):
+    def save(self, progress: StudyProgress) -> str: ...
+    def get_by_unit(self, subject: str, unit: str) -> StudyProgress | None: ...
+    def get_all(self, subject: str | None = None) -> list[StudyProgress]: ...
+
+
+class WeakTopicRepository(Protocol):
+    def save(self, weak_topic: WeakTopic) -> str: ...
+    def get_by_topic(self, subject: str, unit: str, topic: str) -> WeakTopic | None: ...
+    def get_weakest(self, limit: int = 10) -> list[WeakTopic]: ...
+
+
+class PracticeSessionRepository(Protocol):
+    def save(self, session: PracticeSession) -> str: ...
+    def get_recent(self, limit: int = 10) -> list[PracticeSession]: ...
+
+
+class ExamHistoryRepository(Protocol):
+    def save(self, history: ExamHistory) -> str: ...
+    def get_by_subject(self, subject: str) -> list[ExamHistory]: ...
+
+
+class ExamTemplateRepository(Protocol):
+    def save(self, template: ExamTemplate) -> str: ...
+    def get_by_filename(self, filename: str) -> ExamTemplate | None: ...
+    def get_by_subject(self, subject: str) -> list[ExamTemplate]: ...
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -461,6 +507,141 @@ class MongoAnalyticsRepo:
         return [_from_doc(d, AnalyticsEvent) for d in cursor]
 
 
+class MongoUserRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+
+    def save(self, stats: UserStats) -> str:
+        doc = _to_doc(stats)
+        if stats.id:
+            from bson import ObjectId
+            self._col.replace_one({"_id": ObjectId(stats.id)}, doc)
+            return stats.id
+        else:
+            result = self._col.insert_one(doc)
+            return str(result.inserted_id)
+
+    def get_stats(self) -> UserStats | None:
+        doc = self._col.find_one()
+        return _from_doc(doc, UserStats) if doc else None
+
+
+class MongoSettingsRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+
+    def save(self, settings: AppSettings) -> str:
+        doc = _to_doc(settings)
+        if settings.id:
+            self._col.replace_one({"_id": "global_settings"}, doc, upsert=True)
+            return settings.id
+        else:
+            result = self._col.insert_one(doc)
+            return str(result.inserted_id)
+
+    def get(self) -> AppSettings:
+        doc = self._col.find_one({"_id": "global_settings"})
+        if doc:
+            return _from_doc(doc, AppSettings)
+        # return defaults if none exist
+        return AppSettings(id="global")
+
+
+class MongoStudyProgressRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("subject", 1), ("unit", 1)], unique=True)
+
+    def save(self, progress: StudyProgress) -> str:
+        doc = _to_doc(progress)
+        result = self._col.replace_one(
+            {"subject": progress.subject, "unit": progress.unit}, doc, upsert=True
+        )
+        return str(result.upserted_id or "updated")
+
+    def get_by_unit(self, subject: str, unit: str) -> StudyProgress | None:
+        doc = self._col.find_one({"subject": subject, "unit": unit})
+        return _from_doc(doc, StudyProgress) if doc else None
+
+    def get_all(self, subject: str | None = None) -> list[StudyProgress]:
+        q = {"subject": subject} if subject else {}
+        return [_from_doc(d, StudyProgress) for d in self._col.find(q)]
+
+
+class MongoWeakTopicRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("subject", 1), ("unit", 1), ("topic", 1)], unique=True)
+        self._col.create_index([("mastery_score", 1)])
+
+    def save(self, weak_topic: WeakTopic) -> str:
+        doc = _to_doc(weak_topic)
+        result = self._col.replace_one(
+            {"subject": weak_topic.subject, "unit": weak_topic.unit, "topic": weak_topic.topic},
+            doc, upsert=True
+        )
+        return str(result.upserted_id or "updated")
+
+    def get_by_topic(self, subject: str, unit: str, topic: str) -> WeakTopic | None:
+        doc = self._col.find_one({"subject": subject, "unit": unit, "topic": topic})
+        return _from_doc(doc, WeakTopic) if doc else None
+
+    def get_weakest(self, limit: int = 10) -> list[WeakTopic]:
+        cursor = self._col.find().sort("mastery_score", 1).limit(limit)
+        return [_from_doc(d, WeakTopic) for d in cursor]
+
+
+class MongoPracticeSessionRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("started_at", -1)])
+
+    def save(self, session: PracticeSession) -> str:
+        doc = _to_doc(session)
+        result = self._col.insert_one(doc)
+        return str(result.inserted_id)
+
+    def get_recent(self, limit: int = 10) -> list[PracticeSession]:
+        cursor = self._col.find().sort("started_at", -1).limit(limit)
+        return [_from_doc(d, PracticeSession) for d in cursor]
+
+
+class MongoExamHistoryRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("subject", 1), ("taken_at", -1)])
+
+    def save(self, history: ExamHistory) -> str:
+        doc = _to_doc(history)
+        result = self._col.insert_one(doc)
+        return str(result.inserted_id)
+
+    def get_by_subject(self, subject: str) -> list[ExamHistory]:
+        cursor = self._col.find({"subject": subject}).sort("taken_at", -1)
+        return [_from_doc(d, ExamHistory) for d in cursor]
+
+
+class MongoExamTemplateRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("filename", 1)], unique=True)
+
+    def save(self, template: ExamTemplate) -> str:
+        doc = _to_doc(template)
+        result = self._col.replace_one(
+            {"filename": template.filename}, doc, upsert=True
+        )
+        return str(result.upserted_id or "updated")
+
+    def get_by_filename(self, filename: str) -> ExamTemplate | None:
+        doc = self._col.find_one({"filename": filename})
+        return _from_doc(doc, ExamTemplate) if doc else None
+
+    def get_by_subject(self, subject: str) -> list[ExamTemplate]:
+        cursor = self._col.find({"subject": subject})
+        return [_from_doc(d, ExamTemplate) for d in cursor]
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 #  In-Memory Backend (for testing / offline)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -704,6 +885,133 @@ class MemoryAnalyticsRepo:
         return result[:limit]
 
 
+class MemoryUserRepo:
+    def __init__(self) -> None:
+        self._stats: UserStats | None = None
+
+    def save(self, stats: UserStats) -> str:
+        if not stats.id:
+            stats.id = "1"
+        self._stats = stats
+        return stats.id
+
+    def get_stats(self) -> UserStats | None:
+        return self._stats
+
+
+class MemorySettingsRepo:
+    def __init__(self) -> None:
+        self._settings: AppSettings | None = None
+
+    def save(self, settings: AppSettings) -> str:
+        if not settings.id:
+            settings.id = "global"
+        self._settings = settings
+        return settings.id
+
+    def get(self) -> AppSettings:
+        if self._settings:
+            return self._settings
+        return AppSettings(id="global")
+
+
+class MemoryStudyProgressRepo:
+    def __init__(self) -> None:
+        self._store: list[StudyProgress] = []
+
+    def save(self, progress: StudyProgress) -> str:
+        # Delete existing
+        self._store = [p for p in self._store if not (p.subject == progress.subject and p.unit == progress.unit)]
+        if not progress.id:
+            progress.id = str(len(self._store) + 1)
+        self._store.append(progress)
+        return progress.id
+
+    def get_by_unit(self, subject: str, unit: str) -> StudyProgress | None:
+        for p in self._store:
+            if p.subject == subject and p.unit == unit:
+                return p
+        return None
+
+    def get_all(self, subject: str | None = None) -> list[StudyProgress]:
+        if subject:
+            return [p for p in self._store if p.subject == subject]
+        return self._store[:]
+
+
+class MemoryWeakTopicRepo:
+    def __init__(self) -> None:
+        self._store: list[WeakTopic] = []
+
+    def save(self, weak_topic: WeakTopic) -> str:
+        self._store = [t for t in self._store if not (t.subject == weak_topic.subject and t.unit == weak_topic.unit and t.topic == weak_topic.topic)]
+        if not weak_topic.id:
+            weak_topic.id = str(len(self._store) + 1)
+        self._store.append(weak_topic)
+        return weak_topic.id
+
+    def get_by_topic(self, subject: str, unit: str, topic: str) -> WeakTopic | None:
+        for t in self._store:
+            if t.subject == subject and t.unit == unit and t.topic == topic:
+                return t
+        return None
+
+    def get_weakest(self, limit: int = 10) -> list[WeakTopic]:
+        s = sorted(self._store, key=lambda x: x.mastery_score)
+        return s[:limit]
+
+
+class MemoryPracticeSessionRepo:
+    def __init__(self) -> None:
+        self._store: list[PracticeSession] = []
+
+    def save(self, session: PracticeSession) -> str:
+        if not session.id:
+            session.id = str(len(self._store) + 1)
+        self._store.append(session)
+        return session.id
+
+    def get_recent(self, limit: int = 10) -> list[PracticeSession]:
+        s = sorted(self._store, key=lambda x: x.started_at, reverse=True)
+        return s[:limit]
+
+
+class MemoryExamHistoryRepo:
+    def __init__(self) -> None:
+        self._store: list[ExamHistory] = []
+
+    def save(self, history: ExamHistory) -> str:
+        if not history.id:
+            history.id = str(len(self._store) + 1)
+        self._store.append(history)
+        return history.id
+
+    def get_by_subject(self, subject: str) -> list[ExamHistory]:
+        s = [h for h in self._store if h.subject == subject]
+        return sorted(s, key=lambda x: x.taken_at, reverse=True)
+
+
+class MemoryExamTemplateRepo:
+    def __init__(self) -> None:
+        self._store: list[ExamTemplate] = []
+
+    def save(self, template: ExamTemplate) -> str:
+        self._store = [t for t in self._store if t.filename != template.filename]
+        if not template.id:
+            template.id = str(len(self._store) + 1)
+        self._store.append(template)
+        return template.id
+
+    def get_by_filename(self, filename: str) -> ExamTemplate | None:
+        for t in self._store:
+            if t.filename == filename:
+                return t
+        return None
+
+    def get_by_subject(self, subject: str) -> list[ExamTemplate]:
+        return [t for t in self._store if t.subject == subject]
+
+
 # ═══════════════════════════════════════════════════════════════════════════
 #  Database Manager (Dependency Injection Container)
 # ═══════════════════════════════════════════════════════════════════════════
@@ -724,6 +1032,13 @@ class DatabaseManager:
         study_guides: StudyGuideRepository,
         exams: ExamRepository,
         analytics: AnalyticsRepository,
+        users: UserRepository,
+        settings: SettingsRepository,
+        progress: StudyProgressRepository,
+        weak_topics: WeakTopicRepository,
+        practice_sessions: PracticeSessionRepository,
+        exam_history: ExamHistoryRepository,
+        exam_templates: ExamTemplateRepository,
     ) -> None:
         self.subjects = subjects
         self.chunks = chunks
@@ -731,6 +1046,13 @@ class DatabaseManager:
         self.study_guides = study_guides
         self.exams = exams
         self.analytics = analytics
+        self.users = users
+        self.settings = settings
+        self.progress = progress
+        self.weak_topics = weak_topics
+        self.practice_sessions = practice_sessions
+        self.exam_history = exam_history
+        self.exam_templates = exam_templates
 
     @classmethod
     def from_config(
@@ -770,6 +1092,13 @@ class DatabaseManager:
             study_guides=MongoStudyGuideRepo(db["study_guides"]),
             exams=MongoExamRepo(db["exams"]),
             analytics=MongoAnalyticsRepo(db["analytics"]),
+            users=MongoUserRepo(db["users"]),
+            settings=MongoSettingsRepo(db["settings"]),
+            progress=MongoStudyProgressRepo(db["study_progress"]),
+            weak_topics=MongoWeakTopicRepo(db["weak_topics"]),
+            practice_sessions=MongoPracticeSessionRepo(db["practice_sessions"]),
+            exam_history=MongoExamHistoryRepo(db["exam_history"]),
+            exam_templates=MongoExamTemplateRepo(db["exam_templates"]),
         )
 
     @classmethod
@@ -782,4 +1111,11 @@ class DatabaseManager:
             study_guides=MemoryStudyGuideRepo(),
             exams=MemoryExamRepo(),
             analytics=MemoryAnalyticsRepo(),
+            users=MemoryUserRepo(),
+            settings=MemorySettingsRepo(),
+            progress=MemoryStudyProgressRepo(),
+            weak_topics=MemoryWeakTopicRepo(),
+            practice_sessions=MemoryPracticeSessionRepo(),
+            exam_history=MemoryExamHistoryRepo(),
+            exam_templates=MemoryExamTemplateRepo(),
         )

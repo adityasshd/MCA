@@ -40,14 +40,28 @@ class ExaminerAgent:
         scope: str,  # unit name or "All"
         types: list[QuestionType],
         count: int = 5,
+        mode: str = "custom",
     ) -> Exam:
         """
         Generate a new exam using the reasoning model.
         """
         # Distribute types
-        type_str = ", ".join(t.value for t in types)
+        if mode == "official":
+            from src.rag.docx_parser import DocxTemplateParser
+            parser = DocxTemplateParser()
+            template = parser.parse_template(subject)
+            total_questions = sum(sec.get("count", 0) for sec in template["sections"])
+            count = total_questions
+            type_str = ", ".join(sec.get("type", "") for sec in template["sections"])
+            
+            sec_instructions = []
+            for sec in template["sections"]:
+                sec_instructions.append(f"- {sec['name']}: {sec['count']} questions of type '{sec['type']}'")
+            structure_context = "Generate the exam exactly matching this structure:\n" + "\n".join(sec_instructions)
+        else:
+            type_str = ", ".join(t.value for t in types)
+            structure_context = ""
 
-        # Retrieve context (we just query with the scope to get general info)
         unit_filter = scope if scope != "All" else None
         chunks = self.retriever.retrieve(
             query=f"Core concepts and definitions for {scope}",
@@ -65,6 +79,9 @@ class ExaminerAgent:
             types_distribution=type_str,
             context=context,
         )
+        if mode == "official":
+            prompt += f"\n\nIMPORTANT OFFICIAL EXAM CONSTRAINTS:\n{structure_context}\nEnsure your JSON output produces exactly {count} questions following these section counts and types."
+
 
         llm = self.model_manager.thinking
 
@@ -130,30 +147,22 @@ class ExaminerAgent:
                 q.feedback = "No answer provided."
                 continue
 
-            if q.type in (QuestionType.MCQ, QuestionType.SHORT_ANSWER, QuestionType.TRUE_FALSE, QuestionType.FILL_IN_BLANK):
-                # Pass 1: Fast grading
-                prompt = self.prompt_manager.get_prompt(
-                    "examiner_pass_1",
-                    q_type=q.type.value,
-                    prompt=q.prompt,
-                    expected=q.expected_answer,
-                    student=q.user_answer,
-                )
+            if q.type in (QuestionType.MCQ, QuestionType.TRUE_FALSE, QuestionType.FILL_IN_BLANK):
+                # Pass 1: Instant Fast Grading
+                ua = q.user_answer.strip().lower()
+                ea = q.expected_answer.strip().lower()
                 
-                try:
-                    res = fast_llm.generate(
-                        prompt, 
-                        system="Output only JSON.", 
-                        temperature=0.1
-                    )
-                    res = self._clean_json(res)
-                    data = json.loads(res)
-                    q.grade = float(data.get("grade", 0.0))
-                    q.feedback = data.get("feedback", "")
-                except Exception as e:
-                    logger.warning("Grading failed for question: %s", e)
-                    q.grade = 0.0
-                    q.feedback = f"Automated grading failed: {e}"
+                is_correct = False
+                if q.type in (QuestionType.MCQ, QuestionType.TRUE_FALSE):
+                    is_correct = (ua == ea)
+                else:
+                    is_correct = (ea in ua) or (ua == ea)
+                    
+                q.grade = 1.0 if is_correct else 0.0
+                if is_correct:
+                    q.feedback = "Correct! Well done."
+                else:
+                    q.feedback = f"Incorrect. The correct answer is:\n\n{q.expected_answer}"
 
             else:
                 # Pass 2: Detailed grading for essays

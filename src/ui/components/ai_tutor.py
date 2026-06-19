@@ -60,7 +60,7 @@ class ChatBubble(QWidget):
             layout.addStretch()
             layout.addWidget(self.label)
         else:
-            self.label.setStyleSheet("""
+            self.label.setStyleSheet(f"""
                 background-color: #21262D;
                 color: #E6EDF3;
                 padding: 10px;
@@ -73,6 +73,27 @@ class ChatBubble(QWidget):
 
     def append_text(self, chunk: str):
         self.label.setText(self.label.text() + chunk)
+
+class ContextualActionButton(QPushButton):
+    def __init__(self, action_name: str, parent=None):
+        super().__init__(action_name, parent)
+        self.action_name = action_name
+        self.setProperty("class", "SecondaryButton")
+        self.setCursor(Qt.CursorShape.PointingHandCursor)
+        self.setStyleSheet("""
+            QPushButton {
+                font-size: 11px;
+                padding: 6px 12px;
+                border-radius: 12px;
+                background-color: #1F2937;
+                color: #94A3B8;
+                border: 1px solid #374151;
+            }
+            QPushButton:hover {
+                background-color: #374151;
+                color: #F8FAFC;
+            }
+        """)
 
 from PyQt6.QtWidgets import QScrollArea
 from PyQt6.QtCore import QTimer
@@ -166,6 +187,30 @@ class AITutorWidget(QWidget):
         
         frame_layout.addLayout(input_layout)
 
+        # Contextual Actions Horizontal Scroll
+        self.actions_scroll = QScrollArea()
+        self.actions_scroll.setWidgetResizable(True)
+        self.actions_scroll.setFixedHeight(45)
+        self.actions_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.actions_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.actions_scroll.setStyleSheet("QScrollArea { border: none; background: transparent; }")
+        
+        actions_container = QWidget()
+        actions_layout = QHBoxLayout(actions_container)
+        actions_layout.setContentsMargins(0, 5, 0, 0)
+        actions_layout.setSpacing(8)
+        
+        actions = ["Explain Topic", "Give Example", "Create Analogy", "Summarize", "Exam Questions"]
+        for act in actions:
+            btn = ContextualActionButton(act)
+            btn.clicked.connect(lambda checked, a=act: self._trigger_contextual_action(a))
+            actions_layout.addWidget(btn)
+            
+        actions_layout.addStretch()
+        self.actions_scroll.setWidget(actions_container)
+        
+        frame_layout.addWidget(self.actions_scroll)
+
         self.active_session = self.agent.create_session("General", "General")
         welcome_msg = self.active_session.messages[0]
         self._append_chat_message(welcome_msg.role, welcome_msg.content)
@@ -210,6 +255,61 @@ class AITutorWidget(QWidget):
         self.current_worker.error.connect(self._on_chat_error)
         
         self.current_ai_bubble = self._append_chat_message("assistant", "")
+        
+        self.thread = threading.Thread(target=self.current_worker.run)
+        self.thread.start()
+
+    def _trigger_contextual_action(self, action_name: str):
+        if not self.active_session: return
+        self.chat_input.setEnabled(False)
+        self.btn_send.setEnabled(False)
+        
+        self._append_chat_message("user", action_name)
+        self.current_ai_bubble = self._append_chat_message("assistant", "")
+        
+        def run_action():
+            try:
+                stream = self.agent.execute_contextual_action(
+                    action_name, self.active_session.subject, self.active_session.unit
+                )
+                full_text = ""
+                for chunk in stream:
+                    full_text += chunk
+                    # Signal chunk to UI using QMetaObject or safe signal
+                    # (Simplified for now, assumes thread-safety in this specific QWidget setup or handled by _on_chat_chunk via signal)
+                    # For safety in PyQt, we really should use a worker, but since we are modifying, let's reuse ChatWorker with a trick
+            except Exception as e:
+                pass
+                
+        # Better approach: Create an ActionWorker 
+        from PyQt6.QtCore import pyqtSignal, QObject
+        class ActionWorker(QObject):
+            chunk = pyqtSignal(str)
+            done = pyqtSignal(str)
+            error = pyqtSignal(str)
+            
+            def __init__(self, agent, action, subject, unit):
+                super().__init__()
+                self.agent = agent
+                self.action = action
+                self.subject = subject
+                self.unit = unit
+                
+            def run(self):
+                try:
+                    stream = self.agent.execute_contextual_action(self.action, self.subject, self.unit)
+                    full = ""
+                    for c in stream:
+                        full += c
+                        self.chunk.emit(c)
+                    self.done.emit(full)
+                except Exception as e:
+                    self.error.emit(str(e))
+                    
+        self.current_worker = ActionWorker(self.agent, action_name, self.active_session.subject, self.active_session.unit)
+        self.current_worker.chunk.connect(self._on_chat_chunk)
+        self.current_worker.done.connect(self._on_chat_done)
+        self.current_worker.error.connect(self._on_chat_error)
         
         self.thread = threading.Thread(target=self.current_worker.run)
         self.thread.start()

@@ -239,5 +239,85 @@ class StudyAgent:
         if "[Error generating study guide" in content or "Content Truncated:" in content:
             return
             
+            
         guide = StudyGuide(subject=subject, unit=unit, content=content)
         self.db.study_guides.save(guide)
+
+    # ── Contextual Actions ──────────────────────────────────────────────────
+    
+    def execute_contextual_action(self, action_name: str, subject: str, unit: str, topic: str | None = None) -> Iterator[str]:
+        """
+        Executes a specific contextual action like 'Explain Like I'm 10', 'Give Example', etc.
+        """
+        context = f"Subject: {subject}, Unit: {unit}"
+        if topic:
+            context += f", Topic: {topic}"
+            
+        action_prompts = {
+            "Explain Topic": f"Please provide a detailed but clear explanation of {context}.",
+            "Give Example": f"Give me 3 concrete real-world examples illustrating {context}.",
+            "Create Analogy": f"Create a simple, intuitive analogy to explain {context}.",
+            "Generate Flashcards": f"Create 5 flashcards for {context} in Q: A: format.",
+            "Memory Trick": f"Give me a mnemonic or memory trick to remember {context}.",
+            "Exam Questions": f"What are the most likely exam questions about {context}?",
+            "Summarize": f"Summarize the key points of {context} in bullet points.",
+            "Common Mistakes": f"What are the most common mistakes students make when learning {context}?"
+        }
+        
+        prompt = action_prompts.get(action_name, f"Help me with {context}")
+        
+        system = "You are an expert AI tutor. Respond clearly and directly."
+        llm = self.model_manager.fast
+        
+        try:
+            stream = llm.generate_stream(prompt=prompt, system=system, temperature=0.5)
+            for chunk in stream:
+                yield chunk
+        except Exception as e:
+            yield f"\n\n[Error executing action: {e}]"
+
+    # ── Infinite Practice Generation ────────────────────────────────────────
+
+    def generate_practice_question(self, subject: str, unit: str, topic: str | None = None, difficulty: str = "Medium") -> dict:
+        """
+        Generates a single question for infinite practice mode.
+        Returns a dict: {"question": "...", "options": ["..."], "answer": "...", "explanation": "..."}
+        """
+        prompt = f"Generate 1 {difficulty} difficulty multiple choice question about {subject} - {unit}."
+        if topic:
+            prompt += f" Focus specifically on: {topic}."
+            
+        prompt += "\nOutput JSON format ONLY: {\"question\": \"...\", \"options\": [\"A\", \"B\", \"C\", \"D\"], \"answer\": \"Exact text of correct option\", \"explanation\": \"Short explanation\", \"detailed_explanation\": \"Detailed explanation covering key concepts, examples, and common mistakes\"}"
+        
+        try:
+            import json
+            response = self.model_manager.fast.generate(prompt=prompt, temperature=0.3)
+            # Find json block
+            json_str = response
+            if "```json" in response:
+                json_str = response.split("```json")[1].split("```")[0]
+            elif "```" in response:
+                json_str = response.split("```")[1].split("```")[0]
+                
+            return json.loads(json_str.strip())
+        except Exception as e:
+            logger.error(f"Failed to generate practice question: {e}")
+            return {
+                "question": f"Error generating question: {e}",
+                "options": ["A", "B", "C", "D"],
+                "answer": "A",
+                "explanation": "Generation failed."
+            }
+
+    def generate_adaptive_sequence(self, subject: str, unit: str, topic: str, num_questions: int, mastery_score: float) -> list[dict]:
+        """
+        Generates a sequence of questions adapting to the user's mastery score.
+        Lower mastery score means easier, foundational questions.
+        """
+        difficulty = "Easy" if mastery_score < 0.5 else ("Medium" if mastery_score < 0.8 else "Hard")
+        
+        questions = []
+        for _ in range(num_questions):
+            questions.append(self.generate_practice_question(subject, unit, topic, difficulty))
+            
+        return questions

@@ -1,20 +1,16 @@
 """
 main_window — PyQt6 Application Shell
 =======================================
-The main application shell using a QStackedWidget and a sidebar.
+The main application shell using a Sidebar, Topbar, and persistent AI Chat Panel.
 """
 
-from PyQt6.QtCore import Qt, QSize
+from PyQt6.QtCore import Qt
 from PyQt6.QtWidgets import (
-    QApplication,
-    QFrame,
     QHBoxLayout,
-    QLabel,
     QMainWindow,
     QStackedWidget,
     QVBoxLayout,
     QWidget,
-    QPushButton,
 )
 
 from src.core.config import get_config
@@ -29,10 +25,13 @@ from src.ui.test_view import TestView
 from src.ui.analytics_view import AnalyticsView
 from src.ui.subject_manager import SubjectManager
 from src.ui.settings_dialog import SettingsDialog
+from src.ui.infinite_practice_view import InfinitePracticeView
+from src.services.practice_service import PracticeService
 
 # Import Components
-from src.ui.components.ai_tutor import AITutorWidget, FloatingActionButton
-
+from src.ui.components.navigation.sidebar import Sidebar
+from src.ui.components.navigation.topbar import TopBar
+from src.ui.components.chat.ai_chat_panel import AIChatPanel
 
 class MainWindow(QMainWindow):
     def __init__(self, db: DatabaseManager, model_manager: ModelManager):
@@ -41,54 +40,61 @@ class MainWindow(QMainWindow):
         self.model_manager = model_manager
         
         self.setWindowTitle("MCA AI Study Suite")
-        self.resize(1200, 800)
+        self.resize(1400, 900)
         self._init_ui()
 
     def _init_ui(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
-        main_layout = QVBoxLayout(central_widget)
+        
+        # Main Horizontal Layout: Sidebar | Center Area | AI Chat
+        main_layout = QHBoxLayout(central_widget)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(0)
 
-        # ── Top Bar ──
-        self.top_bar = QWidget()
-        self.top_bar.setObjectName("TopBar")
-        self.top_bar.setStyleSheet("background-color: #161B22; border-bottom: 1px solid #30363D;")
-        top_layout = QHBoxLayout(self.top_bar)
-        top_layout.setContentsMargins(20, 10, 20, 10)
-        
-        self.btn_back = QPushButton("← Dashboard")
-        self.btn_back.setStyleSheet("background: transparent; color: #58A6FF; font-weight: bold; font-size: 14px; border: none;")
-        self.btn_back.setCursor(Qt.CursorShape.PointingHandCursor)
-        self.btn_back.clicked.connect(self.go_home)
-        self.btn_back.hide()
-        
-        lbl_logo = QLabel("MCA AI Study Suite")
-        lbl_logo.setStyleSheet("font-size: 18px; font-weight: bold; color: #E6EDF3;")
-        
-        top_layout.addWidget(self.btn_back)
-        top_layout.addStretch()
-        top_layout.addWidget(lbl_logo)
-        
-        main_layout.addWidget(self.top_bar)
+        # ── Sidebar ──
+        self.sidebar = Sidebar()
+        self.sidebar.nav_clicked.connect(self.switch_view)
+        main_layout.addWidget(self.sidebar)
 
-        # ── Content Area ──
+        # ── Center Area ──
+        self.center_widget = QWidget()
+        center_layout = QVBoxLayout(self.center_widget)
+        center_layout.setContentsMargins(0, 0, 0, 0)
+        center_layout.setSpacing(0)
+        
+        self.top_bar = TopBar()
+        center_layout.addWidget(self.top_bar)
+        
         self.content_stack = QStackedWidget()
-        main_layout.addWidget(self.content_stack, stretch=1)
+        center_layout.addWidget(self.content_stack, stretch=1)
+        
+        main_layout.addWidget(self.center_widget, stretch=1)
+
+        # ── Persistent AI Chat Panel ──
+        self.ai_chat_panel = AIChatPanel(self.db, self.model_manager, self)
+        # We will keep it hidden by default until they enter the study room, or keep it visible?
+        # Let's keep it hidden initially except in Study/Exam modes, or just hide by default.
+        self.ai_chat_panel.hide()
+        main_layout.addWidget(self.ai_chat_panel)
 
         # Add actual views
-        self.view_dashboard = Dashboard()
+        self.view_dashboard = Dashboard(self.db)
         self.view_dashboard.study_clicked.connect(lambda: self.switch_view(1))
         self.view_dashboard.test_clicked.connect(lambda: self.switch_view(2))
         self.view_dashboard.analytics_clicked.connect(lambda: self.switch_view(3))
         self.view_dashboard.subjects_clicked.connect(lambda: self.switch_view(4))
+        self.view_dashboard.practice_clicked.connect(self._launch_practice)
         
-        self.view_study = StudyView(self.db, self.model_manager)
+        self.view_study = StudyView(self.db, self.model_manager, self.ai_chat_panel)
         self.view_test = TestView(self.db, self.model_manager)
-        self.view_analytics = AnalyticsView(self.db)
+        self.view_analytics = AnalyticsView(self.db, self.model_manager)
         self.view_subjects = SubjectManager(self.db, self.model_manager)
-        self.view_settings = SettingsDialog()
+        self.view_settings = SettingsDialog(self.db)
+        
+        practice_service = PracticeService(self.db, self.view_study.agent)
+        self.view_practice = InfinitePracticeView(practice_service)
+        self.view_practice.close_clicked.connect(lambda: self.switch_view(0))
 
         self.content_stack.addWidget(self.view_dashboard) # 0
         self.content_stack.addWidget(self.view_study)     # 1
@@ -96,8 +102,20 @@ class MainWindow(QMainWindow):
         self.content_stack.addWidget(self.view_analytics) # 3
         self.content_stack.addWidget(self.view_subjects)  # 4
         self.content_stack.addWidget(self.view_settings)  # 5
+        self.content_stack.addWidget(self.view_practice)  # 6
 
-        self.go_home()
+        # View Titles mapping
+        self.view_titles = {
+            0: "Dashboard",
+            1: "Study Room",
+            2: "Exam Center",
+            3: "Analytics",
+            4: "Subjects",
+            5: "Settings",
+            6: "Infinite Practice"
+        }
+
+        self.switch_view(0)
 
         # ── Status Bar ──
         self.status_bar = self.statusBar()
@@ -106,33 +124,19 @@ class MainWindow(QMainWindow):
             f"Ready | DB: {config.DB_BACKEND.upper()} | Model: {config.TIER1_MODEL}"
         )
 
-        # ── Floating AI Tutor ──
-        self.ai_tutor_widget = AITutorWidget(self.db, self.model_manager, self)
-        
-        self.fab = FloatingActionButton(self)
-        self.fab.clicked.connect(self.toggle_ai_tutor)
-
     def switch_view(self, index: int):
         self.content_stack.setCurrentIndex(index)
-        self.btn_back.show()
-
-    def go_home(self):
-        self.content_stack.setCurrentIndex(0)
-        self.btn_back.hide()
-
-    def toggle_ai_tutor(self):
-        if self.ai_tutor_widget.isVisible():
-            self.ai_tutor_widget.hide()
-        else:
-            self.ai_tutor_widget.show()
-            self.ai_tutor_widget.raise_()
-            
-    def resizeEvent(self, event):
-        super().resizeEvent(event)
-        fab_x = self.width() - self.fab.width() - 30
-        fab_y = self.height() - self.fab.height() - 40
-        self.fab.move(fab_x, fab_y)
+        self.sidebar.set_active(index)
+        self.top_bar.set_title(self.view_titles.get(index, ""))
         
-        tutor_x = self.width() - self.ai_tutor_widget.width() - 30
-        tutor_y = fab_y - self.ai_tutor_widget.height() - 20
-        self.ai_tutor_widget.move(tutor_x, tutor_y)
+        # Show AI Chat only in Study Room or Exam Center (if we wanted to).
+        # We can expose a method to show it from inside StudyView.
+        # Actually, let's just make it only show up in Study Room for now.
+        if index == 1:
+            self.ai_chat_panel.show()
+        else:
+            self.ai_chat_panel.hide()
+
+    def _launch_practice(self, mode: str, subject: str, unit: str, topic: str, mastery: float):
+        self.switch_view(6)
+        self.view_practice.start_practice(mode, subject, unit, topic, mastery)

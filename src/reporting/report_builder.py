@@ -17,9 +17,9 @@ class ReportBuilder:
     def __init__(self, db: DatabaseManager) -> None:
         self.db = db
         self.layout_template = dict(
-            plot_bgcolor="#161B22",
-            paper_bgcolor="#161B22",
-            font=dict(color="#C9D1D9"),
+            plot_bgcolor="#0A0F1C",
+            paper_bgcolor="#0A0F1C",
+            font=dict(color="#F8FAFC", family="Inter"),
             margin=dict(l=40, r=40, t=60, b=40)
         )
 
@@ -67,45 +67,35 @@ class ReportBuilder:
         
         return fig.to_html(include_plotlyjs='cdn', full_html=False)
 
-    def plot_topic_heatmap(self, subject: str | None = None) -> str:
-        """Heatmap of performance by unit."""
-        exams = self.db.exams.get_all(limit=100)
+    def plot_topic_radar(self, subject: str | None = None) -> str:
+        """Radar chart of mastery across topics."""
+        topics = self.db.weak_topics.get_weakest(limit=20)
         if subject and subject != "All":
-            exams = [e for e in exams if e.subject == subject]
+            topics = [t for t in topics if t.subject == subject]
             
-        if not exams:
-            return self._create_empty_html("No data for heatmap.")
+        if not topics:
+            return self._create_empty_html("No mastery data for radar chart.")
 
-        # Aggregate scores by scope (unit)
-        unit_scores: dict[str, list[float]] = {}
-        for e in exams:
-            if e.score is not None:
-                if e.scope not in unit_scores:
-                    unit_scores[e.scope] = []
-                unit_scores[e.scope].append(e.score * 100)
-                
-        if not unit_scores:
-             return self._create_empty_html("No scored exams available.")
+        names = [t.topic[:20] + "..." if len(t.topic)>20 else t.topic for t in topics]
+        scores = [t.mastery_score * 100 for t in topics]
 
-        units = list(unit_scores.keys())
-        avg_scores = [sum(scores)/len(scores) for scores in unit_scores.values()]
-        
-        # Convert to 2D array for heatmap
-        data = [[s] for s in avg_scores]
-
-        fig = go.Figure(data=go.Heatmap(
-            z=data,
-            y=units,
-            x=["Avg Score"],
-            colorscale="RdYlGn",
-            zmin=0, zmax=100,
-            text=[[f"{s:.1f}%"] for s in avg_scores],
-            texttemplate="%{text}",
-            showscale=False
+        fig = go.Figure()
+        fig.add_trace(go.Scatterpolar(
+            r=scores,
+            theta=names,
+            fill='toself',
+            name='Mastery',
+            line_color="#8B5CF6",
+            fillcolor="rgba(139, 92, 246, 0.4)"
         ))
-        
+
         fig.update_layout(
-            title="Performance by Topic",
+            title="Knowledge Mastery Radar",
+            polar=dict(
+                radialaxis=dict(visible=True, range=[0, 100], gridcolor="#273449", color="#94A3B8"),
+                angularaxis=dict(gridcolor="#273449", color="#F8FAFC")
+            ),
+            showlegend=False,
             **self.layout_template
         )
         
