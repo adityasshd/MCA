@@ -45,89 +45,134 @@ class ExaminerAgent:
         """
         Generate a new exam using the reasoning model.
         """
-        # Distribute types
+        questions: list[ExamQuestion] = []
+        required_questions: list[dict] = []
+        
+        # Determine the requirements for the exam
         if mode == "official":
             from src.rag.docx_parser import DocxTemplateParser
             parser = DocxTemplateParser()
             template = parser.parse_template(subject)
-            total_questions = sum(sec.get("count", 0) for sec in template["sections"])
-            count = total_questions
-            type_str = ", ".join(sec.get("type", "") for sec in template["sections"])
-            
-            sec_instructions = []
             for sec in template["sections"]:
-                sec_instructions.append(f"- {sec['name']}: {sec['count']} questions of type '{sec['type']}'")
-            structure_context = "Generate the exam exactly matching this structure:\n" + "\n".join(sec_instructions)
+                count = sec.get("count", 0)
+                qtype_str = sec.get("type", "MCQ")
+                try:
+                    qtype = QuestionType(qtype_str)
+                except ValueError:
+                    qtype = QuestionType.MCQ
+                required_questions.append({"type": qtype, "count": count, "desc": f"{sec['name']} ({count} {qtype.value})"})
         else:
-            type_str = ", ".join(t.value for t in types)
-            structure_context = ""
+            # Custom exam divides count roughly equally among requested types
+            if not types:
+                types = [QuestionType.MCQ]
+            per_type = count // len(types)
+            remainder = count % len(types)
+            for i, t in enumerate(types):
+                c = per_type + (1 if i < remainder else 0)
+                required_questions.append({"type": t, "count": c, "desc": f"{c} {t.value}"})
 
-        unit_filter = scope if scope != "All" else None
-        chunks = self.retriever.retrieve(
-            query=f"Core concepts and definitions for {scope}",
-            subject=subject,
-            unit=unit_filter,
-            top_k=10,
-        )
-        context = self.retriever.format_context(chunks)
+        # Fetch from cache first
+        missing_requirements = []
+        for req in required_questions:
+            cached = self.db.question_bank.get_exam_questions(subject, scope, req["type"], req["count"])
+            for c in cached:
+                questions.append(ExamQuestion(
+                    type=c.question_type,
+                    prompt=c.prompt,
+                    options=c.options,
+                    expected_answer=c.expected_answer
+                ))
+            if len(cached) < req["count"]:
+                missing_requirements.append({
+                    "type": req["type"],
+                    "count": req["count"] - len(cached),
+                    "desc": f"{req['count'] - len(cached)} {req['type'].value}"
+                })
 
-        prompt = self.prompt_manager.get_prompt(
-            "examiner_exam_gen",
-            subject=subject,
-            scope=scope,
-            count=count,
-            types_distribution=type_str,
-            context=context,
-        )
-        if mode == "official":
-            prompt += f"\n\nIMPORTANT OFFICIAL EXAM CONSTRAINTS:\n{structure_context}\nEnsure your JSON output produces exactly {count} questions following these section counts and types."
+        # If we still need questions, hit the API
+        if missing_requirements:
+            missing_count = sum(r["count"] for r in missing_requirements)
+            type_str = ", ".join(r["desc"] for r in missing_requirements)
+            structure_context = "Generate exactly these missing questions:\n" + "\n".join(f"- {r['desc']}" for r in missing_requirements)
 
-
-        llm = self.model_manager.thinking
-
-        try:
-            response_text = llm.generate(
-                prompt=prompt,
-                system="You are an expert exam generator. Output only JSON.",
-                temperature=0.4,
+            unit_filter = scope if scope != "All" else None
+            chunks = self.retriever.retrieve(
+                query=f"Core concepts and definitions for {scope}",
+                subject=subject,
+                unit=unit_filter,
+                top_k=10,
             )
-            
-            # Clean up potential markdown formatting around JSON
-            response_text = response_text.strip()
-            if response_text.startswith("```json"):
-                response_text = response_text[7:]
-            if response_text.startswith("```"):
-                response_text = response_text[3:]
-            if response_text.endswith("```"):
-                response_text = response_text[:-3]
+            context = self.retriever.format_context(chunks)
 
-            parsed = json.loads(response_text.strip())
-
-            questions = []
-            for q_data in parsed:
-                q = ExamQuestion(
-                    type=QuestionType(q_data["type"]),
-                    prompt=q_data["prompt"],
-                    options=q_data.get("options"),
-                    expected_answer=q_data["expected_answer"],
-                )
-                questions.append(q)
-
-            exam = Exam(
+            prompt = self.prompt_manager.get_prompt(
+                "examiner_exam_gen",
                 subject=subject,
                 scope=scope,
-                questions=questions,
+                count=missing_count,
+                types_distribution=type_str,
+                context=context,
             )
-            
-            # Save the exam without scores initially
-            exam_id = self.db.exams.save(exam)
-            exam.id = exam_id
-            
-            return exam
+            prompt += f"\n\nIMPORTANT CONSTRAINTS:\n{structure_context}\nEnsure your JSON output produces exactly {missing_count} questions matching these types."
 
-        except Exception as e:
-            logger.error("Failed to generate exam: %s", e)
-            raise
+            llm = self.model_manager.thinking
+
+            try:
+                response_text = llm.generate(
+                    prompt=prompt,
+                    system="You are an expert exam generator. Output only JSON.",
+                    temperature=0.4,
+                )
+                
+                # Clean up potential markdown formatting around JSON
+                response_text = response_text.strip()
+                if response_text.startswith("```json"):
+                    response_text = response_text[7:]
+                if response_text.startswith("```"):
+                    response_text = response_text[3:]
+                if response_text.endswith("```"):
+                    response_text = response_text[:-3]
+
+                parsed = json.loads(response_text.strip())
+
+                from src.core.schemas import QuestionBankItem
+                for q_data in parsed:
+                    q = ExamQuestion(
+                        type=QuestionType(q_data["type"]),
+                        prompt=q_data["prompt"],
+                        options=q_data.get("options"),
+                        expected_answer=q_data["expected_answer"],
+                    )
+                    questions.append(q)
+                    
+                    # Cache this newly generated question back to the bank
+                    q_item = QuestionBankItem(
+                        subject=subject,
+                        unit=scope if scope != "All" else "Exam",
+                        topic="Exam",
+                        difficulty="Medium",
+                        question_type=q.type,
+                        prompt=q.prompt,
+                        options=q.options,
+                        expected_answer=q.expected_answer,
+                        explanation=q.expected_answer # Temporary fallback
+                    )
+                    self.db.question_bank.save(q_item)
+
+            except Exception as e:
+                logger.error("Failed to generate exam: %s", e)
+                raise
+
+        exam = Exam(
+            subject=subject,
+            scope=scope,
+            questions=questions,
+        )
+        
+        # Save the exam without scores initially
+        exam_id = self.db.exams.save(exam)
+        exam.id = exam_id
+        
+        return exam
 
     def grade_exam(self, exam: Exam) -> float:
         """

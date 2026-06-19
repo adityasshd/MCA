@@ -244,6 +244,26 @@ class ExamTemplate(BaseModel):
     parsed_at: datetime = Field(default_factory=_utcnow)
 
 
+class QuestionBankItem(BaseModel):
+    """A persistently cached question for reuse and offline mode."""
+
+    id: str | None = None
+    subject: str
+    unit: str
+    topic: str
+    difficulty: str
+    question_type: QuestionType = QuestionType.MCQ
+    prompt: str
+    options: list[str] | None = None
+    expected_answer: str
+    explanation: str | None = None
+    times_served: int = 0
+    times_correct: int = 0
+    times_incorrect: int = 0
+    avg_response_time: float = 0.0
+    created_at: datetime = Field(default_factory=_utcnow)
+
+
 class ModelAssignment(BaseModel):
     """Stores the provider and model name assigned to a specific AI task."""
     

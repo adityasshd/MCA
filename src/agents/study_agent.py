@@ -281,13 +281,13 @@ class StudyAgent:
     def generate_practice_question(self, subject: str, unit: str, topic: str | None = None, difficulty: str = "Medium") -> dict:
         """
         Generates a single question for infinite practice mode.
-        Returns a dict: {"question": "...", "options": ["..."], "answer": "...", "explanation": "..."}
+        Returns a dict: {"question": "...", "options": ["..."], "answer": "..."}
         """
         prompt = f"Generate 1 {difficulty} difficulty multiple choice question about {subject} - {unit}."
         if topic:
             prompt += f" Focus specifically on: {topic}."
             
-        prompt += "\nOutput JSON format ONLY: {\"question\": \"...\", \"options\": [\"A\", \"B\", \"C\", \"D\"], \"answer\": \"Exact text of correct option\", \"explanation\": \"Short explanation\", \"detailed_explanation\": \"Detailed explanation covering key concepts, examples, and common mistakes\"}"
+        prompt += "\nOutput JSON format ONLY: {\"question\": \"...\", \"options\": [\"A\", \"B\", \"C\", \"D\"], \"answer\": \"Exact text of correct option\"}"
         
         try:
             import json
@@ -305,9 +305,23 @@ class StudyAgent:
             return {
                 "question": f"Error generating question: {e}",
                 "options": ["A", "B", "C", "D"],
-                "answer": "A",
-                "explanation": "Generation failed."
+                "answer": "A"
             }
+
+    def generate_explanation(self, subject: str, unit: str, topic: str, question: str, expected_answer: str, user_answer: str | None = None) -> str:
+        """
+        Generates a detailed explanation for why the expected answer is correct, and optionally addresses the user's mistake.
+        """
+        prompt = f"Explain the answer to the following multiple choice question about {subject} - {unit} ({topic}).\n\nQuestion: {question}\nCorrect Answer: {expected_answer}\n"
+        if user_answer and user_answer != expected_answer:
+            prompt += f"The user incorrectly answered: {user_answer}. Include a brief, encouraging note explaining why their specific choice was wrong.\n"
+            
+        prompt += "\nProvide a clear, detailed explanation. Use Markdown."
+        try:
+            return self.model_manager.fast.generate(prompt=prompt, temperature=0.3)
+        except Exception as e:
+            logger.error(f"Failed to generate explanation: {e}")
+            return f"Explanation generation failed: {e}"
 
     def generate_adaptive_sequence(self, subject: str, unit: str, topic: str, num_questions: int, mastery_score: float) -> list[dict]:
         """

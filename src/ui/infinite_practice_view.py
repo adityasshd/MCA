@@ -1,7 +1,7 @@
 from PyQt6.QtCore import Qt, pyqtSignal, pyqtSlot
 from PyQt6.QtWidgets import (
     QWidget, QVBoxLayout, QHBoxLayout, 
-    QLabel, QPushButton, QFrame, QButtonGroup, QRadioButton, QScrollArea
+    QLabel, QPushButton, QFrame, QButtonGroup, QRadioButton, QScrollArea, QStackedWidget, QComboBox
 )
 import threading
 from src.services.practice_service import PracticeService
@@ -30,9 +30,116 @@ class InfinitePracticeView(QWidget):
         
     def _init_ui(self):
         self.layout = QVBoxLayout(self)
-        self.layout.setContentsMargins(40, 40, 40, 40)
-        self.layout.setSpacing(20)
-        self.layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self.layout.setContentsMargins(0, 0, 0, 0)
+        self.layout.setSpacing(0)
+        
+        self.stack = QStackedWidget()
+        self.layout.addWidget(self.stack)
+        
+        self.page_config = QWidget()
+        self._setup_config_page()
+        self.stack.addWidget(self.page_config)
+        
+        self.page_practice = QWidget()
+        self._setup_practice_page()
+        self.stack.addWidget(self.page_practice)
+
+        self.loading = LoadingOverlay(self)
+
+    def _setup_config_page(self):
+        layout = QVBoxLayout(self.page_config)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        
+        panel = QFrame()
+        panel.setProperty("class", "CardPanel")
+        panel.setFixedWidth(600)
+        p_layout = QVBoxLayout(panel)
+        p_layout.setContentsMargins(40, 40, 40, 40)
+        p_layout.setSpacing(25)
+        
+        lbl_title = QLabel("Infinite Practice Setup")
+        lbl_title.setProperty("class", "PageTitle")
+        lbl_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        p_layout.addWidget(lbl_title)
+        
+        lbl_desc = QLabel("Select what you want to practice.")
+        lbl_desc.setProperty("class", "BodyText")
+        lbl_desc.setAlignment(Qt.AlignmentFlag.AlignCenter)
+        p_layout.addWidget(lbl_desc)
+        p_layout.addSpacing(10)
+        
+        p_layout.addWidget(QLabel("1. Choose Subject"))
+        self.cb_subject = QComboBox()
+        self.cb_subject.setStyleSheet("padding: 8px; border-radius: 6px; background-color: #0B1020; border: 1px solid rgba(255,255,255,0.1); color: white;")
+        self._populate_subjects()
+        self.cb_subject.currentTextChanged.connect(self._populate_units)
+        p_layout.addWidget(self.cb_subject)
+        
+        p_layout.addWidget(QLabel("2. Choose Unit"))
+        self.cb_unit = QComboBox()
+        self.cb_unit.setStyleSheet("padding: 8px; border-radius: 6px; background-color: #0B1020; border: 1px solid rgba(255,255,255,0.1); color: white;")
+        p_layout.addWidget(self.cb_unit)
+        self._populate_units(self.cb_subject.currentText())
+        
+        p_layout.addSpacing(20)
+        
+        btn_layout = QHBoxLayout()
+        self.btn_back_dash = QPushButton("← Back")
+        self.btn_back_dash.setProperty("class", "SecondaryButton")
+        self.btn_back_dash.clicked.connect(self.close_clicked.emit)
+        
+        self.btn_start = QPushButton("Start Practice")
+        self.btn_start.setProperty("class", "PrimaryButton")
+        self.btn_start.clicked.connect(self._on_manual_start)
+        
+        btn_layout.addWidget(self.btn_back_dash)
+        btn_layout.addStretch()
+        btn_layout.addWidget(self.btn_start)
+        p_layout.addLayout(btn_layout)
+        
+        layout.addWidget(panel)
+
+    def _populate_subjects(self):
+        from src.ui.theme import format_title_case
+        self.cb_subject.clear()
+        for s in self.service.db.subjects.get_all():
+            self.cb_subject.addItem(format_title_case(s.name), userData=s.name)
+
+    def _populate_units(self, display_name: str):
+        from src.ui.theme import format_title_case
+        self.cb_unit.clear()
+        if not display_name: return
+        
+        idx = self.cb_subject.currentIndex()
+        actual_name = self.cb_subject.itemData(idx)
+        
+        sub = self.service.db.subjects.get_by_name(actual_name)
+        if sub:
+            self.cb_unit.addItem("All (Full Subject)", userData="All")
+            for u in sub.units:
+                self.cb_unit.addItem(format_title_case(u.name), userData=u.name)
+
+    def _on_manual_start(self):
+        sub_idx = self.cb_subject.currentIndex()
+        subject = self.cb_subject.itemData(sub_idx)
+        
+        unit_idx = self.cb_unit.currentIndex()
+        unit = self.cb_unit.itemData(unit_idx)
+        if unit == "All": unit = ""
+        
+        topic = ""
+        
+        if not subject: return
+        mode = "subject"
+        mastery = 0.5
+            
+        self._start_practice_session(mode, subject, unit, topic, mastery)
+
+    def _setup_practice_page(self):
+        layout = QVBoxLayout(self.page_practice)
+        layout.setContentsMargins(40, 40, 40, 40)
+        layout.setSpacing(20)
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         
         # Main Navigation Header
         nav_layout = QHBoxLayout()
@@ -112,11 +219,28 @@ class InfinitePracticeView(QWidget):
         act_layout.addWidget(self.btn_next)
         self.p_layout.addLayout(act_layout)
         
-        self.layout.addWidget(self.panel)
+        layout.addWidget(self.panel)
 
-        self.loading = LoadingOverlay(self)
+    def open_setup(self, mode: str, subject: str, unit: str, topic: str, initial_mastery: float):
+        from src.ui.theme import format_title_case
+        
+        if mode == "weak":
+            self._start_practice_session(mode, subject, unit, topic, initial_mastery)
+            return
+            
+        self.stack.setCurrentWidget(self.page_config)
+        
+        if subject:
+            idx = self.cb_subject.findText(format_title_case(subject))
+            if idx >= 0:
+                self.cb_subject.setCurrentIndex(idx)
+                
+        if unit:
+            idx = self.cb_unit.findText(format_title_case(unit))
+            if idx >= 0:
+                self.cb_unit.setCurrentIndex(idx)
 
-    def start_practice(self, mode: str, subject: str, unit: str, topic: str, initial_mastery: float):
+    def _start_practice_session(self, mode: str, subject: str, unit: str, topic: str, initial_mastery: float):
         self.mode = mode
         self.subject = subject
         self.unit = unit
@@ -139,6 +263,7 @@ class InfinitePracticeView(QWidget):
             
         self.lbl_progress.setText(f"Mastery: {int(self.mastery*100)}%")
         
+        self.stack.setCurrentWidget(self.page_practice)
         self._load_next()
 
     def _load_next(self):
@@ -183,15 +308,13 @@ class InfinitePracticeView(QWidget):
                             if sub.units:
                                 u = random.choice(sub.units)
                                 query_unit = u.name
-                                if u.topics:
-                                    query_topic = random.choice([t.name for t in u.topics])
+                                query_topic = ""
                     elif self.mode == "subject":
                         sub = self.service.db.subjects.get_by_name(self.subject)
                         if sub and sub.units:
                             u = random.choice(sub.units)
                             query_unit = u.name
-                            if u.topics:
-                                query_topic = random.choice([t.name for t in u.topics])
+                            query_topic = ""
                             
                 if self.reinforcement_queue:
                     difficulty = self.reinforcement_queue.pop(0)
@@ -199,7 +322,7 @@ class InfinitePracticeView(QWidget):
                 else:
                     difficulty = "Medium" if self.mastery < 0.8 else "Hard"
                     
-                q_data = self.service.agent.generate_practice_question(
+                q_data = self.service.get_practice_question(
                     query_subject, query_unit, query_topic, 
                     difficulty=difficulty
                 )
@@ -223,25 +346,45 @@ class InfinitePracticeView(QWidget):
         self.future = future
 
     def timerEvent(self, event):
-        if hasattr(self, 'future') and self.future.done():
-            self.killTimer(self.timer)
-            try:
-                q_data = self.future.result()
-            except Exception as e:
-                q_data = {"error": str(e)}
+        if hasattr(self, 'future') and getattr(self, 'timer', None) == event.timerId():
+            if self.future.done():
+                self.killTimer(self.timer)
+                try:
+                    q_data = self.future.result()
+                except Exception as e:
+                    q_data = {"error": str(e)}
+                    
+                self.loading.hide_loading()
                 
-            self.loading.hide_loading()
-            
-            if "error" in q_data:
-                self.lbl_question.setText(f"Error generating question: {q_data['error']}")
-                self.btn_next.setText("Retry")
-                self.btn_next.show()
-                # Put the difficulty back if we failed a reinforcement
-                if self.reinforcement_queue:
-                    pass # Or insert it back
-            else:
-                self.btn_next.setText("Next Question")
-                self._render_question(q_data)
+                if "error" in q_data:
+                    self.lbl_question.setText(f"Error generating question: {q_data['error']}")
+                    self.btn_next.setText("Retry")
+                    self.btn_next.show()
+                else:
+                    self.btn_next.setText("Next Question")
+                    self._render_question(q_data)
+
+        if hasattr(self, 'exp_future') and getattr(self, 'exp_timer', None) == event.timerId():
+            if self.exp_future.done():
+                self.killTimer(self.exp_timer)
+                try:
+                    explanation = self.exp_future.result()
+                except Exception as e:
+                    explanation = f"Error generating explanation: {e}"
+                
+                # Update DB to cache this explanation
+                self.current_q['explanation'] = explanation
+                if 'id' in self.current_q and self.current_q['id']:
+                    q_id = self.current_q['id']
+                    q_item = self.service.db.question_bank.get_by_id(q_id)
+                    if q_item:
+                        q_item.explanation = explanation
+                        self.service.db.question_bank.update(q_item)
+                
+                title = self.exp_context["title"]
+                color = self.exp_context["color"]
+                self.lbl_feedback.setText(f"<div style='color: {color}; font-size: 16px;'><b>{title}</b></div><br><div style='color: white;'>{explanation}</div>")
+
 
     def _render_question(self, q_data: dict):
         self.current_q = q_data
@@ -284,23 +427,38 @@ class InfinitePracticeView(QWidget):
         color = COLORS["success"] if is_correct else COLORS["danger"]
         title = "✓ Correct" if is_correct else "✗ Incorrect"
         
-        if is_correct:
+        if not is_correct and not self.reinforcement_queue:
+            self.reinforcement_queue = ["Easy", "Easy", "Medium", "Medium", "Hard"]
+            self.lbl_progress.setText(f"Reinforcement Mode Active | Remaining Questions: {len(self.reinforcement_queue)}")
+            self.lbl_progress.setStyleSheet("color: #F59E0B; font-weight: bold;")
+        elif is_correct:
             self.lbl_progress.setText(f"Mastery: {int(self.mastery*100)}%")
-            explanation = self.current_q.get('explanation', '')
-            self.lbl_feedback.setText(f"<div style='color: {color}; font-size: 16px;'><b>{title}</b></div><br><div style='color: white;'>{explanation}</div>")
-        else:
-            # Trigger Reinforcement Learning if not already in one
-            if not self.reinforcement_queue:
-                self.reinforcement_queue = ["Easy", "Easy", "Medium", "Medium", "Hard"]
-                self.lbl_progress.setText(f"Reinforcement Mode Active | Remaining Questions: {len(self.reinforcement_queue)}")
-                self.lbl_progress.setStyleSheet("color: #F59E0B; font-weight: bold;")
-            
-            detailed_explanation = self.current_q.get('detailed_explanation', self.current_q.get('explanation', ''))
-            self.lbl_feedback.setText(f"<div style='color: {color}; font-size: 16px;'><b>{title}</b></div><br><div style='color: white;'>{detailed_explanation}</div>")
             
         self.scroll_feedback.setStyleSheet(f"QScrollArea {{ background-color: {bg}; border-radius: 8px; }}")
         self.scroll_feedback.show()
         
+        # Check if explanation already cached
+        cached_exp = self.current_q.get('explanation')
+        if cached_exp:
+            self.lbl_feedback.setText(f"<div style='color: {color}; font-size: 16px;'><b>{title}</b></div><br><div style='color: white;'>{cached_exp}</div>")
+        else:
+            self.lbl_feedback.setText(f"<div style='color: {color}; font-size: 16px;'><b>{title}</b></div><br><div style='color: white;'><i>Generating detailed explanation...</i></div>")
+            self._start_explanation_thread(gen_sub, gen_unit, gen_topic, self.current_q.get('question'), correct_ans, user_ans, title, color)
+        
         self.btn_submit.hide()
         self.btn_next.show()
+
+    def _start_explanation_thread(self, subject, unit, topic, question, expected_ans, user_ans, title, color):
+        import concurrent.futures
+        if not hasattr(self, 'exp_executor'):
+            self.exp_executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+            
+        def run_exp():
+            return self.service.agent.generate_explanation(subject, unit, topic, question, expected_ans, user_ans)
+            
+        self.exp_future = self.exp_executor.submit(run_exp)
+        self.exp_timer = self.startTimer(100)
+        # Pass context to timer
+        self.exp_context = {"title": title, "color": color}
+
 

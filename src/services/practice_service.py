@@ -53,3 +53,83 @@ class PracticeService:
             return 5  # 5 Reinforcement Qs
         else:
             return 8  # Mini Lesson + 8 Qs
+
+    def get_practice_question(self, subject: str, unit: str, topic: str | None = None, difficulty: str = "Medium") -> dict:
+        """
+        Retrieves a practice question, preferring the local question bank.
+        If empty, it generates one on the fly and caches it.
+        """
+        # Check cache
+        topic_val = topic or ""
+        q_item = self.db.question_bank.get_question(subject, unit, topic_val, difficulty)
+        
+        if q_item:
+            # Update usage stats
+            q_item.times_served += 1
+            self.db.question_bank.update(q_item)
+            
+            # Stock background if getting low
+            count = self.db.question_bank.count_by_topic(subject, unit, topic_val)
+            if count < 5:
+                self.stock_questions_background(subject, unit, topic_val, difficulty)
+                
+            return {
+                "id": q_item.id,
+                "question": q_item.prompt,
+                "options": q_item.options,
+                "answer": q_item.expected_answer,
+                "explanation": q_item.explanation
+            }
+            
+        # Fallback: Generate one on the fly
+        logger.info(f"Question bank empty for {subject}-{unit}-{topic_val}. Generating on the fly...")
+        q_data = self.agent.generate_practice_question(subject, unit, topic_val, difficulty)
+        
+        # Save to DB if valid
+        if "Error generating" not in q_data.get("question", ""):
+            from src.core.schemas import QuestionBankItem, QuestionType
+            new_item = QuestionBankItem(
+                subject=subject,
+                unit=unit,
+                topic=topic_val,
+                difficulty=difficulty,
+                question_type=QuestionType.MCQ,
+                prompt=q_data["question"],
+                options=q_data["options"],
+                expected_answer=q_data["answer"],
+                explanation=q_data.get("explanation"),
+                times_served=1
+            )
+            q_id = self.db.question_bank.save(new_item)
+            q_data["id"] = q_id
+            
+        return q_data
+
+    def stock_questions_background(self, subject: str, unit: str, topic: str, difficulty: str) -> None:
+        """
+        Spawns a daemon thread to generate a batch of questions for the bank.
+        """
+        import threading
+        
+        def worker():
+            logger.info(f"Background stocking started for {subject}-{unit}-{topic}")
+            for _ in range(5):
+                q_data = self.agent.generate_practice_question(subject, unit, topic, difficulty)
+                if "Error generating" not in q_data.get("question", ""):
+                    from src.core.schemas import QuestionBankItem, QuestionType
+                    new_item = QuestionBankItem(
+                        subject=subject,
+                        unit=unit,
+                        topic=topic,
+                        difficulty=difficulty,
+                        question_type=QuestionType.MCQ,
+                        prompt=q_data["question"],
+                        options=q_data["options"],
+                        expected_answer=q_data["answer"],
+                        explanation=q_data.get("explanation")
+                    )
+                    self.db.question_bank.save(new_item)
+            logger.info(f"Background stocking finished for {subject}-{unit}-{topic}")
+            
+        t = threading.Thread(target=worker, daemon=True)
+        t.start()

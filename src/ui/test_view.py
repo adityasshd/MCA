@@ -216,9 +216,6 @@ class TestView(QWidget):
             btn.clicked.connect(lambda checked, b=btn: self._select_mode(b))
             mode_layout.addWidget(btn)
             
-        self.btn_mode_custom.setChecked(True)
-        self._select_mode(self.btn_mode_custom)
-            
         p_layout.addLayout(mode_layout)
         p_layout.addSpacing(20)
         
@@ -266,6 +263,9 @@ class TestView(QWidget):
         
         p_layout.addSpacing(20)
         
+        self.btn_mode_custom.setChecked(True)
+        self._select_mode(self.btn_mode_custom)
+        
         self.btn_gen = QPushButton("Generate Exam")
         self.btn_gen.setProperty("class", "PrimaryButton")
         self.btn_gen.clicked.connect(self._start_generation)
@@ -299,6 +299,30 @@ class TestView(QWidget):
             else:
                 btn.setChecked(True)
                 btn.setStyleSheet("background-color: #3B82F6; color: white;")
+                
+        # Disable/Enable manual config based on mode
+        is_official = selected_btn == self.btn_mode_official
+        
+        if is_official:
+            # Force "All" scope for official exam
+            idx = self.cb_unit.findText("All (Full Subject)")
+            if idx >= 0:
+                self.cb_unit.setCurrentIndex(idx)
+            self.cb_unit.setEnabled(False)
+            
+            # Types and counts are derived from DOCX template
+            self.chk_mcq.setEnabled(False)
+            self.chk_tf.setEnabled(False)
+            self.chk_fib.setEnabled(False)
+            self.chk_short.setEnabled(False)
+            self.spin_count.setEnabled(False)
+        else:
+            self.cb_unit.setEnabled(True)
+            self.chk_mcq.setEnabled(True)
+            self.chk_tf.setEnabled(True)
+            self.chk_fib.setEnabled(True)
+            self.chk_short.setEnabled(True)
+            self.spin_count.setEnabled(True)
                 
     def _start_generation(self):
         sub_idx = self.cb_subject.currentIndex()

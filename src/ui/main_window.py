@@ -139,4 +139,4 @@ class MainWindow(QMainWindow):
 
     def _launch_practice(self, mode: str, subject: str, unit: str, topic: str, mastery: float):
         self.switch_view(6)
-        self.view_practice.start_practice(mode, subject, unit, topic, mastery)
+        self.view_practice.open_setup(mode, subject, unit, topic, mastery)

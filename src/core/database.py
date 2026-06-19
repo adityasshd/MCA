@@ -35,9 +35,9 @@ from src.core.schemas import (
     StudyProgress,
     WeakTopic,
     PracticeSession,
-    ExamHistory,
     ExamTemplate,
     AppSettings,
+    QuestionBankItem,
 )
 
 logger = logging.getLogger(__name__)
@@ -161,6 +161,14 @@ class ExamTemplateRepository(Protocol):
     def save(self, template: ExamTemplate) -> str: ...
     def get_by_filename(self, filename: str) -> ExamTemplate | None: ...
     def get_by_subject(self, subject: str) -> list[ExamTemplate]: ...
+
+class QuestionBankRepository(Protocol):
+    def save(self, question: QuestionBankItem) -> str: ...
+    def get_question(self, subject: str, unit: str, topic: str, difficulty: str) -> QuestionBankItem | None: ...
+    def get_exam_questions(self, subject: str, unit: str, q_type: Any, count: int) -> list[QuestionBankItem]: ...
+    def get_by_id(self, question_id: str) -> QuestionBankItem | None: ...
+    def update(self, question: QuestionBankItem) -> None: ...
+    def count_by_topic(self, subject: str, unit: str, topic: str) -> int: ...
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -1011,6 +1019,49 @@ class MemoryExamTemplateRepo:
     def get_by_subject(self, subject: str) -> list[ExamTemplate]:
         return [t for t in self._store if t.subject == subject]
 
+class MemoryQuestionBankRepo:
+    def __init__(self) -> None:
+        self._store: list[QuestionBankItem] = []
+        
+    def save(self, question: QuestionBankItem) -> str:
+        if not question.id:
+            question.id = str(len(self._store) + 1)
+        self._store.append(question)
+        return question.id
+        
+    def get_by_id(self, question_id: str) -> QuestionBankItem | None:
+        for q in self._store:
+            if q.id == question_id:
+                return q
+        return None
+        
+    def get_question(self, subject: str, unit: str, topic: str, difficulty: str) -> QuestionBankItem | None:
+        matches = [q for q in self._store if q.subject == subject and q.unit == unit and q.difficulty == difficulty]
+        if topic:
+            matches = [q for q in matches if q.topic == topic]
+            
+        if not matches: return None
+        matches.sort(key=lambda x: x.times_served)
+        return matches[0]
+        
+    def get_exam_questions(self, subject: str, unit: str, q_type: Any, count: int) -> list[QuestionBankItem]:
+        matches = [q for q in self._store if q.subject == subject and q.question_type == q_type]
+        if unit != "All":
+            matches = [q for q in matches if q.unit == unit]
+        return matches[:count]
+        
+    def update(self, question: QuestionBankItem) -> None:
+        for i, q in enumerate(self._store):
+            if q.id == question.id:
+                self._store[i] = question
+                break
+                
+    def count_by_topic(self, subject: str, unit: str, topic: str) -> int:
+        matches = [q for q in self._store if q.subject == subject and q.unit == unit]
+        if topic:
+            matches = [q for q in matches if q.topic == topic]
+        return len(matches)
+
 
 # ═══════════════════════════════════════════════════════════════════════════
 #  Database Manager (Dependency Injection Container)
@@ -1039,6 +1090,7 @@ class DatabaseManager:
         practice_sessions: PracticeSessionRepository,
         exam_history: ExamHistoryRepository,
         exam_templates: ExamTemplateRepository,
+        question_bank: QuestionBankRepository,
     ) -> None:
         self.subjects = subjects
         self.chunks = chunks
@@ -1053,6 +1105,7 @@ class DatabaseManager:
         self.practice_sessions = practice_sessions
         self.exam_history = exam_history
         self.exam_templates = exam_templates
+        self.question_bank = question_bank
 
     @classmethod
     def from_config(
@@ -1099,7 +1152,56 @@ class DatabaseManager:
             practice_sessions=MongoPracticeSessionRepo(db["practice_sessions"]),
             exam_history=MongoExamHistoryRepo(db["exam_history"]),
             exam_templates=MongoExamTemplateRepo(db["exam_templates"]),
+            question_bank=MongoQuestionBankRepo(db["question_bank"]),
         )
+
+
+class MongoQuestionBankRepo:
+    def __init__(self, collection: Collection) -> None:
+        self._col = collection
+        self._col.create_index([("subject", 1), ("unit", 1), ("topic", 1), ("difficulty", 1)])
+        self._col.create_index("times_served")
+
+    def save(self, question: QuestionBankItem) -> str:
+        doc = _to_doc(question)
+        result = self._col.insert_one(doc)
+        return str(result.inserted_id)
+
+    def get_by_id(self, question_id: str) -> QuestionBankItem | None:
+        from bson import ObjectId
+        doc = self._col.find_one({"_id": ObjectId(question_id)})
+        return _from_doc(doc, QuestionBankItem) if doc else None
+
+    def get_question(self, subject: str, unit: str, topic: str, difficulty: str) -> QuestionBankItem | None:
+        query = {"subject": subject, "unit": unit, "difficulty": difficulty}
+        if topic:
+            query["topic"] = topic
+            
+        doc = self._col.find_one(
+            query,
+            sort=[("times_served", 1)]  # Get least served
+        )
+        return _from_doc(doc, QuestionBankItem) if doc else None
+
+    def get_exam_questions(self, subject: str, unit: str, q_type: Any, count: int) -> list[QuestionBankItem]:
+        query = {"subject": subject, "question_type": q_type}
+        if unit != "All":
+            query["unit"] = unit
+        cursor = self._col.find(query).limit(count)
+        return [_from_doc(d, QuestionBankItem) for d in cursor]
+
+    def update(self, question: QuestionBankItem) -> None:
+        from bson import ObjectId
+        if question.id:
+            self._col.replace_one({"_id": ObjectId(question.id)}, _to_doc(question))
+
+    def count_by_topic(self, subject: str, unit: str, topic: str) -> int:
+        query = {"subject": subject, "unit": unit}
+        if topic:
+            query["topic"] = topic
+        return self._col.count_documents(query)
+
+
 
     @classmethod
     def _create_memory(cls) -> DatabaseManager:
@@ -1118,4 +1220,5 @@ class DatabaseManager:
             practice_sessions=MemoryPracticeSessionRepo(),
             exam_history=MemoryExamHistoryRepo(),
             exam_templates=MemoryExamTemplateRepo(),
+            question_bank=MemoryQuestionBankRepo(),
         )
