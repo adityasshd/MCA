@@ -18,7 +18,7 @@ async def process_chapters():
     ]
     
     api_base_url = """
-https://sister-prozac-revisions-worldwide.trycloudflare.com
+https://hydraulic-loving-victor-bottle.trycloudflare.com
 """.strip()
 
     # Convert https:// to wss:// for WebSocket connection

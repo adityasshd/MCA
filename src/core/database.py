@@ -1035,10 +1035,12 @@ class MemoryQuestionBankRepo:
                 return q
         return None
         
-    def get_question(self, subject: str, unit: str, topic: str, difficulty: str) -> QuestionBankItem | None:
+    def get_question(self, subject: str, unit: str, topic: str, difficulty: str, exclude_ids: list[str] = None) -> QuestionBankItem | None:
         matches = [q for q in self._store if q.subject == subject and q.unit == unit and q.difficulty == difficulty]
         if topic:
             matches = [q for q in matches if q.topic == topic]
+        if exclude_ids:
+            matches = [q for q in matches if q.id not in exclude_ids]
             
         if not matches: return None
         matches.sort(key=lambda x: x.times_served)
@@ -1048,6 +1050,8 @@ class MemoryQuestionBankRepo:
         matches = [q for q in self._store if q.subject == subject and q.question_type == q_type]
         if unit != "All":
             matches = [q for q in matches if q.unit == unit]
+        import random
+        random.shuffle(matches)
         return matches[:count]
         
     def update(self, question: QuestionBankItem) -> None:
@@ -1172,10 +1176,13 @@ class MongoQuestionBankRepo:
         doc = self._col.find_one({"_id": ObjectId(question_id)})
         return _from_doc(doc, QuestionBankItem) if doc else None
 
-    def get_question(self, subject: str, unit: str, topic: str, difficulty: str) -> QuestionBankItem | None:
+    def get_question(self, subject: str, unit: str, topic: str, difficulty: str, exclude_ids: list[str] = None) -> QuestionBankItem | None:
         query = {"subject": subject, "unit": unit, "difficulty": difficulty}
         if topic:
             query["topic"] = topic
+        if exclude_ids:
+            from bson import ObjectId
+            query["_id"] = {"$nin": [ObjectId(eid) for eid in exclude_ids if eid]}
             
         doc = self._col.find_one(
             query,
@@ -1187,8 +1194,12 @@ class MongoQuestionBankRepo:
         query = {"subject": subject, "question_type": q_type}
         if unit != "All":
             query["unit"] = unit
-        cursor = self._col.find(query).limit(count)
-        return [_from_doc(d, QuestionBankItem) for d in cursor]
+        pipeline = [
+            {"$match": query},
+            {"$sample": {"size": count}}
+        ]
+        docs = self._col.aggregate(pipeline)
+        return [_from_doc(doc, QuestionBankItem) for doc in docs]
 
     def update(self, question: QuestionBankItem) -> None:
         from bson import ObjectId

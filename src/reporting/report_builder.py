@@ -107,7 +107,8 @@ class ReportBuilder:
         if subject and subject != "All":
             exams = [e for e in exams if e.subject == subject]
             
-        type_scores: dict[str, list[float]] = {"mcq": [], "short_answer": [], "essay": []}
+        from collections import defaultdict
+        type_scores: dict[str, list[float]] = defaultdict(list)
         
         for e in exams:
             for q in e.questions:
@@ -125,12 +126,13 @@ class ReportBuilder:
                 labels.append(t.replace("_", " ").title())
                 averages.append(sum(scores) / len(scores))
 
-        colors = ["#58A6FF", "#F78166", "#3FB950"]
+        color_palette = ["#58A6FF", "#F78166", "#3FB950", "#A371F7", "#D29922"]
+        colors = [color_palette[i % len(color_palette)] for i in range(len(labels))]
         fig = go.Figure(data=[go.Bar(
             x=labels, y=averages,
             text=[f"{v:.1f}%" for v in averages],
             textposition='auto',
-            marker_color=colors[:len(labels)]
+            marker_color=colors
         )])
         
         fig.update_layout(

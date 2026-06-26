@@ -54,14 +54,14 @@ class PracticeService:
         else:
             return 8  # Mini Lesson + 8 Qs
 
-    def get_practice_question(self, subject: str, unit: str, topic: str | None = None, difficulty: str = "Medium") -> dict:
+    def get_practice_question(self, subject: str, unit: str, topic: str | None = None, difficulty: str = "Medium", exclude_ids: list[str] = None) -> dict:
         """
         Retrieves a practice question, preferring the local question bank.
         If empty, it generates one on the fly and caches it.
         """
         # Check cache
         topic_val = topic or ""
-        q_item = self.db.question_bank.get_question(subject, unit, topic_val, difficulty)
+        q_item = self.db.question_bank.get_question(subject, unit, topic_val, difficulty, exclude_ids)
         
         if q_item:
             # Update usage stats
